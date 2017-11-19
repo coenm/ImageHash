@@ -10,7 +10,7 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <RootNamespace>CoenM.ImageSharp</RootNamespace>
     <AssemblyName>CoenM.ImageSharp.ImageHash</AssemblyName>
-    <PackageId>ImageSharp.ImageHash</PackageId>
+    <PackageId>CoenM.ImageSharp.ImageHash</PackageId>
     <PackageTags>ImageHash;DifferenceHash;AverageHash;Imaging;ImageSharp</PackageTags>
     <PackageProjectUrl>https://github.com/coenm/ImageHash/</PackageProjectUrl>
     <RepositoryType>git</RepositoryType>
