@@ -6,33 +6,33 @@ using CoenM.ImageSharp.ImageHash.Test.Internal;
 
 namespace CoenM.ImageSharp.ImageHash.Test.Algorithms
 {
-    public class AverageHashTest
+    public class DifferenceHashTest
     {
-        private readonly AverageHash _sut;
+        private readonly DifferenceHash _sut;
 
         private readonly Dictionary<string, ulong> _expectedHashes = new Dictionary<string, ulong>
         {
-            { "Alyson_Hannigan_500x500_0.jpg", 16701559372701825768},
-            { "Alyson_Hannigan_500x500_1.jpg", 16701559372735380200},
-            { "Alyson_Hannigan_200x200_0.jpg", 16701559372701825768},
-            { "Alyson_Hannigan_4x4_0.jpg", 14395694381845246192},
-            { "github_1.jpg", 15835643108028573695 },
-            { "github_2.jpg", 15835645411202688999 }
+            { "Alyson_Hannigan_500x500_0.jpg", 5344123681044769265},
+            { "Alyson_Hannigan_500x500_1.jpg", 5344123681044769265},
+            { "Alyson_Hannigan_200x200_0.jpg", 5344123681044769265},
+            { "Alyson_Hannigan_4x4_0.jpg", 14339478909768759544},
+            { "github_1.jpg", 8102028990804191308},
+            { "github_2.jpg", 3472328590912938060}
         };
 
-        public AverageHashTest()
+        public DifferenceHashTest()
         {
-            _sut = new AverageHash();    
+            _sut = new DifferenceHash();    
         }
         
 
         [Theory]
-        [InlineData("Alyson_Hannigan_500x500_0.jpg", 16701559372701825768)]
-        [InlineData("Alyson_Hannigan_500x500_1.jpg", 16701559372735380200)]
-        [InlineData("Alyson_Hannigan_200x200_0.jpg", 16701559372701825768)]
-        [InlineData("Alyson_Hannigan_4x4_0.jpg", 14395694381845246192)]
-        [InlineData("github_1.jpg", 15835643108028573695)]
-        [InlineData("github_2.jpg", 15835645411202688999)]
+        [InlineData("Alyson_Hannigan_500x500_0.jpg", 5344123681044769265)]
+        [InlineData("Alyson_Hannigan_500x500_1.jpg", 5344123681044769265)]
+        [InlineData("Alyson_Hannigan_200x200_0.jpg", 5344123681044769265)]
+        [InlineData("Alyson_Hannigan_4x4_0.jpg", 14339478909768759544)]
+        [InlineData("github_1.jpg", 8102028990804191308)]
+        [InlineData("github_2.jpg", 3472328590912938060)]
         public void HashImagesTest(string filename, ulong expectedHash)
         {
             // arrange
@@ -70,7 +70,7 @@ namespace CoenM.ImageSharp.ImageHash.Test.Algorithms
             var result = CompareHash.Similarity(hash1, hash2);
 
             // assert
-            Assert.Equal(98.4375, result);
+            Assert.Equal(100, result);
         }
 
         [Fact]
@@ -98,7 +98,7 @@ namespace CoenM.ImageSharp.ImageHash.Test.Algorithms
             var result = CompareHash.Similarity(hash1, hash2);
 
             // assert
-            Assert.Equal(82.8125, result);
+            Assert.Equal(59.375, result);
         }
 
         [Fact]
