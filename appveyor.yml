@@ -5,11 +5,6 @@ environment:
   github_oauth_token:
     secure: H1vW5fnfAOt5/c5f1qnaatUjFVAPc2oZnxDBFutJZL58LxAyJNRLtfIBrcHnSg8y
   
-# version: 1.0.{build}
-# configuration: Release
-# platform: Any CPU
-
-#
 # Patch .NET Core csproj files to set version information
 #
 dotnet_csproj:
@@ -48,6 +43,7 @@ test_script:
 - .scripts\TestCoverage.bat
 
 after_test:
+- ps: .scripts\pack.ps1
 - codecov -f coverage-dotnet.xml
 
 # build_success:
@@ -55,3 +51,5 @@ after_test:
 # on_finish:
 
 artifacts:
+  - path: '**\*.nupkg'
+    name: NuGet Packages
