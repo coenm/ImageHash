@@ -1,9 +1,25 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.3</TargetFramework>
+    <!-- do not manually update version, this will be done using appvayor -->
+    <Version>1.1.1</Version>
+    <Description>Perceptual image hashing in netstandard using the ImageSharp library. Currently contains two algorithms (DifferenceHash, and AverageHash).</Description>
+    <Authors>Coen van den Munckhof</Authors>
+    <TargetFrameworks>netstandard1.3;netstandard2.0</TargetFrameworks>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <RootNamespace>CoenM.ImageSharp</RootNamespace>
     <AssemblyName>CoenM.ImageSharp.ImageHash</AssemblyName>
-    <RootNamespace>CoenM.ImageSharp.ImageHash</RootNamespace>
+    <PackageId>ImageSharp.ImageHash</PackageId>
+    <PackageTags>ImageHash;DifferenceHash;AverageHash;Imaging;ImageSharp</PackageTags>
+    <PackageProjectUrl>https://github.com/coenm/ImageHash/</PackageProjectUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/coenm/ImageHash.git</RepositoryUrl>
+  <!-- </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'"> -->
+    <DebugType>full</DebugType>
+    <DebugSymbols>True</DebugSymbols>
   </PropertyGroup>
 
   <ItemGroup>
