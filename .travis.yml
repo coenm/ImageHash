@@ -1,0 +1,31 @@
+sudo: required
+dist: trusty
+
+language: node_js
+node_js:
+- "6"
+addons:
+  apt:
+    packages:
+    - gettext
+    - libunwind8
+    - libicu52
+
+before_install:
+- sudo sh -c 'echo "deb [arch=amd64] https://apt-mo.trafficmanager.net/repos/dotnet-release/ trusty main" > /etc/apt/sources.list.d/dotnetdev.list'
+- sudo apt-key adv --keyserver apt-mo.trafficmanager.net --recv-keys 417A0893
+- sudo apt-get update
+- sudo apt-get -y install dotnet-sdk-2.0.0
+
+env:
+  global:
+  - DOTNET_CLI_TELEMETRY_OPTOUT=1
+
+script:
+- dotnet restore src/ImageHash.sln
+- dotnet msbuild /p:configuration=Release src/ImageHash.sln
+- dotnet test /p:configuration=Release src/ImageHash.Test/ImageHash.Test.csproj
+
+cache:
+  directories:
+    - $HOME/.nuget/packages

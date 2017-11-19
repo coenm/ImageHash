@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using CoenM.ImageSharp.HashAlgorithms;
 using Xunit;
-using CoenM.ImageSharp.ImageHash.Algorithms;
 using CoenM.ImageSharp.ImageHash.Test.Internal;
 
 namespace CoenM.ImageSharp.ImageHash.Test.Algorithms

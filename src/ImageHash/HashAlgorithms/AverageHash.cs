@@ -2,7 +2,7 @@
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Processing;
 
-namespace CoenM.ImageSharp.ImageHash.Algorithms
+namespace CoenM.ImageSharp.HashAlgorithms
 {
     /// <summary>
     /// Average hash; Calculate a hash of an image based on visual characteristics by transforming the image to an 8x8 grayscale bitmap. 

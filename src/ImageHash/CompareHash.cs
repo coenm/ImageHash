@@ -1,7 +1,10 @@
 ﻿using System;
 
-namespace CoenM.ImageSharp.ImageHash
+namespace CoenM.ImageSharp
 {
+    /// <summary>
+    /// Utility to compare 64 bit hashes (ulong) using the Hamming distance.
+    /// </summary>
     public static class CompareHash
     {
         /// <summary>
