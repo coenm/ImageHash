@@ -8,7 +8,8 @@
 
 ## Credits
 This project implements the following algorithms:
-- AverageHash by Dr. Neal Krawetz. Check his blog/article [here](http://www.hackerfactor.com/blog/index.php?/archives/432-Looks-Like-It.html).
+- AverageHash by Dr. Neal Krawetz. Check his blog/article [here](http://www.hackerfactor.com/blog/index.php?/archives/432-Looks-Like-It.html);
+- PerceptualHash also by Dr. Neal Krawetz.
 - DifferenceHash by David Oftedal with minor improvements of Dr. Neal Krawetz. More information can be found [here](http://01101001.net/programming.php) or [here](http://www.hackerfactor.com/blog/index.php?/archives/529-Kind-of-Like-That.html).
 
 Misc:
@@ -24,5 +25,4 @@ Definition by [phash.org](https://www.phash.org/)
 > A perceptual hash is a fingerprint of a multimedia file derived from various features from its content. Unlike cryptographic hash functions which rely on the avalanche effect of small changes in input leading to drastic changes in the output, perceptual hashes are "close" to one another if the features are similar.
 
 # Todo
-- [ ] Implement PerceptualHash using DCT;
 - [ ] NuGet.
