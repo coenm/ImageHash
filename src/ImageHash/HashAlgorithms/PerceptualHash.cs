@@ -1,5 +1,4 @@
-﻿using System.IO;
-using SixLabors.ImageSharp;
+﻿using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Processing;
 using System;
 using System.Collections.Generic;
@@ -14,34 +13,32 @@ namespace CoenM.ImageSharp.HashAlgorithms
     public class PerceptualHash : IImageHash
     {
         private const int Size = 64;
-
         private static readonly double Sqrt2DivSize = Math.Sqrt((double)2 / Size);
         private static readonly double Sqrt2 = 1 / Math.Sqrt(2);
 
-        
         /// <summary>
         /// Computes the perceptual hash of an image.
         /// </summary>
-        /// <param name="stream">The image to hash.</param>
+        /// <param name="image">The image to hash.</param>
         /// <returns>The hash of the image.</returns>
-        public ulong Hash(Stream stream)
+        public ulong Hash(Image<Rgba32> image)
         {
+            if (image == null)
+                throw new ArgumentNullException(nameof(image));
+
             var rows = new double[Size][];
             var sequence = new double[Size];
             var matrix = new double[Size][];
 
-            using (var img = Image.Load<Rgba32>(stream))
+            image.Mutate(ctx => ctx.Resize(Size, Size).Grayscale(GrayscaleMode.Bt601));
+
+            // Calculate the DCT for each row.
+            for (var y = 0; y < Size; y++)
             {
-                img.Mutate(ctx => ctx.Resize(Size, Size).Grayscale(GrayscaleMode.Bt601));
+                for (var x = 0; x < Size; x++)
+                    sequence[x] = image[x, y].R;
 
-                // Calculate the DCT for each row.
-                for (var y = 0; y < Size; y++)
-                {
-                    for (var x = 0; x < Size; x++)
-                        sequence[x] = img[x, y].R;
-
-                    rows[y] = Dct1D(sequence);
-                }
+                rows[y] = Dct1D(sequence);
             }
 
             // Calculate the DCT for each column.
@@ -66,11 +63,11 @@ namespace CoenM.ImageSharp.HashAlgorithms
             // Get Median.
             var median = CalculateMedian64Values(topRight);
 
-                
+
             // Calculate hash.
             var mask = 1UL;
             var hash = 0UL;
-                
+
             for (var i = 0; i < Size; i++)
             {
                 if (topRight[i] > median)

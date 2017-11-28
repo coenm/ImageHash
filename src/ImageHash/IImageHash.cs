@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using SixLabors.ImageSharp;
 
 namespace CoenM.ImageSharp
 {
@@ -10,8 +11,8 @@ namespace CoenM.ImageSharp
         /// <summary>
         /// Hash the image using the algorithm.
         /// </summary>
-        /// <param name="stream">Stream should 'contain' raw image data.</param>
+        /// <param name="image">image</param>
         /// <returns>hash value of the image.</returns>
-        ulong Hash(Stream stream);
+        ulong Hash(Image<Rgba32> image);
     }
 }

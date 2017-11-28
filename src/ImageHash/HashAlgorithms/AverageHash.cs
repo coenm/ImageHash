@@ -1,4 +1,4 @@
-﻿using System.IO;
+﻿using System;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Processing;
 
@@ -21,38 +21,38 @@ namespace CoenM.ImageSharp.HashAlgorithms
         /// <summary>
         /// Computes the average hash of an image.
         /// </summary>
-        /// <param name="stream">The image to hash.</param>
+        /// <param name="image">The image to hash.</param>
         /// <returns>The hash of the image.</returns>
-        public ulong Hash(Stream stream)
+        public ulong Hash(Image<Rgba32> image)
         {
-            using (var img = Image.Load<Rgba32>(stream))
+            if (image == null)
+                throw new ArgumentNullException(nameof(image));
+
+            image.Mutate(ctx => ctx.Resize(Width, Height).Grayscale(GrayscaleMode.Bt601));
+
+            uint averageValue = 0;
+
+            var rawBytes = image.SavePixelData();
+            for (var i = 0; i < NrPixels; i++)
             {
-                img.Mutate(ctx => ctx.Resize(Width, Height).Grayscale(GrayscaleMode.Bt601));
-
-                uint averageValue = 0;
-
-                var rawBytes = img.SavePixelData();
-                for (var i = 0; i < NrPixels; i++)
-                {
-                    // We know 4 bytes (RGBA) are used to describe one pixel
-                    // Also, it is already grayscaled, so R=G=B. Therefore, we can take one of these
-                    // values for average calculation. We take the R (the first of each 4 bytes).
-                    averageValue += rawBytes[i*4];
-                }
-
-                averageValue /= NrPixels;
-
-                // Compute the hash: each bit is a pixel
-                // 1 = higher than average, 0 = lower than average
-                ulong hash = 0;
-                for (var i = 0; i < NrPixels; i++)
-                {
-                    if (rawBytes[i*4] >= averageValue)
-                        hash |= 1UL << (NrPixels - 1 - i);
-                }
-
-                return hash;
+                // We know 4 bytes (RGBA) are used to describe one pixel
+                // Also, it is already grayscaled, so R=G=B. Therefore, we can take one of these
+                // values for average calculation. We take the R (the first of each 4 bytes).
+                averageValue += rawBytes[i * 4];
             }
+
+            averageValue /= NrPixels;
+
+            // Compute the hash: each bit is a pixel
+            // 1 = higher than average, 0 = lower than average
+            ulong hash = 0;
+            for (var i = 0; i < NrPixels; i++)
+            {
+                if (rawBytes[i * 4] >= averageValue)
+                    hash |= 1UL << (NrPixels - 1 - i);
+            }
+
+            return hash;
         }
     }
 }

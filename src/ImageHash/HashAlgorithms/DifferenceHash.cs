@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Processing;
 
@@ -20,34 +21,34 @@ namespace CoenM.ImageSharp.HashAlgorithms
         /// <summary>
         /// Computes the diffefence hash of an image.
         /// </summary>
-        /// <param name="stream">The image to hash.</param>
+        /// <param name="image">The image to hash.</param>
         /// <returns>The hash of the image.</returns>
-        public ulong Hash(Stream stream)
+        public ulong Hash(Image<Rgba32> image)
         {
-            using (var img = Image.Load<Rgba32>(stream))
+            if (image == null)
+                throw new ArgumentNullException(nameof(image));
+
+            image.Mutate(ctx => ctx.Resize(Width, Height).Grayscale(GrayscaleMode.Bt601));
+
+            var mask = 1UL;
+            var hash = 0UL;
+
+            for (var y = 0; y < Height; y++)
             {
-                img.Mutate(ctx => ctx.Resize(Width, Height).Grayscale(GrayscaleMode.Bt601));
-
-                var mask = 1UL;
-                var hash = 0UL;
-
-                for (var y = 0; y < Height; y++)
+                var leftPixel = image[0, y];
+                for (var x = 1; x < Width; x++)
                 {
-                    var leftPixel = img[0, y];
-                    for (var x = 1; x < Width; x++)
-                    {
-                        var rightPixel = img[x, y];
+                    var rightPixel = image[x, y];
 
-                        if (leftPixel.R < rightPixel.R)
-                            hash |= mask;
+                    if (leftPixel.R < rightPixel.R)
+                        hash |= mask;
 
-                        leftPixel = rightPixel;
-                        mask = mask << 1;
-                    }
+                    leftPixel = rightPixel;
+                    mask = mask << 1;
                 }
-
-                return hash;
             }
+
+            return hash;
         }
     } 
 }

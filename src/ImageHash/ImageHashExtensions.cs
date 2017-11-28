@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using SixLabors.ImageSharp;
 
 namespace CoenM.ImageSharp
 {
@@ -11,25 +12,19 @@ namespace CoenM.ImageSharp
         /// <summary>
         /// </summary>
         /// <param name="hashImplementation"></param>
-        /// <param name="filename"></param>
+        /// <param name="stream">Stream should 'contain' raw image data</param>
         /// <returns></returns>
-        public static ulong Hash(this IImageHash hashImplementation, string filename)
+        public static ulong Hash(this IImageHash hashImplementation, Stream stream)
         {
-            using (var stream = File.OpenRead(filename))
-                return hashImplementation.Hash(stream);
+            if (hashImplementation == null)
+                throw new ArgumentNullException(nameof(hashImplementation));
+            if (stream == null)
+                throw new ArgumentNullException(nameof(stream));
+
+            using (var image = Image.Load<Rgba32>(stream))
+                return hashImplementation.Hash(image);
         }
 
-
-        /// <summary>
-        /// </summary>
-        /// <param name="hashImplementation"></param>
-        /// <param name="filename"></param>
-        /// <returns></returns>
-        public static byte[] HashToBytes(this IImageHash hashImplementation, string filename)
-        {
-            var result = hashImplementation.Hash(filename);
-            return BitConverter.GetBytes(result);
-        }
 
         /// <summary>
         /// </summary>
@@ -38,6 +33,11 @@ namespace CoenM.ImageSharp
         /// <returns></returns>
         public static byte[] HashToBytes(this IImageHash hashImplementation, Stream stream)
         {
+            if (hashImplementation == null)
+                throw new ArgumentNullException(nameof(hashImplementation));
+            if (stream == null)
+                throw new ArgumentNullException(nameof(stream));
+
             var result = hashImplementation.Hash(stream);
             return BitConverter.GetBytes(result);
         }
