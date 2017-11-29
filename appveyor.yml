@@ -53,3 +53,13 @@ after_test:
 artifacts:
   - path: '**\*.nupkg'
     name: NuGet Packages
+
+deploy:
+  - provider: NuGet
+    name: pre-release
+    server: https://www.myget.org/F/coenm/api/v2/package
+    api_key:
+        secure: t8JtzPkpHidqOii+bLuSiOKgqzsdoSCBI3Sc/Uy6D9jWfxNd7zUUhhTgGHj5rpV9
+    skip_symbols: true
+    # symbol_server: https://www.myget.org/F/coenm/symbols/api/v2/package
+    artifact: /.*\.nupkg/
