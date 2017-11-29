@@ -17,6 +17,8 @@ namespace CoenM.ImageSharp.HashAlgorithms
         private const int Width = 8;
         private const int Height = 8;
         private const int NrPixels = Width * Height;
+        private const ulong MostSignificantBitMask = 1UL << (NrPixels - 1);
+
 
         /// <summary>
         /// Computes the average hash of an image.
@@ -46,7 +48,7 @@ namespace CoenM.ImageSharp.HashAlgorithms
             // Compute the hash: each bit is a pixel
             // 1 = higher than average, 0 = lower than average
             var hash = 0UL;
-            var mask = 1UL << (NrPixels -1);
+            var mask = MostSignificantBitMask;
 
             for (var i = 0; i < NrPixels; i++)
             {
