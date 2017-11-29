@@ -65,7 +65,7 @@ namespace CoenM.ImageSharp.HashAlgorithms
 
 
             // Calculate hash.
-            var mask = 1UL;
+            var mask = 1UL << Size - 1;
             var hash = 0UL;
 
             for (var i = 0; i < Size; i++)
@@ -73,7 +73,7 @@ namespace CoenM.ImageSharp.HashAlgorithms
                 if (topRight[i] > median)
                     hash |= mask;
 
-                mask = mask << 1;
+                mask = mask >> 1;
             }
 
             return hash;

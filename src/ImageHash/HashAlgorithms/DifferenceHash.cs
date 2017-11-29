@@ -30,7 +30,7 @@ namespace CoenM.ImageSharp.HashAlgorithms
 
             image.Mutate(ctx => ctx.Resize(Width, Height).Grayscale(GrayscaleMode.Bt601));
 
-            var mask = 1UL;
+            var mask = 1UL << Height * (Width-1) -1;
             var hash = 0UL;
 
             for (var y = 0; y < Height; y++)
@@ -44,7 +44,7 @@ namespace CoenM.ImageSharp.HashAlgorithms
                         hash |= mask;
 
                     leftPixel = rightPixel;
-                    mask = mask << 1;
+                    mask = mask >> 1;
                 }
             }
 

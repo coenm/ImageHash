@@ -12,27 +12,27 @@ namespace CoenM.ImageSharp.ImageHash.Test.Algorithms
 
         private readonly Dictionary<string, ulong> _expectedHashes = new Dictionary<string, ulong>
         {
-            { "Alyson_Hannigan_500x500_0.jpg", 8393735134441359855},
-            { "Alyson_Hannigan_500x500_1.jpg", 8393735134709533167},
-            { "Alyson_Hannigan_200x200_0.jpg", 8393735134441359855},
-            { "Alyson_Hannigan_4x4_0.jpg", 10632026805419366799},
-            { "github_1.jpg", 02519932711947937405},
-            { "github_2.jpg", 10591411288096084733}
+            { "Alyson_Hannigan_500x500_0.jpg", 17839858461443178030},
+            { "Alyson_Hannigan_500x500_1.jpg", 17839823311430827566},
+            { "Alyson_Hannigan_200x200_0.jpg", 17839858461443178030},
+            { "Alyson_Hannigan_4x4_0.jpg", 17409736169497899465},
+            { "github_1.jpg", 13719320793338945348},
+            { "github_2.jpg", 13783795072850083657}
         };
 
         public PerceptualHashTest()
         {
             _sut = new PerceptualHash();    
         }
-        
+
 
         [Theory]
-        [InlineData("Alyson_Hannigan_500x500_0.jpg", 8393735134441359855)]
-        [InlineData("Alyson_Hannigan_500x500_1.jpg", 8393735134709533167)]
-        [InlineData("Alyson_Hannigan_200x200_0.jpg", 8393735134441359855)]
-        [InlineData("Alyson_Hannigan_4x4_0.jpg", 10632026805419366799)]
-        [InlineData("github_1.jpg", 02519932711947937405)]
-        [InlineData("github_2.jpg", 10591411288096084733)]
+        [InlineData("Alyson_Hannigan_500x500_0.jpg", 17839858461443178030)]
+        [InlineData("Alyson_Hannigan_500x500_1.jpg", 17839823311430827566)]
+        [InlineData("Alyson_Hannigan_200x200_0.jpg", 17839858461443178030)]
+        [InlineData("Alyson_Hannigan_4x4_0.jpg", 17409736169497899465)]
+        [InlineData("github_1.jpg", 13719320793338945348)]
+        [InlineData("github_2.jpg", 13783795072850083657)]
         public void HashImagesTest(string filename, ulong expectedHash)
         {
             // arrange

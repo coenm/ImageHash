@@ -45,11 +45,15 @@ namespace CoenM.ImageSharp.HashAlgorithms
 
             // Compute the hash: each bit is a pixel
             // 1 = higher than average, 0 = lower than average
-            ulong hash = 0;
+            var hash = 0UL;
+            var mask = 1UL << (NrPixels -1);
+
             for (var i = 0; i < NrPixels; i++)
             {
                 if (rawBytes[i * 4] >= averageValue)
-                    hash |= 1UL << (NrPixels - 1 - i);
+                    hash |= mask;
+
+                mask = mask >> 1;
             }
 
             return hash;

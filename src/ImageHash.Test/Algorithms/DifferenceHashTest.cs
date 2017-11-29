@@ -12,27 +12,27 @@ namespace CoenM.ImageSharp.ImageHash.Test.Algorithms
 
         private readonly Dictionary<string, ulong> _expectedHashes = new Dictionary<string, ulong>
         {
-            { "Alyson_Hannigan_500x500_0.jpg", 5344123681044769265},
-            { "Alyson_Hannigan_500x500_1.jpg", 5344123681044769265},
-            { "Alyson_Hannigan_200x200_0.jpg", 5344123681044769265},
-            { "Alyson_Hannigan_4x4_0.jpg", 14339478909768759544},
-            { "github_1.jpg", 8102028990804191308},
-            { "github_2.jpg", 3472328590912938060}
+            { "Alyson_Hannigan_500x500_0.jpg", 10346094587896157266},
+            { "Alyson_Hannigan_500x500_1.jpg", 10346094587896157266},
+            { "Alyson_Hannigan_200x200_0.jpg", 10346094587896157266},
+            { "Alyson_Hannigan_4x4_0.jpg",     02242545344976519395},
+            { "github_1.jpg",                  03609409886373023246},
+            { "github_2.jpg",                  03604624846665550860}
         };
 
         public DifferenceHashTest()
         {
             _sut = new DifferenceHash();    
         }
-        
+
 
         [Theory]
-        [InlineData("Alyson_Hannigan_500x500_0.jpg", 5344123681044769265)]
-        [InlineData("Alyson_Hannigan_500x500_1.jpg", 5344123681044769265)]
-        [InlineData("Alyson_Hannigan_200x200_0.jpg", 5344123681044769265)]
-        [InlineData("Alyson_Hannigan_4x4_0.jpg", 14339478909768759544)]
-        [InlineData("github_1.jpg", 8102028990804191308)]
-        [InlineData("github_2.jpg", 3472328590912938060)]
+        [InlineData("Alyson_Hannigan_500x500_0.jpg", 10346094587896157266)]
+        [InlineData("Alyson_Hannigan_500x500_1.jpg", 10346094587896157266)]
+        [InlineData("Alyson_Hannigan_200x200_0.jpg", 10346094587896157266)]
+        [InlineData("Alyson_Hannigan_4x4_0.jpg", 2242545344976519395)]
+        [InlineData("github_1.jpg", 3609409886373023246)]
+        [InlineData("github_2.jpg", 3604624846665550860)]
         public void HashImagesTest(string filename, ulong expectedHash)
         {
             // arrange
