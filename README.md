@@ -2,9 +2,9 @@
 
 | Branch | Status |
 | :--- | :--- |
-| Develop | [![Build status](https://ci.appveyor.com/api/projects/status/891pi650ra2ori5t/branch/develop?svg=true)](https://ci.appveyor.com/project/coenm/imagehash/branch/develop) [![Build Status](https://travis-ci.org/coenm/ImageHash.svg?branch=develop)](https://travis-ci.org/coenm/ImageHash) [![Coverage](https://codecov.io/gh/coenm/imagehash/branch/develop/graph/badge.svg)](https://codecov.io/gh/coenm/imagehash) |
+| Develop | [![Build status](https://ci.appveyor.com/api/projects/status/891pi650ra2ori5t/branch/develop?svg=true)](https://ci.appveyor.com/project/coenm/imagehash/branch/develop) [![Build Status](https://travis-ci.org/coenm/ImageHash.svg?branch=develop)](https://travis-ci.org/coenm/ImageHash) [![Coverage](https://codecov.io/gh/coenm/imagehash/branch/develop/graph/badge.svg)](https://codecov.io/gh/coenm/imagehash) [![MyGet Pre Release](https://img.shields.io/myget/coenm/vpre/CoenM.ImageSharp.ImageHash.svg?label=myget)](https://www.myget.org/feed/Packages/coenm/) |
 
-.net standard library containing multiple algorithms to calculate perceptual hashes of images and to calculate similarity using those hashes.
+.NET Standard library containing multiple algorithms to calculate perceptual hashes of images and to calculate similarity using those hashes.
 
 ## Credits
 This project implements the following algorithms:
@@ -23,6 +23,3 @@ I want to keep my photo's organized as much as possible with as less effort as p
 Definition by [phash.org](https://www.phash.org/)
 
 > A perceptual hash is a fingerprint of a multimedia file derived from various features from its content. Unlike cryptographic hash functions which rely on the avalanche effect of small changes in input leading to drastic changes in the output, perceptual hashes are "close" to one another if the features are similar.
-
-# Todo
-- [ ] NuGet.
