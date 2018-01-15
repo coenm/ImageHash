@@ -30,7 +30,11 @@ namespace CoenM.ImageSharp.HashAlgorithms
             var sequence = new double[Size];
             var matrix = new double[Size][];
 
-            image.Mutate(ctx => ctx.Resize(Size, Size).Grayscale(GrayscaleMode.Bt601));
+            image.Mutate(ctx => ctx
+                .Resize(Size, Size)
+                .Grayscale(GrayscaleMode.Bt601)
+                .AutoOrient()
+            );
 
             // Calculate the DCT for each row.
             for (var y = 0; y < Size; y++)

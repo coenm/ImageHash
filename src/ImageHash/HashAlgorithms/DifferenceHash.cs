@@ -30,6 +30,15 @@ namespace CoenM.ImageSharp.HashAlgorithms
 
             image.Mutate(ctx => ctx.Resize(Width, Height).Grayscale(GrayscaleMode.Bt601));
 
+
+            // Although it seems the most expensive method, we first auto orient because with and heigth differ. 
+            image.Mutate(ctx => ctx
+                .AutoOrient()
+                .Resize(Width, Height)
+                .Grayscale(GrayscaleMode.Bt601)
+            );
+
+
             var mask = 1UL << Height * (Width-1) -1;
             var hash = 0UL;
 

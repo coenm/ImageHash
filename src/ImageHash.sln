@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2009
+VisualStudioVersion = 15.0.27004.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImageHash", "ImageHash\ImageHash.csproj", "{466FAF4C-F68A-441A-AA13-4A2F061AD478}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageHash.Test", "ImageHash.Test\ImageHash.Test.csproj", "{BFF28DB8-5C1D-456F-8961-6B890E13397E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImageHash.Test", "ImageHash.Test\ImageHash.Test.csproj", "{BFF28DB8-5C1D-456F-8961-6B890E13397E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

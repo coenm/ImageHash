@@ -30,7 +30,11 @@ namespace CoenM.ImageSharp.HashAlgorithms
             if (image == null)
                 throw new ArgumentNullException(nameof(image));
 
-            image.Mutate(ctx => ctx.Resize(Width, Height).Grayscale(GrayscaleMode.Bt601));
+            image.Mutate(ctx => ctx
+                .Resize(Width, Height)
+                .Grayscale(GrayscaleMode.Bt601)
+                .AutoOrient()
+            );
 
             uint averageValue = 0;
 

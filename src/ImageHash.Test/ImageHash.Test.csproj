@@ -33,8 +33,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="FakeItEasy" Version="4.2.0" />
-    <PackageReference Include="FakeItEasy.Analyzer.CSharp" Version="4.1.1" />
+    <PackageReference Include="FakeItEasy" Version="4.3.0" />
+    <PackageReference Include="FakeItEasy.Analyzer.CSharp" Version="4.3.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.5.0" />
     <PackageReference Include="SixLabors.ImageSharp" Version="1.0.0-beta0002" />
     <PackageReference Include="xunit" Version="2.3.1" />
