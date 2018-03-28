@@ -4,6 +4,7 @@ using System.IO;
 using CoenM.ImageSharp.ImageHash.Test.Internal;
 using FakeItEasy;
 using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.PixelFormats;
 using Xunit;
 using Sut = CoenM.ImageSharp.ImageHashExtensions;
 

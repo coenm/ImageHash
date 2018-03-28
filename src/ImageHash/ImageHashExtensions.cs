@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.PixelFormats;
 
 namespace CoenM.ImageSharp
 {
