@@ -2,11 +2,9 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-
+    <RuntimeFrameworkVersion>2.0.5</RuntimeFrameworkVersion>
     <IsPackable>false</IsPackable>
-
     <AssemblyName>CoenM.ImageSharp.ImageHash.Test</AssemblyName>
-
     <RootNamespace>CoenM.ImageSharp.ImageHash.Test</RootNamespace>
   </PropertyGroup>
 

@@ -43,9 +43,9 @@ namespace CoenM.ImageSharp.ImageHash.Test
             {
                 // act
                 var result = Sut.Hash(_hashAlgorithm, stream);
-                
+
                 // assert
-                A.CallTo(() => _hashAlgorithm.Hash(A<Image<Rgba32>>._)).MustHaveHappened(Repeated.Exactly.Once);
+                A.CallTo(() => _hashAlgorithm.Hash(A<Image<Rgba32>>._)).MustHaveHappenedOnceExactly();
                 Assert.Equal(0UL, result);
             }
         }
