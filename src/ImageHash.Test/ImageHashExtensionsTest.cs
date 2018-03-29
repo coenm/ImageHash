@@ -1,12 +1,12 @@
 ﻿namespace CoenM.ImageSharp.ImageHash.Test
 {
-    using System;
     using System.Diagnostics.CodeAnalysis;
-    using System.IO;
 
     using CoenM.ImageSharp.ImageHash.Test.Internal;
 
     using FakeItEasy;
+
+    using FluentAssertions;
 
     using SixLabors.ImageSharp;
     using SixLabors.ImageSharp.PixelFormats;
@@ -26,18 +26,6 @@
         }
 
         [Fact]
-        public void HashNullShouldThrowArgumentNullExceptionTest()
-        {
-            Assert.Throws<ArgumentNullException>("hashImplementation", () => Sut.Hash(null, new MemoryStream()));
-        }
-
-        [Fact]
-        public void HashStreamNullShouldThrowArgumentNullExceptionTest()
-        {
-            Assert.Throws<ArgumentNullException>("stream", () => Sut.Hash(_hashAlgorithm, null));
-        }
-
-        [Fact]
         public void HashStreamShouldReadStreamAsImageAndPassDataToHashAlgorithmTest()
         {
             // arrange
@@ -51,7 +39,7 @@
 
                 // assert
                 A.CallTo(() => _hashAlgorithm.Hash(A<Image<Rgba32>>._)).MustHaveHappenedOnceExactly();
-                Assert.Equal(0UL, result);
+                result.Should().Be(0UL);
             }
         }
     }

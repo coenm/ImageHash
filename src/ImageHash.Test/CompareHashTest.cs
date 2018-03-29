@@ -2,20 +2,14 @@
 {
     using System;
 
+    using FluentAssertions;
+
     using Xunit;
 
-    using Sut = CoenM.ImageSharp.CompareHash;
+    using Sut = CompareHash;
 
     public class CompareHashTest
     {
-        [Fact]
-        public void SimilarityThrowsExceptionOnNullArgument()
-        {
-            Assert.Throws<ArgumentNullException>(() => Sut.Similarity(null, null));
-            Assert.Throws<ArgumentNullException>(() => Sut.Similarity(null, new byte[8]));
-            Assert.Throws<ArgumentNullException>(() => Sut.Similarity(new byte[8], null));
-        }
-
         [Theory]
         [InlineData(0)]
         [InlineData(1)]
@@ -38,7 +32,7 @@
             var result = Sut.Similarity(hash1, hash2);
 
             // assert
-            Assert.Equal(98.4375, result);
+            result.Should().Be(98.4375);
         }
 
         [Fact]
@@ -51,7 +45,7 @@
             var result = Sut.Similarity(hash, hash);
 
             // assert
-            Assert.Equal(100, result);
+            result.Should().Be(100);
         }
     }
 }

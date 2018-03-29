@@ -2,9 +2,12 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
 
     using CoenM.ImageSharp.HashAlgorithms;
     using CoenM.ImageSharp.ImageHash.Test.Internal;
+
+    using FluentAssertions;
 
     using Xunit;
 
@@ -44,19 +47,24 @@
                 result = _sut.Hash(stream);
 
             // assert
-            Assert.Equal(expectedHash, result);
+            result.Should().Be(expectedHash);
         }
 
         [Fact]
+        [SuppressMessage("ReSharper", "AccessToDisposedClosure", Justification = "Manually reviewed")]
         public void NotAnImageShouldThrowExceptionTest()
         {
             // arrange
             const string FILENAME = "Not_an_image.txt";
 
             // act
-            // assert
             using (var stream = TestHelper.OpenStream(FILENAME))
-                Assert.Throws<NotSupportedException>(() => _sut.Hash(stream));
+            {
+                Action act = () => _sut.Hash(stream);
+
+                // assert
+                act.Should().Throw<NotSupportedException>();
+            }
         }
 
         [Fact]
@@ -70,7 +78,7 @@
             var result = CompareHash.Similarity(hash1, hash2);
 
             // assert
-            Assert.Equal(98.4375, result);
+            result.Should().Be(98.4375);
         }
 
         [Fact]
@@ -84,7 +92,7 @@
             var result = CompareHash.Similarity(hash1, hash2);
 
             // assert
-            Assert.Equal(100, result);
+            result.Should().Be(100);
         }
 
         [Fact]
@@ -98,7 +106,7 @@
             var result = CompareHash.Similarity(hash1, hash2);
 
             // assert
-            Assert.Equal(82.8125, result);
+            result.Should().Be(82.8125);
         }
 
         [Fact]
@@ -112,7 +120,7 @@
             var result = CompareHash.Similarity(hash1, hash2);
 
             // assert
-            Assert.Equal(89.0625, result);
+            result.Should().Be(89.0625);
         }
     }
 }

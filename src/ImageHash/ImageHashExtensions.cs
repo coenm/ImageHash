@@ -3,6 +3,8 @@
     using System;
     using System.IO;
 
+    using JetBrains.Annotations;
+
     using SixLabors.ImageSharp;
     using SixLabors.ImageSharp.PixelFormats;
 
@@ -15,7 +17,7 @@
         /// <param name="hashImplementation">HashImplementation to calculate the hash.</param>
         /// <param name="stream">Stream should 'contain' raw image data</param>
         /// <returns>hash value</returns>
-        public static ulong Hash(this IImageHash hashImplementation, Stream stream)
+        public static ulong Hash([NotNull] this IImageHash hashImplementation, [NotNull] Stream stream)
         {
             if (hashImplementation == null)
                 throw new ArgumentNullException(nameof(hashImplementation));
