@@ -1,34 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using CoenM.ImageSharp.HashAlgorithms;
-using Xunit;
-using CoenM.ImageSharp.ImageHash.Test.Internal;
-
-namespace CoenM.ImageSharp.ImageHash.Test.Algorithms
+﻿namespace CoenM.ImageSharp.ImageHash.Test.Algorithms
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+
+    using CoenM.ImageSharp.HashAlgorithms;
+    using CoenM.ImageSharp.ImageHash.Test.Internal;
+
+    using FluentAssertions;
+
+    using Xunit;
+
     public class DifferenceHashTest
     {
         private readonly DifferenceHash _sut;
 
         private readonly Dictionary<string, ulong> _expectedHashes = new Dictionary<string, ulong>
-        {
-            { "Alyson_Hannigan_500x500_0.jpg", 10346094587896157266},
-            { "Alyson_Hannigan_500x500_1.jpg", 10346094587896157266},
-            { "Alyson_Hannigan_200x200_0.jpg", 10346094587896157266},
-            { "Alyson_Hannigan_4x4_0.jpg",     02242545344976519395},
-            { "github_1.jpg",                  03609409886373023246},
-            { "github_2.jpg",                  03604624846665550860}
-        };
+                                                                         {
+                                                                             { "Alyson_Hannigan_500x500_0.jpg", 10346094587896157266 },
+                                                                             { "Alyson_Hannigan_500x500_1.jpg", 10346094587896157266 },
+                                                                             { "Alyson_Hannigan_200x200_0.jpg", 10346094587896157266 },
+                                                                             { "Alyson_Hannigan_4x4_0.jpg", 02242545344976519395 },
+                                                                             { "github_1.jpg", 03609409886373023246 },
+                                                                             { "github_2.jpg", 03604624846665550860 }
+                                                                         };
 
         public DifferenceHashTest()
         {
-            _sut = new DifferenceHash();    
+            _sut = new DifferenceHash();
         }
 
-
         [Theory]
-        [InlineData("Alyson_Hannigan_500x500_0.jpg", 10346094587896157266)]
-        [InlineData("Alyson_Hannigan_500x500_1.jpg", 10346094587896157266)]
+        [InlineData("Alyson_Hannigan_500x500_0.jpg", 10346094587359286354)]
+        [InlineData("Alyson_Hannigan_500x500_1.jpg", 10346094587359286354)]
         [InlineData("Alyson_Hannigan_200x200_0.jpg", 10346094587896157266)]
         [InlineData("Alyson_Hannigan_4x4_0.jpg", 2242545344976519395)]
         [InlineData("github_1.jpg", 3609409886373023246)]
@@ -43,21 +47,25 @@ namespace CoenM.ImageSharp.ImageHash.Test.Algorithms
                 result = _sut.Hash(stream);
 
             // assert
-            Assert.Equal(expectedHash, result);
+            result.Should().Be(expectedHash);
         }
 
         [Fact]
+        [SuppressMessage("ReSharper", "AccessToDisposedClosure", Justification = "Manually reviewed")]
         public void NotAnImageShouldThrowExceptionTest()
         {
             // arrange
-            const string filename = "Not_an_image.txt";
+            const string FILENAME = "Not_an_image.txt";
 
             // act
-            // assert
-            using (var stream = TestHelper.OpenStream(filename))
-                Assert.Throws<NotSupportedException>(() => _sut.Hash(stream));
-        }
+            using (var stream = TestHelper.OpenStream(FILENAME))
+            {
+                Action act = () => _sut.Hash(stream);
 
+                // assert
+                act.Should().Throw<NotSupportedException>();
+            }
+        }
 
         [Fact]
         public void ImageWithFilterShouldHaveAlmostOrExactly100Similarity1Test()
@@ -70,7 +78,7 @@ namespace CoenM.ImageSharp.ImageHash.Test.Algorithms
             var result = CompareHash.Similarity(hash1, hash2);
 
             // assert
-            Assert.Equal(100, result);
+            result.Should().Be(100);
         }
 
         [Fact]
@@ -84,7 +92,7 @@ namespace CoenM.ImageSharp.ImageHash.Test.Algorithms
             var result = CompareHash.Similarity(hash1, hash2);
 
             // assert
-            Assert.Equal(100, result);
+            result.Should().Be(100);
         }
 
         [Fact]
@@ -98,7 +106,7 @@ namespace CoenM.ImageSharp.ImageHash.Test.Algorithms
             var result = CompareHash.Similarity(hash1, hash2);
 
             // assert
-            Assert.Equal(59.375, result);
+            result.Should().Be(59.375);
         }
 
         [Fact]
@@ -112,7 +120,7 @@ namespace CoenM.ImageSharp.ImageHash.Test.Algorithms
             var result = CompareHash.Similarity(hash1, hash2);
 
             // assert
-            Assert.Equal(89.0625, result);
+            result.Should().Be(89.0625);
         }
     }
 }

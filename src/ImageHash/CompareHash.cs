@@ -1,9 +1,12 @@
-﻿using System;
-
-namespace CoenM.ImageSharp
+﻿namespace CoenM.ImageSharp
 {
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+
+    using JetBrains.Annotations;
+
     /// <summary>
-    /// Utility to compare 64 bit hashes (ulong) using the Hamming distance.
+    /// Utility to compare 64 bit hashes using the Hamming distance.
     /// </summary>
     public static class CompareHash
     {
@@ -16,30 +19,19 @@ namespace CoenM.ImageSharp
         /// ie. index 255 =>    0xFF = 1111 1111 -> 8 high bits
         /// etc.
         /// </summary>
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "Reviewed. Suppression is OK here.")]
+        [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1001:CommasMustBeSpacedCorrectly", Justification = "Reviewed. Suppression is OK here.")]
         private static readonly byte[] BitCounts =
-        {
-            0,1,1,2,1,2,2,3, 1,2,2,3,2,3,3,4, 1,2,2,3,2,3,3,4, 2,3,3,4,3,4,4,5,
-            1,2,2,3,2,3,3,4, 2,3,3,4,3,4,4,5, 2,3,3,4,3,4,4,5, 3,4,4,5,4,5,5,6,
-            1,2,2,3,2,3,3,4, 2,3,3,4,3,4,4,5, 2,3,3,4,3,4,4,5, 3,4,4,5,4,5,5,6,
-            2,3,3,4,3,4,4,5, 3,4,4,5,4,5,5,6, 3,4,4,5,4,5,5,6, 4,5,5,6,5,6,6,7,
-            1,2,2,3,2,3,3,4, 2,3,3,4,3,4,4,5, 2,3,3,4,3,4,4,5, 3,4,4,5,4,5,5,6,
-            2,3,3,4,3,4,4,5, 3,4,4,5,4,5,5,6, 3,4,4,5,4,5,5,6, 4,5,5,6,5,6,6,7,
-            2,3,3,4,3,4,4,5, 3,4,4,5,4,5,5,6, 3,4,4,5,4,5,5,6, 4,5,5,6,5,6,6,7,
-            3,4,4,5,4,5,5,6, 4,5,5,6,5,6,6,7, 4,5,5,6,5,6,6,7, 5,6,6,7,6,7,7,8
-        };
-
-        /// <summary>
-        /// Counts bits Utility function for similarity.
-        /// </summary>
-        /// <param name="num">The hash we are counting.</param>
-        /// <returns>The total bit count.</returns>
-        private static uint BitCount(ulong num)
-        {
-            uint count = 0;
-            for (; num > 0; num >>= 8)
-                count += BitCounts[num & 0xff];
-            return count;
-        }
+            {
+                0,1,1,2,1,2,2,3, 1,2,2,3,2,3,3,4, 1,2,2,3,2,3,3,4, 2,3,3,4,3,4,4,5,
+                1,2,2,3,2,3,3,4, 2,3,3,4,3,4,4,5, 2,3,3,4,3,4,4,5, 3,4,4,5,4,5,5,6,
+                1,2,2,3,2,3,3,4, 2,3,3,4,3,4,4,5, 2,3,3,4,3,4,4,5, 3,4,4,5,4,5,5,6,
+                2,3,3,4,3,4,4,5, 3,4,4,5,4,5,5,6, 3,4,4,5,4,5,5,6, 4,5,5,6,5,6,6,7,
+                1,2,2,3,2,3,3,4, 2,3,3,4,3,4,4,5, 2,3,3,4,3,4,4,5, 3,4,4,5,4,5,5,6,
+                2,3,3,4,3,4,4,5, 3,4,4,5,4,5,5,6, 3,4,4,5,4,5,5,6, 4,5,5,6,5,6,6,7,
+                2,3,3,4,3,4,4,5, 3,4,4,5,4,5,5,6, 3,4,4,5,4,5,5,6, 4,5,5,6,5,6,6,7,
+                3,4,4,5,4,5,5,6, 4,5,5,6,5,6,6,7, 4,5,5,6,5,6,6,7, 5,6,6,7,6,7,7,8
+            };
 
         /// <summary>
         /// Returns a percentage-based similarity value between the two given hashes. The higher
@@ -53,7 +45,6 @@ namespace CoenM.ImageSharp
             return (64 - BitCount(hash1 ^ hash2)) * 100 / 64.0;
         }
 
-
         /// <summary>
         /// Returns a percentage-based similarity value between the two given hashes. The higher
         /// the percentage, the closer the hashes are to being identical.
@@ -61,20 +52,27 @@ namespace CoenM.ImageSharp
         /// <param name="hash1">The first hash.</param>
         /// <param name="hash2">The second hash.</param>
         /// <returns>The similarity percentage.</returns>
-        public static double Similarity(byte[] hash1, byte[] hash2)
+        public static double Similarity([NotNull] byte[] hash1, [NotNull] byte[] hash2)
         {
-            if (hash1 == null)
-                throw new ArgumentNullException(nameof(hash1));
             if (hash1.Length != 8)
                 throw new ArgumentOutOfRangeException(nameof(hash1));
-            if (hash2 == null)
-                throw new ArgumentNullException(nameof(hash2));
             if (hash2.Length != 8)
                 throw new ArgumentOutOfRangeException(nameof(hash2));
 
             var h1 = BitConverter.ToUInt64(hash1, 0);
             var h2 = BitConverter.ToUInt64(hash2, 0);
             return Similarity(h1, h2);
+        }
+
+        /// <summary>Counts bits Utility function for similarity.</summary>
+        /// <param name="num">The hash we are counting.</param>
+        /// <returns>The total bit count.</returns>
+        private static uint BitCount(ulong num)
+        {
+            uint count = 0;
+            for (; num > 0; num >>= 8)
+                count += BitCounts[num & 0xff];
+            return count;
         }
     }
 }

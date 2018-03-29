@@ -1,20 +1,15 @@
-﻿using System;
-using Xunit;
-using Sut = CoenM.ImageSharp.CompareHash;
-
-namespace CoenM.ImageSharp.ImageHash.Test
+﻿namespace CoenM.ImageSharp.ImageHash.Test
 {
+    using System;
+
+    using FluentAssertions;
+
+    using Xunit;
+
+    using Sut = CompareHash;
+
     public class CompareHashTest
     {
-
-        [Fact]
-        public void SimilarityThrowsExceptionOnNullArgument()
-        {
-            Assert.Throws<ArgumentNullException>(() => Sut.Similarity(null, null));
-            Assert.Throws<ArgumentNullException>(() => Sut.Similarity(null, new byte[8]));
-            Assert.Throws<ArgumentNullException>(() => Sut.Similarity(new byte[8], null));
-        }
-
         [Theory]
         [InlineData(0)]
         [InlineData(1)]
@@ -25,7 +20,6 @@ namespace CoenM.ImageSharp.ImageHash.Test
             Assert.Throws<ArgumentOutOfRangeException>(() => Sut.Similarity(new byte[size], new byte[8]));
             Assert.Throws<ArgumentOutOfRangeException>(() => Sut.Similarity(new byte[8], new byte[size]));
         }
-
 
         [Fact]
         public void OneBitDifferenceShouldResultInAlmost99ProcentSimilarityTest()
@@ -38,9 +32,8 @@ namespace CoenM.ImageSharp.ImageHash.Test
             var result = Sut.Similarity(hash1, hash2);
 
             // assert
-            Assert.Equal(98.4375, result);
+            result.Should().Be(98.4375);
         }
-
 
         [Fact]
         public void SameHashShouldResultIn100ProcentSimilarityTest()
@@ -52,8 +45,7 @@ namespace CoenM.ImageSharp.ImageHash.Test
             var result = Sut.Similarity(hash, hash);
 
             // assert
-            Assert.Equal(100, result);
+            result.Should().Be(100);
         }
-
     }
 }
