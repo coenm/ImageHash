@@ -1,9 +1,10 @@
-﻿using System.IO;
-using System.Reflection;
-using Xunit;
-
-namespace CoenM.ImageSharp.ImageHash.Test.Internal
+﻿namespace CoenM.ImageSharp.ImageHash.Test.Internal
 {
+    using System.IO;
+    using System.Reflection;
+
+    using Xunit;
+
     internal static class TestHelper
     {
         public static Stream OpenStream(string filename)

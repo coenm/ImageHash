@@ -1,81 +1,75 @@
-﻿using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.Processing;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using SixLabors.ImageSharp.PixelFormats;
-using SixLabors.ImageSharp.Processing.Filters;
-using SixLabors.ImageSharp.Processing.Transforms;
-
-namespace CoenM.ImageSharp.HashAlgorithms
+﻿namespace CoenM.ImageSharp.HashAlgorithms
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.Linq;
+    using System.Runtime.CompilerServices;
+
+    using SixLabors.ImageSharp;
+    using SixLabors.ImageSharp.PixelFormats;
+    using SixLabors.ImageSharp.Processing;
+    using SixLabors.ImageSharp.Processing.Filters;
+    using SixLabors.ImageSharp.Processing.Transforms;
+
     /// <summary>
+    /// Perceptual hash; Calculate a hash of an image by first transforming the image to an 64x64 grayscale bitmap and then using the Discrete cosine transform to remove the high frequencies.
     /// </summary>
     public class PerceptualHash : IImageHash
     {
-        private const int Size = 64;
-        private static readonly double Sqrt2DivSize = Math.Sqrt((double)2 / Size);
+        private const int SIZE = 64;
+        private static readonly double Sqrt2DivSize = Math.Sqrt((double)2 / SIZE);
         private static readonly double Sqrt2 = 1 / Math.Sqrt(2);
 
-        /// <summary>
-        /// Computes the perceptual hash of an image.
-        /// </summary>
-        /// <param name="image">The image to hash.</param>
-        /// <returns>The hash of the image.</returns>
+        /// <inheritdoc />
         public ulong Hash(Image<Rgba32> image)
         {
             if (image == null)
                 throw new ArgumentNullException(nameof(image));
 
-            var rows = new double[Size][];
-            var sequence = new double[Size];
-            var matrix = new double[Size][];
+            var rows = new double[SIZE][];
+            var sequence = new double[SIZE];
+            var matrix = new double[SIZE][];
 
             image.Mutate(ctx => ctx
-                .Resize(Size, Size)
-                .Grayscale(GrayscaleMode.Bt601)
-                .AutoOrient()
-            );
+                                .Resize(SIZE, SIZE)
+                                .Grayscale(GrayscaleMode.Bt601)
+                                .AutoOrient());
 
             // Calculate the DCT for each row.
-            for (var y = 0; y < Size; y++)
+            for (var y = 0; y < SIZE; y++)
             {
-                for (var x = 0; x < Size; x++)
+                for (var x = 0; x < SIZE; x++)
                     sequence[x] = image[x, y].R;
 
                 rows[y] = Dct1D(sequence);
             }
 
             // Calculate the DCT for each column.
-            for (var x = 0; x < Size; x++)
+            for (var x = 0; x < SIZE; x++)
             {
-                for (var y = 0; y < Size; y++)
+                for (var y = 0; y < SIZE; y++)
                     sequence[y] = rows[y][x];
 
                 matrix[x] = Dct1D(sequence);
             }
 
-
             // Only use the top 8x8 values.
-            var top8X8 = new List<double>(Size);
+            var top8X8 = new List<double>(SIZE);
             for (var y = 0; y < 8; y++)
             for (var x = 0; x < 8; x++)
                 top8X8.Add(matrix[y][x]);
 
             var topRight = top8X8.ToArray();
 
-
             // Get Median.
             var median = CalculateMedian64Values(topRight);
 
-
             // Calculate hash.
-            var mask = 1UL << Size - 1;
+            var mask = 1UL << SIZE - 1;
             var hash = 0UL;
 
-            for (var i = 0; i < Size; i++)
+            for (var i = 0; i < SIZE; i++)
             {
                 if (topRight[i] > median)
                     hash |= mask;
@@ -89,7 +83,7 @@ namespace CoenM.ImageSharp.HashAlgorithms
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static double CalculateMedian64Values(IReadOnlyCollection<double> values)
         {
-            Debug.Assert(values.Count == 64);
+            Debug.Assert(values.Count == 64, "This DCT method works with 64 doubles.");
             return values.OrderBy(value => value).Skip(31).Take(2).Average();
         }
 
@@ -102,13 +96,12 @@ namespace CoenM.ImageSharp.HashAlgorithms
         private static double[] Dct1D(IReadOnlyList<double> values)
         {
             Debug.Assert(values.Count == 64, "This DCT method works with 64 doubles.");
+            var coefficients = new double[SIZE];
 
-            var coefficients = new double[Size];
-
-            for (var coef = 0; coef < Size; coef++)
+            for (var coef = 0; coef < SIZE; coef++)
             {
-                for (var i = 0; i < Size; i++)
-                    coefficients[coef] += values[i] * Math.Cos((2.0 * i + 1.0) * coef * Math.PI / (2.0 * Size));
+                for (var i = 0; i < SIZE; i++)
+                    coefficients[coef] += values[i] * Math.Cos((2.0 * i + 1.0) * coef * Math.PI / (2.0 * SIZE));
 
                 coefficients[coef] *= Sqrt2DivSize;
                 if (coef == 0)
@@ -117,5 +110,5 @@ namespace CoenM.ImageSharp.HashAlgorithms
 
             return coefficients;
         }
-    } 
+    }
 }

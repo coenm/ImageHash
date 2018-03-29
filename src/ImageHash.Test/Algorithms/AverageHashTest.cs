@@ -1,30 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using CoenM.ImageSharp.HashAlgorithms;
-using Xunit;
-using CoenM.ImageSharp.ImageHash.Test.Internal;
-
-namespace CoenM.ImageSharp.ImageHash.Test.Algorithms
+﻿namespace CoenM.ImageSharp.ImageHash.Test.Algorithms
 {
+    using System;
+    using System.Collections.Generic;
+
+    using CoenM.ImageSharp.HashAlgorithms;
+    using CoenM.ImageSharp.ImageHash.Test.Internal;
+
+    using Xunit;
+
     public class AverageHashTest
     {
         private readonly AverageHash _sut;
 
         private readonly Dictionary<string, ulong> _expectedHashes = new Dictionary<string, ulong>
-        {
-            { "Alyson_Hannigan_500x500_0.jpg", 16701559372701825768},
-            { "Alyson_Hannigan_500x500_1.jpg", 16701559372735380200},
-            { "Alyson_Hannigan_200x200_0.jpg", 16701559372701825768},
-            { "Alyson_Hannigan_4x4_0.jpg", 14395694381845246192},
-            { "github_1.jpg", 15835643108028573695 },
-            { "github_2.jpg", 15835645411202688999 }
-        };
+                                                                         {
+                                                                             { "Alyson_Hannigan_500x500_0.jpg", 16701559372701825768 },
+                                                                             { "Alyson_Hannigan_500x500_1.jpg", 16701559372735380200 },
+                                                                             { "Alyson_Hannigan_200x200_0.jpg", 16701559372701825768 },
+                                                                             { "Alyson_Hannigan_4x4_0.jpg", 14395694381845246192 },
+                                                                             { "github_1.jpg", 15835643108028573695 },
+                                                                             { "github_2.jpg", 15835645411202688999 }
+                                                                         };
 
         public AverageHashTest()
         {
-            _sut = new AverageHash();    
+            _sut = new AverageHash();
         }
-        
 
         [Theory]
         [InlineData("Alyson_Hannigan_500x500_0.jpg", 16701559372701825768)]
@@ -50,14 +51,13 @@ namespace CoenM.ImageSharp.ImageHash.Test.Algorithms
         public void NotAnImageShouldThrowExceptionTest()
         {
             // arrange
-            const string filename = "Not_an_image.txt";
+            const string FILENAME = "Not_an_image.txt";
 
             // act
             // assert
-            using (var stream = TestHelper.OpenStream(filename))
+            using (var stream = TestHelper.OpenStream(FILENAME))
                 Assert.Throws<NotSupportedException>(() => _sut.Hash(stream));
         }
-
 
         [Fact]
         public void ImageWithFilterShouldHaveAlmostOrExactly100Similarity1Test()
