@@ -31,9 +31,9 @@
         }
 
         [Theory]
-        [InlineData("Alyson_Hannigan_500x500_0.jpg", 16701559372701825768)]
+        [InlineData("Alyson_Hannigan_500x500_0.jpg", 16701559372735380200)]
         [InlineData("Alyson_Hannigan_500x500_1.jpg", 16701559372735380200)]
-        [InlineData("Alyson_Hannigan_200x200_0.jpg", 16701559372701825768)]
+        [InlineData("Alyson_Hannigan_200x200_0.jpg", 16701559372735380200)]
         [InlineData("Alyson_Hannigan_4x4_0.jpg", 14395694381845246192)]
         [InlineData("github_1.jpg", 15835643108028573695)]
         [InlineData("github_2.jpg", 15835645411202688999)]
