@@ -32,7 +32,7 @@ using (var stream = File.OpenRead(filename))
 }
 ```
 
-### Calculate image simularity
+### Calculate image similarity
 Note that to calculate the image similarity, both image hashes should have been calculated using the same hash algorihm.
 
 ```csharp
