@@ -9,6 +9,9 @@
 
     using FluentAssertions;
 
+    using SixLabors.ImageSharp;
+    using SixLabors.ImageSharp.PixelFormats;
+
     using Xunit;
 
     public class AverageHashTest
@@ -28,6 +31,19 @@
         public AverageHashTest()
         {
             _sut = new AverageHash();
+        }
+
+        [Fact]
+        public void NullArgumentShouldThrowArgumentNullExceptionTest()
+        {
+            // arrange
+
+            // act
+            // ReSharper disable once AssignNullToNotNullAttribute
+            Action act = () => _sut.Hash(null);
+
+            // assert
+            act.Should().Throw<ArgumentNullException>();
         }
 
         [Theory]

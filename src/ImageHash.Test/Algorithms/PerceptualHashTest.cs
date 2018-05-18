@@ -68,6 +68,19 @@
         }
 
         [Fact]
+        public void NullArgumentShouldThrowArgumentNullExceptionTest()
+        {
+            // arrange
+
+            // act
+            // ReSharper disable once AssignNullToNotNullAttribute
+            Action act = () => _sut.Hash(null);
+
+            // assert
+            act.Should().Throw<ArgumentNullException>();
+        }
+
+        [Fact]
         public void ImageWithFilterShouldHaveAlmostOrExactly100Similarity1Test()
         {
             // arrange
