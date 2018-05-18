@@ -1,6 +1,8 @@
 ﻿namespace CoenM.ImageSharp.ImageHash.Test
 {
+    using System;
     using System.Diagnostics.CodeAnalysis;
+    using System.IO;
 
     using CoenM.ImageSharp.ImageHash.Test.Internal;
 
@@ -41,6 +43,23 @@
                 A.CallTo(() => _hashAlgorithm.Hash(A<Image<Rgba32>>._)).MustHaveHappenedOnceExactly();
                 result.Should().Be(0UL);
             }
+        }
+
+        [Theory]
+        [InlineData(true, false)]
+        [InlineData(false, true)]
+        [InlineData(true, true)]
+        public void NullArgumentShouldThrowArgumentNullExceptionTest(bool hashImplIsNull, bool streamIsNull)
+        {
+            // arrange
+            IImageHash imageHashImplementation = hashImplIsNull ? null : A.Dummy<IImageHash>();
+            Stream stream = streamIsNull ? null : new MemoryStream();
+
+            // act
+            Action act = () => Sut.Hash(imageHashImplementation, stream);
+
+            // assert
+            act.Should().Throw<ArgumentNullException>();
         }
     }
 }

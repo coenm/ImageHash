@@ -28,10 +28,7 @@
             if (image == null)
                 throw new ArgumentNullException(nameof(image));
 
-            image.Mutate(ctx => ctx.Resize(WIDTH, HEIGHT)
-                                   .Grayscale(GrayscaleMode.Bt601));
-
-            // Although it seems the most expensive method, we first auto orient because with and heigth differ.
+            // We first auto orient because with and heigth differ.
             image.Mutate(ctx => ctx
                                 .AutoOrient()
                                 .Resize(WIDTH, HEIGHT)
