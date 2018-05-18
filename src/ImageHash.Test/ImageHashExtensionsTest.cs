@@ -51,8 +51,6 @@
         [InlineData(true, true)]
         public void NullArgumentShouldThrowArgumentNullExceptionTest(bool hashImplIsNull, bool streamIsNull)
         {
-            // ReSharper disable AssignNullToNotNullAttribute
-
             // arrange
             IImageHash imageHashImplementation = hashImplIsNull ? null : A.Dummy<IImageHash>();
             Stream stream = streamIsNull ? null : new MemoryStream();
@@ -62,8 +60,6 @@
 
             // assert
             act.Should().Throw<ArgumentNullException>();
-
-            // ReSharper restore AssignNullToNotNullAttribute
         }
     }
 }

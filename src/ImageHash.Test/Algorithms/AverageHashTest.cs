@@ -39,7 +39,6 @@
             // arrange
 
             // act
-            // ReSharper disable once AssignNullToNotNullAttribute
             Action act = () => _sut.Hash(null);
 
             // assert

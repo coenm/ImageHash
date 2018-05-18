@@ -3,8 +3,6 @@
     using System;
     using System.Diagnostics.CodeAnalysis;
 
-    using JetBrains.Annotations;
-
     /// <summary>
     /// Utility to compare 64 bit hashes using the Hamming distance.
     /// </summary>
@@ -49,11 +47,15 @@
         /// Returns a percentage-based similarity value between the two given hashes. The higher
         /// the percentage, the closer the hashes are to being identical.
         /// </summary>
-        /// <param name="hash1">The first hash.</param>
-        /// <param name="hash2">The second hash.</param>
+        /// <param name="hash1">The first hash. Cannot be null and must have a length of 8.</param>
+        /// <param name="hash2">The second hash. Cannot be null and must have a length of 8.</param>
         /// <returns>The similarity percentage.</returns>
-        public static double Similarity([NotNull] byte[] hash1, [NotNull] byte[] hash2)
+        public static double Similarity(byte[] hash1, byte[] hash2)
         {
+            if (hash1 == null)
+                throw new ArgumentNullException(nameof(hash1));
+            if (hash2 == null)
+                throw new ArgumentNullException(nameof(hash2));
             if (hash1.Length != 8)
                 throw new ArgumentOutOfRangeException(nameof(hash1));
             if (hash2.Length != 8)
