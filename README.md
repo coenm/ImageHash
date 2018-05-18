@@ -16,6 +16,33 @@ Misc:
 - This project uses the [ImageSharp](https://sixlabors.com/projects/imagesharp/) netstandard library for image processing;
 - Also based on existing implementations of already listed algorithms: [jenssegers/imagehash](https://github.com/jenssegers/imagehash) and [jforshee/ImageHashing](https://github.com/jforshee/ImageHashing).
 
+## API
+
+### Calculate image hash
+```csharp
+var hashAlgorithm = new AverageHash();
+// or one of the other available algorihms:
+// var hashAlgorithm = new DifferenceHash();
+// var hashAlgorithm = new PerceptualHash();
+
+string filename = "your filename";
+using (var stream = File.OpenRead(filename))
+{
+    ulong imageHash = hashAlgorithm.Hash(stream);  
+}
+```
+
+### Calculate image similarity
+Note that to calculate the image similarity, both image hashes should have been calculated using the same hash algorihm.
+
+```csharp
+// calculate the two image hashes
+ulong hash1 = hashAlgorithm.Hash(imageStream1);  
+ulong hash2 = hashAlgorithm.Hash(imageStream2);  
+
+double percentageImageSimilarity = CompareHash.Similarity(hash1, hash2);
+```
+
 ## Goal
 I want to keep my photo's organized as much as possible with as less effort as possible. Hashing files is pretty useless to find (almost) duplicate photo's. Updating its meta data, applying a simple filter (instagram has a lot of those), or compressing a photo (sending it using Whatsapp or GMail) results in a different raw file content and therefore for a different hash. Using these algorithms I'm able to find similar images.
 
