@@ -34,7 +34,7 @@
         [InlineData("Alyson_Hannigan_500x500_0.jpg", 17839823311430827566)]
         [InlineData("Alyson_Hannigan_500x500_1.jpg", 17839823311430827566)]
         [InlineData("Alyson_Hannigan_200x200_0.jpg", 17839823311430827566)]
-        [InlineData("Alyson_Hannigan_4x4_0.jpg", 17409736169632116938)]
+        [InlineData("Alyson_Hannigan_4x4_0.jpg", 17409736169531453642)]
         [InlineData("github_1.jpg", 13719320793338945348)]
         [InlineData("github_2.jpg", 13783795072850083657)]
         public void HashImagesTest(string filename, ulong expectedHash)
