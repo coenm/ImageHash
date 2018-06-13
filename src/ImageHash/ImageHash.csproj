@@ -1,11 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <!-- do not manually update version, this will be done using appvayor -->
     <Version>1.1.1</Version>
-    <Description>Perceptual image hashing in netstandard using the ImageSharp library. Currently contains two algorithms (DifferenceHash, and AverageHash).</Description>
+    <Description>Perceptual image hashing in netstandard using the ImageSharp library. Currently contains three algorithms (AverageHash, DifferenceHash, and PerceptualHash).</Description>
     <Authors>Coen van den Munckhof</Authors>
-    <TargetFrameworks>netstandard1.3;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>netstandard1.1;netstandard1.3;netstandard2.0</TargetFrameworks>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <RootNamespace>CoenM.ImageSharp</RootNamespace>
