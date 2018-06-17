@@ -21,6 +21,7 @@ $dotnetExe = 'dotnet.exe'
 # $outputOpenCoverXmlFile = 'C:\projects\coverage-dotnet.xml'
 $outputOpenCoverXmlFile = (join-path $RootDir "coverage-dotnet.xml")
 
+Write-Host "(Environment) Configuration:" $env:CONFIGURATION 
 Write-Host "Location opencover.exe: " $opencoverExe
 Write-Host "Location dotnet.exe: " $dotnetExe
 Write-Host "Location xml coverage result: " $outputOpenCoverXmlFile
@@ -56,7 +57,6 @@ Try
 #		'
 		
 		$command = $opencoverExe + ' -threshold:1 -register:user -oldStyle -mergebyhash -mergeoutput -target:"' + $dotnetExe + '" -targetargs:"test ' + $testProjectLocation + ' '+ $dotnetTestArgs + '" "-output:' + $outputOpenCoverXmlFile + '" -returntargetcode "-excludebyattribute:System.Diagnostics.DebuggerNonUserCodeAttribute" "-filter:' +  $opencoverFilter + '"'
-		
 		
 		Write-Output $command
 		
