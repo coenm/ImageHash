@@ -10,8 +10,10 @@ environment:
 dotnet_csproj:
   patch: true
   file: '**\*.csproj'
-  version: '%GitVersion_NuGetVersion%'
-  package_version: '%GitVersion_NuGetVersion%'
+  #version: '%GitVersion_NuGetVersion%'
+  #package_version: '%GitVersion_NuGetVersion
+  version: '{version}'
+  package_version: '{version}'
   # assembly_version: '{version}'
   # file_version: '{version}'
   # informational_version: '{version}'
