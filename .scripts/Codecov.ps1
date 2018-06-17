@@ -16,8 +16,8 @@ $outputOpenCoverXmlFile = (join-path $RootDir "coverage-dotnet.xml")
 
 # Should be release of debug (set by AppVeyor)
 $build_version_orig = $env:APPVEYOR_BUILD_VERSION
-$build-Version_new = $build_version_orig
-$env:APPVEYOR_BUILD_VERSION = $build-Version_new.Replace("+",".")
+$build_version_new = $build_version_orig
+$env:APPVEYOR_BUILD_VERSION = $build_version_new.Replace("+",".")
 
 Write-Host "Orig build version: " $build_version_orig
 Write-Host "New build version: " $env:APPVEYOR_BUILD_VERSION
