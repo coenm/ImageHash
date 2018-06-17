@@ -35,9 +35,8 @@ before_build:
 build_script:
 - msbuild /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" src\ImageHash.sln 
 
-
 test_script:
-- .scripts\TestCoverage.bat
+- ps: .scripts\TestCoverage.ps1
 
 after_test:
 - ps: .scripts\pack.ps1
