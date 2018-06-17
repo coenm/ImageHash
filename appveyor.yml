@@ -43,9 +43,6 @@ after_test:
 - ps: .scripts\pack.ps1
 - codecov -f coverage-dotnet.xml
 
-# build_success:
-
-# on_finish:
 
 artifacts:
   - path: '**\*.nupkg'

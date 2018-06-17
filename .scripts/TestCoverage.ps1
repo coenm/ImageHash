@@ -55,7 +55,7 @@ Try
             + "-excludebyfile:*\*Designer.cs "`
             + "-target:""${dotnetExe}"" "`
             + "-targetargs:""test ${testProjectLocation} ${dotnetTestArgs}"" "`
-            + "-output:""${outputOpenCoverXmlFile}"" "`
+            + "-output:${outputOpenCoverXmlFile} "`
             + "-excludebyattribute:System.Diagnostics.DebuggerNonUserCodeAttribute "`
             + "-filter:""${opencoverFilter}"""
 
@@ -87,6 +87,9 @@ Try
 		iex $command
 		
 		Write-Host "Command finished, ready for the next one"
+		
+		Write-Host $outputOpenCoverXmlFile
+		Get-Content -Path $outputOpenCoverXmlFile
 	}
 }
 Finally
