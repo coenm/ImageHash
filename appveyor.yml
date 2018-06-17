@@ -1,33 +1,35 @@
 image: Visual Studio 2017
+configuration: Release
+platform: Any CPU
 
 environment:
   DOTNET_CLI_TELEMETRY_OPTOUT: 1
   github_oauth_token:
     secure: H1vW5fnfAOt5/c5f1qnaatUjFVAPc2oZnxDBFutJZL58LxAyJNRLtfIBrcHnSg8y
   
-# Patch .NET Core csproj files to set version information
-#
 dotnet_csproj:
   patch: true
   file: '**\*.csproj'
-  version: '{version}'
-  package_version: '{version}'
+  version: '%GitVersion_NuGetVersion%'
+  package_version: '%GitVersion_NuGetVersion%'
   # assembly_version: '{version}'
   # file_version: '{version}'
   # informational_version: '{version}'
 
-
-# +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-init:
-# nothing here
-
 install:
-- choco install gitversion.portable -pre -y
-- choco install opencover.portable
-- choco install codecov
-# Run gitversion before appveyor will patch the csproj files with version info.
-# Note that the full patch is specified. Otherwise the default (older) gitversion will be used.
-- C:\ProgramData\chocolatey\lib/gitversion.portable/tools/gitversion.exe /l console /output buildserver
+- cmd: >-
+    choco install gitversion.portable -pre -y
+
+    choco install opencover.portable -y
+
+    choco install codecov -y
+    
+    # Run gitversion before appveyor will patch the csproj files with version info.
+    # Note that the full patch is specified. Otherwise the default (older) gitversion will be used.
+    C:\ProgramData\chocolatey\lib/gitversion.portable/tools/gitversion.exe /l console /output buildserver
+
+    git submodule update --init --recursive
+
 
 before_build:
 - dotnet restore src\ImageHash.sln
@@ -35,9 +37,6 @@ before_build:
 build_script:
 - msbuild /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" src\ImageHash.sln 
 
-# after_build:
-
-# before_test:
 
 test_script:
 - .scripts\TestCoverage.bat
@@ -63,3 +62,5 @@ deploy:
     skip_symbols: true
     # symbol_server: https://www.myget.org/F/coenm/symbols/api/v2/package
     artifact: /.*\.nupkg/
+    on:
+        branch: /(master|release.*|develop)/	
