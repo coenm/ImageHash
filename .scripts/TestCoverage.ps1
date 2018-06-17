@@ -25,7 +25,7 @@ Write-Host "Location opencover.exe: " $opencoverExe
 Write-Host "Location dotnet.exe: " $dotnetExe
 Write-Host "Location xml coverage result: " $outputOpenCoverXmlFile
 
-$dotnetTestArgs = '-c Debug --no-build --filter Category!=StressTest --logger:trx' # ;LogFileName=' + $outputTrxFile
+$dotnetTestArgs = '-c Release --no-build --filter Category!=StressTest --logger:trx' # ;LogFileName=' + $outputTrxFile
 $opencoverFilter = "+[CoenM*]* -[*.Test]*"
 
 pushd
