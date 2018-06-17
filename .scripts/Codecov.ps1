@@ -16,7 +16,7 @@ $outputOpenCoverXmlFile = (join-path $RootDir "coverage-dotnet.xml")
 
 $branch_orig = $env:APPVEYOR_REPO_BRANCH
 $branch_new = $branch_orig
-$env:APPVEYOR_REPO_BRANCH = $branch_new.Replace("/",".")
+$env:APPVEYOR_REPO_BRANCH = $branch_new.Replace("/",".").Replace("-",".")
 
 $build_version_orig = $env:APPVEYOR_BUILD_VERSION
 $build_version_new = $build_version_orig
