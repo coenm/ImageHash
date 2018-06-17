@@ -54,7 +54,7 @@ Try
             + "-hideskipped:All "`
             + "-excludebyfile:*\*Designer.cs "`
             + "-target:""${dotnetExe}"" "`
-            + "-targetargs:""test '${testProjectLocation}' ${dotnetTestArgs}"" "`
+            + "-targetargs:""test ${testProjectLocation} ${dotnetTestArgs}"" "`
             + "-output:""${outputOpenCoverXmlFile}"" "`
             + "-excludebyattribute:System.Diagnostics.DebuggerNonUserCodeAttribute "`
             + "-filter:""${opencoverFilter}"""
