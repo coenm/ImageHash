@@ -87,9 +87,6 @@ Try
 		iex $command
 		
 		Write-Host "Command finished, ready for the next one"
-		
-		Write-Host $outputOpenCoverXmlFile
-		Get-Content -Path $outputOpenCoverXmlFile
 	}
 }
 Finally
