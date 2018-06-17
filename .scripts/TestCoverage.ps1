@@ -78,11 +78,11 @@ Try
 #		"-filter:' +  $opencoverFilter + '"
 #		'
 		
-		$command = $opencoverExe + ' ' +
-		'-threshold:1 ' + 
-		'-register:user -oldStyle -mergebyhash -mergeoutput -target:"' + $dotnetExe + '" -targetargs:"test ' + $testProjectLocation + ' '+ $dotnetTestArgs + '" "-output:' + $outputOpenCoverXmlFile + '" -returntargetcode "-excludebyattribute:System.Diagnostics.DebuggerNonUserCodeAttribute" "-filter:' +  $opencoverFilter + '"'
+#		$command = $opencoverExe + ' ' +
+#		'-threshold:1 ' + 
+#		'-register:user -oldStyle -mergebyhash -mergeoutput -target:"' + $dotnetExe + '" -targetargs:"test ' + $testProjectLocation + ' '+ $dotnetTestArgs + '" "-output:' + $outputOpenCoverXmlFile + '" -returntargetcode "-excludebyattribute:System.Diagnostics.DebuggerNonUserCodeAttribute" "-filter:' +  $opencoverFilter + '"'
 		
-		Write-Output $command
+#		Write-Output $command
 		
 		iex $command
 		
