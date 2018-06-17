@@ -21,7 +21,7 @@ $dotnetExe = 'dotnet.exe'
 # $outputOpenCoverXmlFile = 'C:\projects\coverage-dotnet.xml'
 $outputOpenCoverXmlFile = (join-path $RootDir "coverage-dotnet.xml")
 
-# Should be release of debug
+# Should be release of debug (set by AppVeyor)
 $configuration = $env:CONFIGURATION
 
 Write-Host "(Environment) Configuration:" $configuration 
@@ -29,7 +29,6 @@ Write-Host "Location opencover.exe: " $opencoverExe
 Write-Host "Location dotnet.exe: " $dotnetExe
 Write-Host "Location xml coverage result: " $outputOpenCoverXmlFile
 
-# $dotnetTestArgs = '-c Release --no-build --filter Category!=StressTest --logger:trx' # ;LogFileName=' + $outputTrxFile
 $dotnetTestArgs = '-c ' + $configuration + ' --no-build --filter Category!=StressTest --logger:trx' # ;LogFileName=' + $outputTrxFile
 $opencoverFilter = "+[CoenM*]* -[*.Test]*"
 
@@ -43,6 +42,25 @@ Try
 	ForEach ($testProjectLocation in $testProjectLocations)
 	{
 		Write-Host "Run tests for project " (Resolve-Path $testProjectLocation).Path;
+
+		
+		$command = "${opencoverExe} "`
+            + "-threshold:1 "`
+            + "-register:user "`
+            + "-oldStyle "`
+            + "-mergebyhash "`
+            + "-mergeoutput "`
+            + "-returntargetcode "`
+            + "-hideskipped:All "`
+            + "-excludebyfile:*\*Designer.cs "`
+            + "-target:""${dotnetExe}"" "`
+            + "-targetargs:""test '${testProjectLocation}' ${dotnetTestArgs}"" "`
+            + "-output:""${outputOpenCoverXmlFile}"" "`
+            + "-excludebyattribute:System.Diagnostics.DebuggerNonUserCodeAttribute "`
+            + "-filter:""${opencoverFilter}"""
+
+		
+		Write-Output $command
 
 #		$command = $opencoverExe + ' 
 #		-threshold:1 
@@ -60,7 +78,9 @@ Try
 #		"-filter:' +  $opencoverFilter + '"
 #		'
 		
-		$command = $opencoverExe + ' -threshold:1 -register:user -oldStyle -mergebyhash -mergeoutput -target:"' + $dotnetExe + '" -targetargs:"test ' + $testProjectLocation + ' '+ $dotnetTestArgs + '" "-output:' + $outputOpenCoverXmlFile + '" -returntargetcode "-excludebyattribute:System.Diagnostics.DebuggerNonUserCodeAttribute" "-filter:' +  $opencoverFilter + '"'
+		$command = $opencoverExe + ' ' +
+		'-threshold:1 ' + 
+		'-register:user -oldStyle -mergebyhash -mergeoutput -target:"' + $dotnetExe + '" -targetargs:"test ' + $testProjectLocation + ' '+ $dotnetTestArgs + '" "-output:' + $outputOpenCoverXmlFile + '" -returntargetcode "-excludebyattribute:System.Diagnostics.DebuggerNonUserCodeAttribute" "-filter:' +  $opencoverFilter + '"'
 		
 		Write-Output $command
 		
