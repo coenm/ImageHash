@@ -14,7 +14,10 @@ Write-Host "ROOT: " $RootDir
 # $outputOpenCoverXmlFile = 'C:\projects\coverage-dotnet.xml'
 $outputOpenCoverXmlFile = (join-path $RootDir "coverage-dotnet.xml")
 
-# Should be release of debug (set by AppVeyor)
+$branch_orig = $env:APPVEYOR_REPO_BRANCH
+$branch_new = $branch_orig
+$env:APPVEYOR_REPO_BRANCH = $branch_new.Replace("/",".")
+
 $build_version_orig = $env:APPVEYOR_BUILD_VERSION
 $build_version_new = $build_version_orig
 $env:APPVEYOR_BUILD_VERSION = "test"
@@ -27,3 +30,4 @@ codecov -f $outputOpenCoverXmlFile
 
 Write-Host "Restore"
 $env:APPVEYOR_BUILD_VERSION = $build_version_orig
+$env:APPVEYOR_REPO_BRANCH = $branch_orig
