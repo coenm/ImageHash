@@ -24,8 +24,8 @@ install:
 
     choco install codecov -y
     
-    # Run gitversion before appveyor will patch the csproj files with version info.
-    # Note that the full patch is specified. Otherwise the default (older) gitversion will be used.
+    REM Run gitversion before appveyor will patch the csproj files with version info.
+    REM Note that the full path is specified. Otherwise the default (older) gitversion will be used.
     C:\ProgramData\chocolatey\lib/gitversion.portable/tools/gitversion.exe /l console /output buildserver
 
     git submodule update --init --recursive
