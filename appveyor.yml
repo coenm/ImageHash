@@ -16,11 +16,12 @@ dotnet_csproj:
   #package_version: '{version}'
   # assembly_version: '{version}'
   # file_version: '{version}'
-  # informational_version: '{version}'
+  informational_version: '%GitVersion_InformationalVersion%'
 
 install:
 - choco install gitversion.portable -pre -y
 - choco install opencover.portable -y
+  #
   # install latest codecov (choco is behind of nuget)
 - nuget install Codecov -OutputDirectory C:\NuGetTools\
 - C:\ProgramData\chocolatey\lib/gitversion.portable/tools/gitversion.exe /l console /output buildserver
