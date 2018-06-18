@@ -17,8 +17,6 @@ $opencoverExe = 'C:\ProgramData\chocolatey\bin\OpenCover.Console.exe'
 Get-ChildItem -Recurse ('C:\ProgramData\chocolatey\bin') | Where-Object {$_.Name -like "OpenCover.Console.exe"} | % { $opencoverExe = $_.FullName};
 
 $dotnetExe = 'dotnet.exe'
-
-# $outputOpenCoverXmlFile = 'C:\projects\coverage-dotnet.xml'
 $outputOpenCoverXmlFile = (join-path $RootDir "coverage-dotnet.xml")
 
 # Should be release of debug (set by AppVeyor)
@@ -43,7 +41,6 @@ Try
 	{
 		Write-Host "Run tests for project " (Resolve-Path $testProjectLocation).Path;
 
-		
 		$command = "${opencoverExe} "`
             + "-threshold:1 "`
             + "-register:user "`
@@ -58,32 +55,9 @@ Try
             + "-output:${outputOpenCoverXmlFile} "`
             + "-excludebyattribute:System.Diagnostics.DebuggerNonUserCodeAttribute "`
             + "-filter:""${opencoverFilter}"""
-
 		
 		Write-Output $command
 
-#		$command = $opencoverExe + ' 
-#		-threshold:1 
-#		-register:user 
-#		-oldStyle 
-#		-mergebyhash 
-#		-mergeoutput 
-#		-target:"' + $dotnetExe + '" 
-#		-targetargs:"test ' + $testProjectLocation + ' '+ $dotnetTestArgs + '" 
-#		"-output:' + $outputOpenCoverXmlFile + '" 
-#		-returntargetcode 
-#		"-excludebyattribute:System.Diagnostics.DebuggerNonUserCodeAttribute" 
-#		-excludebyfile:*\*Designer.cs 
-#	    -hideskipped:All 
-#		"-filter:' +  $opencoverFilter + '"
-#		'
-		
-#		$command = $opencoverExe + ' ' +
-#		'-threshold:1 ' + 
-#		'-register:user -oldStyle -mergebyhash -mergeoutput -target:"' + $dotnetExe + '" -targetargs:"test ' + $testProjectLocation + ' '+ $dotnetTestArgs + '" "-output:' + $outputOpenCoverXmlFile + '" -returntargetcode "-excludebyattribute:System.Diagnostics.DebuggerNonUserCodeAttribute" "-filter:' +  $opencoverFilter + '"'
-		
-#		Write-Output $command
-		
 		iex $command
 		
 		Write-Host "Command finished, ready for the next one"
@@ -91,6 +65,6 @@ Try
 }
 Finally
 {
-	Write-Output "Finally"
+	Write-Output "Done testing.."
 	popd
 }
