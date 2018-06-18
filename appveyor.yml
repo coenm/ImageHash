@@ -19,17 +19,13 @@ dotnet_csproj:
   # informational_version: '{version}'
 
 install:
-- cmd: >-
-    choco install gitversion.portable -pre -y
-
-    choco install opencover.portable -y
-
-    choco install codecov -y
-    
-    C:\ProgramData\chocolatey\lib/gitversion.portable/tools/gitversion.exe /l console /output buildserver
-
-    git submodule update --init --recursive
-
+- choco install gitversion.portable -pre -y
+- choco install opencover.portable -y
+#- choco install codecov -y
+#- nuget install Codecov -Version 1.0.4 -OutputDirectory .scripts\NugetTools
+- nuget install Codecov -Version 1.0.4 -OutputDirectory C:\NuGetTools\
+- C:\ProgramData\chocolatey\lib/gitversion.portable/tools/gitversion.exe /l console /output buildserver
+- git submodule update --init --recursive
 
 before_build:
 - dotnet restore src\ImageHash.sln
