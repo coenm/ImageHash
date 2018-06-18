@@ -15,6 +15,9 @@ $nugetToolsDir = "C:\NuGetTools"
 $codecovExe = (join-path $nugetToolsDir "Codecov.1.0.4\tools\codecov.exe")
 Get-ChildItem -Recurse ($nugetToolsDir) | Where-Object {$_.Name -like "codecov.exe"} | % { $codecovExe = $_.FullName};
 
+if (!Test-Path $codecovExe) {
+  Write-Warning "$codecovExe  DOES NOT EXISTS"
+}
 Write-Host "CodeCov.exe " $codecovExe
 
 $outputOpenCoverXmlFile = (join-path $RootDir "coverage-dotnet.xml")
@@ -31,7 +34,8 @@ $outputOpenCoverXmlFile = (join-path $RootDir "coverage-dotnet.xml")
 # Write-Host "Orig build version: " $build_version_orig
 # Write-Host "New build version: " $env:APPVEYOR_BUILD_VERSION
 # 
-$codecovExe -f $outputOpenCoverXmlFile
+
+iex $codecovExe -f $outputOpenCoverXmlFile
 
 # Write-Host "Restore"
 # $env:APPVEYOR_BUILD_VERSION = $build_version_orig
