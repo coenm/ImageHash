@@ -10,10 +10,10 @@ environment:
 dotnet_csproj:
   patch: true
   file: '**\*.csproj'
-  #version: '%GitVersion_NuGetVersion%'
-  #package_version: '%GitVersion_NuGetVersion
-  version: '{version}'
-  package_version: '{version}'
+  version: '%GitVersion_NuGetVersion%'
+  package_version: '%GitVersion_NuGetVersion
+  #version: '{version}'
+  #package_version: '{version}'
   # assembly_version: '{version}'
   # file_version: '{version}'
   # informational_version: '{version}'
@@ -21,9 +21,8 @@ dotnet_csproj:
 install:
 - choco install gitversion.portable -pre -y
 - choco install opencover.portable -y
-#- choco install codecov -y
-#- nuget install Codecov -Version 1.0.4 -OutputDirectory .scripts\NugetTools
-- nuget install Codecov -Version 1.0.4 -OutputDirectory C:\NuGetTools\
+  # install latest codecov (choco is behind of nuget)
+- nuget install Codecov -OutputDirectory C:\NuGetTools\
 - C:\ProgramData\chocolatey\lib/gitversion.portable/tools/gitversion.exe /l console /output buildserver
 - git submodule update --init --recursive
 
@@ -32,7 +31,6 @@ before_build:
 
 build_script:
 - dotnet build src\ImageHash.sln
-#- msbuild /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" src\ImageHash.sln 
 
 test_script:
 - ps: .scripts\TestCoverage.ps1
