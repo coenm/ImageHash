@@ -5,8 +5,6 @@
     using SixLabors.ImageSharp;
     using SixLabors.ImageSharp.PixelFormats;
     using SixLabors.ImageSharp.Processing;
-    using SixLabors.ImageSharp.Processing.Filters;
-    using SixLabors.ImageSharp.Processing.Transforms;
 
     /// <summary>
     /// Average hash; Calculate a hash of an image based on visual characteristics by transforming the image to an 8x8 grayscale bitmap.
@@ -37,13 +35,18 @@
 
             uint averageValue = 0;
 
-            var rawBytes = image.SavePixelData();
-            for (var i = 0; i < NR_PIXELS; i++)
+
+            // todo use image.GetPixelSpan for netstandard 2.0
+            // for now, use indexer
+            //var rawBytes = image.SavePixelData();
+
+            for (var y = 0; y < HEIGHT; y++)
+            for (var x = 0; x < WIDTH; x++)
             {
                 // We know 4 bytes (RGBA) are used to describe one pixel
                 // Also, it is already grayscaled, so R=G=B. Therefore, we can take one of these
                 // values for average calculation. We take the R (the first of each 4 bytes).
-                averageValue += rawBytes[i * 4];
+                averageValue += image[x, y].R;
             }
 
             averageValue /= NR_PIXELS;
@@ -53,9 +56,11 @@
             var hash = 0UL;
             var mask = MOST_SIGNIFICANT_BIT_MASK;
 
-            for (var i = 0; i < NR_PIXELS; i++)
+
+            for (var y = 0; y < HEIGHT; y++)
+            for (var x = 0; x < WIDTH; x++)
             {
-                if (rawBytes[i * 4] >= averageValue)
+                if (image[x, y].R >= averageValue)
                     hash |= mask;
 
                 mask = mask >> 1;
