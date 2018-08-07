@@ -9,8 +9,6 @@
     using SixLabors.ImageSharp;
     using SixLabors.ImageSharp.PixelFormats;
     using SixLabors.ImageSharp.Processing;
-    using SixLabors.ImageSharp.Processing.Filters;
-    using SixLabors.ImageSharp.Processing.Transforms;
 
     /// <summary>
     /// Perceptual hash; Calculate a hash of an image by first transforming the image to an 64x64 grayscale bitmap and then using the Discrete cosine transform to remove the high frequencies.

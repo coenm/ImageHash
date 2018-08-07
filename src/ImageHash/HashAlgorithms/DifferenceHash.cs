@@ -5,8 +5,6 @@
     using SixLabors.ImageSharp;
     using SixLabors.ImageSharp.PixelFormats;
     using SixLabors.ImageSharp.Processing;
-    using SixLabors.ImageSharp.Processing.Filters;
-    using SixLabors.ImageSharp.Processing.Transforms;
 
     /// <summary>
     /// Difference hash; Calculate a hash of an image based on visual characteristics by transforming the image to an 9x8 grayscale bitmap.
