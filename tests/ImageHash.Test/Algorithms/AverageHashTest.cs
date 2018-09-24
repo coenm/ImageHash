@@ -9,9 +9,6 @@
 
     using FluentAssertions;
 
-    using SixLabors.ImageSharp;
-    using SixLabors.ImageSharp.PixelFormats;
-
     using Xunit;
 
     public class AverageHashTest
