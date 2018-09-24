@@ -3,6 +3,7 @@
     using System;
 
     using SixLabors.ImageSharp;
+    using SixLabors.ImageSharp.Advanced;
     using SixLabors.ImageSharp.PixelFormats;
     using SixLabors.ImageSharp.Processing;
 
@@ -58,12 +59,15 @@
 
 
             for (var y = 0; y < HEIGHT; y++)
-            for (var x = 0; x < WIDTH; x++)
             {
-                if (image[x, y].R >= averageValue)
-                    hash |= mask;
+                var row = image.GetPixelRowSpan(y);
+                for (var x = 0; x < WIDTH; x++)
+                {
+                    if (row[x].R >= averageValue)
+                        hash |= mask;
 
-                mask = mask >> 1;
+                    mask = mask >> 1;
+                }
             }
 
             return hash;
