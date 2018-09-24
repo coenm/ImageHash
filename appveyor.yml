@@ -24,14 +24,14 @@ install:
   #
   # install latest codecov (choco is behind of nuget)
 - nuget install Codecov -OutputDirectory C:\NuGetTools\
-- C:\ProgramData\chocolatey\lib/gitversion.portable/tools/gitversion.exe /l console /output buildserver
+- C:\ProgramData\chocolatey\lib/gitversion.portable/tools/gitversion.exe /l console /output buildserver /c %APPVEYOR_REPO_COMMIT%
 - git submodule update --init --recursive
 
 before_build:
-- dotnet restore src\ImageHash.sln
+- dotnet restore ImageHash.sln
 
 build_script:
-- dotnet build src\ImageHash.sln
+- dotnet build ImageHash.sln
 
 test_script:
 - ps: .scripts\TestCoverage.ps1

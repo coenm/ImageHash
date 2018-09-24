@@ -49,7 +49,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ImageHash\ImageHash.csproj" />
+    <ProjectReference Include="..\..\src\ImageHash\ImageHash.csproj" />
   </ItemGroup>
 
 </Project>
