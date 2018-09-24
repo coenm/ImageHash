@@ -24,9 +24,9 @@ env:
   - DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1
 
 script:
-- dotnet restore src/ImageHash.sln
-- dotnet msbuild /p:configuration=Release src/ImageHash.sln
-- dotnet test /p:configuration=Release src/ImageHash.Test/ImageHash.Test.csproj
+- dotnet restore ImageHash.sln
+- dotnet msbuild /p:configuration=Release ImageHash.sln
+- dotnet test /p:configuration=Release tests/ImageHash.Test/ImageHash.Test.csproj
 
 cache:
   directories:
