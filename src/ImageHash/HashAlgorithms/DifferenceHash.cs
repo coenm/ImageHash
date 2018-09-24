@@ -3,6 +3,7 @@
     using System;
 
     using SixLabors.ImageSharp;
+    using SixLabors.ImageSharp.Advanced;
     using SixLabors.ImageSharp.PixelFormats;
     using SixLabors.ImageSharp.Processing;
 
@@ -37,11 +38,12 @@
 
             for (var y = 0; y < HEIGHT; y++)
             {
-                var leftPixel = image[0, y];
+                var row = image.GetPixelRowSpan(y);
+                var leftPixel = row[0];
+
                 for (var x = 1; x < WIDTH; x++)
                 {
-                    var rightPixel = image[x, y];
-
+                    var rightPixel = row[x];
                     if (leftPixel.R < rightPixel.R)
                         hash |= mask;
 
