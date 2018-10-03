@@ -1,4 +1,4 @@
-﻿namespace CoenM.ImageSharp
+﻿namespace CoenM.ImageHash
 {
     using System;
     using System.IO;

@@ -1,4 +1,4 @@
-﻿namespace CoenM.ImageSharp.ImageHash.Test.Internal
+﻿namespace CoenM.ImageHash.Test.Internal
 {
     using System.IO;
     using System.Reflection;
@@ -10,11 +10,11 @@
         public static Stream OpenStream(string filename)
         {
             var resources = Assembly.GetExecutingAssembly().GetManifestResourceNames();
-            var fullfilename = "CoenM.ImageSharp.ImageHash.Test.Data." + filename;
+            var fullFilename = "CoenM.ImageHash.Test.Data." + filename;
 
-            Assert.Contains(fullfilename, resources);
+            Assert.Contains(fullFilename, resources);
 
-            return Assembly.GetExecutingAssembly().GetManifestResourceStream(fullfilename);
+            return Assembly.GetExecutingAssembly().GetManifestResourceStream(fullFilename);
         }
     }
 }

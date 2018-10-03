@@ -1,4 +1,4 @@
-﻿namespace CoenM.ImageSharp.ImageHash.Test
+﻿namespace CoenM.ImageHash.Test
 {
     using System;
 
