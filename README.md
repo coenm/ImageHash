@@ -1,4 +1,8 @@
-# ImageHash
+<h1 align="center">
+<img src="https://raw.githubusercontent.com/coenm/ImageHash/master/icon/ImageHash.512.png" alt="ImageHash" width="256"/>
+<br/>
+ImageHash
+</h1>
 
 | Branch | Status |
 | :--- | :--- |
@@ -15,6 +19,7 @@ This project implements the following algorithms:
 Misc:
 - This project uses the [ImageSharp](https://sixlabors.com/projects/imagesharp/) netstandard library for image processing;
 - Also based on existing implementations of already listed algorithms: [jenssegers/imagehash](https://github.com/jenssegers/imagehash) and [jforshee/ImageHashing](https://github.com/jforshee/ImageHashing).
+- Icon created by Rik
 
 ## API
 
