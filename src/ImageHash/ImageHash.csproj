@@ -8,7 +8,7 @@
     <TargetFrameworks>netstandard1.1;netstandard1.3;netstandard2.0</TargetFrameworks>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <RootNamespace>CoenM.ImageSharp</RootNamespace>
+    <RootNamespace>CoenM.ImageHash</RootNamespace>
     <AssemblyName>CoenM.ImageSharp.ImageHash</AssemblyName>
     <PackageId>CoenM.ImageSharp.ImageHash</PackageId>
     <PackageTags>ImageHash;DifferenceHash;AverageHash;Imaging;ImageSharp</PackageTags>

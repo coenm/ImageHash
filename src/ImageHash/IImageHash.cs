@@ -1,4 +1,4 @@
-﻿namespace CoenM.ImageSharp
+﻿namespace CoenM.ImageHash
 {
     using System;
 
@@ -13,7 +13,7 @@
         /// <summary>Hash the image using the algorithm.</summary>
         /// <param name="image">image to calculate hash from</param>
         /// <returns>hash value of the image.</returns>
-        /// <exception cref="ArgumentNullException">Thrown when <paramref name="image"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="image"/> is <c>null</c>.</exception>
         ulong Hash(Image<Rgba32> image);
     }
 }

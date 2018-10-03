@@ -1,10 +1,10 @@
-﻿namespace CoenM.ImageSharp.ImageHash.Test
+﻿namespace CoenM.ImageHash.Test
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
 
-    using CoenM.ImageSharp.ImageHash.Test.Internal;
+    using CoenM.ImageHash.Test.Internal;
 
     using FakeItEasy;
 
@@ -17,7 +17,7 @@
 
     using Sut = ImageHashExtensions;
 
-    [SuppressMessage("ReSharper", "InvokeAsExtensionMethod", Justification = "Testing static extensionmethod class")]
+    [SuppressMessage("ReSharper", "InvokeAsExtensionMethod", Justification = "Testing static extension method class")]
     public class ImageHashExtensionsTest
     {
         private readonly IImageHash _hashAlgorithm;

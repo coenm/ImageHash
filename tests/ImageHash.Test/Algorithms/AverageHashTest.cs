@@ -1,11 +1,11 @@
-﻿namespace CoenM.ImageSharp.ImageHash.Test.Algorithms
+﻿namespace CoenM.ImageHash.Test.Algorithms
 {
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
 
-    using CoenM.ImageSharp.HashAlgorithms;
-    using CoenM.ImageSharp.ImageHash.Test.Internal;
+    using CoenM.ImageHash.HashAlgorithms;
+    using CoenM.ImageHash.Test.Internal;
 
     using FluentAssertions;
 

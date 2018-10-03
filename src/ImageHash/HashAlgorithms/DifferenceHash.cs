@@ -1,4 +1,4 @@
-﻿namespace CoenM.ImageSharp.HashAlgorithms
+﻿namespace CoenM.ImageHash.HashAlgorithms
 {
     using System;
 
@@ -12,7 +12,7 @@
     /// Hash is based on each pixel compared to it's right neighbour pixel.
     /// </summary>
     /// <remarks>
-    /// Algorith specified by David Oftedal and slightly adjusted by Dr. Neal Krawetz.
+    /// Algorithm specified by David Oftedal and slightly adjusted by Dr. Neal Krawetz.
     /// See http://www.hackerfactor.com/blog/index.php?/archives/529-Kind-of-Like-That.html for more information.
     /// </remarks>
     // ReSharper disable once StyleCop.SA1650
@@ -27,7 +27,7 @@
             if (image == null)
                 throw new ArgumentNullException(nameof(image));
 
-            // We first auto orient because with and heigth differ.
+            // We first auto orient because with and height differ.
             image.Mutate(ctx => ctx
                                 .AutoOrient()
                                 .Resize(WIDTH, HEIGHT)

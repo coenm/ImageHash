@@ -5,7 +5,7 @@
     <RuntimeFrameworkVersion>2.0.5</RuntimeFrameworkVersion>
     <IsPackable>false</IsPackable>
     <AssemblyName>CoenM.ImageSharp.ImageHash.Test</AssemblyName>
-    <RootNamespace>CoenM.ImageSharp.ImageHash.Test</RootNamespace>
+    <RootNamespace>CoenM.ImageHash.Test</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

@@ -1,4 +1,4 @@
-﻿namespace CoenM.ImageSharp.HashAlgorithms
+﻿namespace CoenM.ImageHash.HashAlgorithms
 {
     using System;
 

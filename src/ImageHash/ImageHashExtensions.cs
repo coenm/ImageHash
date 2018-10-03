@@ -1,4 +1,4 @@
-﻿namespace CoenM.ImageSharp
+﻿namespace CoenM.ImageHash
 {
     using System;
     using System.IO;
@@ -15,7 +15,7 @@
         /// <param name="hashImplementation">HashImplementation to calculate the hash.</param>
         /// <param name="stream">Stream should 'contain' raw image data</param>
         /// <returns>hash value</returns>
-        /// <exception cref="ArgumentNullException">Thrown when <paramref name="hashImplementation"/> or <paramref name="stream"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="hashImplementation"/> or <paramref name="stream"/> is <c>null</c>.</exception>
         /// <exception cref="NotSupportedException">Thrown when stream content cannot be loaded as an image.</exception>
         public static ulong Hash(this IImageHash hashImplementation, Stream stream)
         {

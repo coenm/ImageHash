@@ -1,4 +1,4 @@
-﻿namespace CoenM.ImageSharp
+﻿namespace CoenM.ImageHash
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
@@ -9,7 +9,7 @@
     public static class CompareHash
     {
         /// <summary>
-        /// Bitcounts array used for BitCount method (used in Similarity comparisons).
+        /// Array used for BitCount method (used in Similarity comparisons).
         /// Array corresponds to the number of 1's per value.
         /// ie. index 0 => byte 0x00 = 0000 0000 -> 0 high bits
         /// ie. index 1 => byte 0x01 = 0000 0001 -> 1 high bit
@@ -50,6 +50,8 @@
         /// <param name="hash1">The first hash. Cannot be null and must have a length of 8.</param>
         /// <param name="hash2">The second hash. Cannot be null and must have a length of 8.</param>
         /// <returns>The similarity percentage.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="hash1"/> or <paramref name="hash2"/> is <c>null</c>.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="hash1"/> or <paramref name="hash2"/> has a length other than <c>8</c>.</exception>
         public static double Similarity(byte[] hash1, byte[] hash2)
         {
             if (hash1 == null)
