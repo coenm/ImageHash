@@ -36,18 +36,16 @@
 
             uint averageValue = 0;
 
-
-            // todo use image.GetPixelSpan for netstandard 2.0
-            // for now, use indexer
-            //var rawBytes = image.SavePixelData();
-
             for (var y = 0; y < HEIGHT; y++)
-            for (var x = 0; x < WIDTH; x++)
             {
-                // We know 4 bytes (RGBA) are used to describe one pixel
-                // Also, it is already grayscaled, so R=G=B. Therefore, we can take one of these
-                // values for average calculation. We take the R (the first of each 4 bytes).
-                averageValue += image[x, y].R;
+                var row = image.GetPixelRowSpan(y);
+                for (var x = 0; x < WIDTH; x++)
+                {
+                    // We know 4 bytes (RGBA) are used to describe one pixel
+                    // Also, it is already grayscaled, so R=G=B. Therefore, we can take one of these
+                    // values for average calculation. We take the R (the first of each 4 bytes).
+                    averageValue += row[x].R;
+                }
             }
 
             averageValue /= NR_PIXELS;
@@ -56,7 +54,6 @@
             // 1 = higher than average, 0 = lower than average
             var hash = 0UL;
             var mask = MOST_SIGNIFICANT_BIT_MASK;
-
 
             for (var y = 0; y < HEIGHT; y++)
             {
