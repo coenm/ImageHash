@@ -4,7 +4,7 @@ environment:
 
 version: 1.0.{build}
 image: Visual Studio 2017
-configuration: Release
+configuration: Debug
 platform: Any CPU
 
 dotnet_csproj:
