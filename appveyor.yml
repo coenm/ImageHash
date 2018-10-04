@@ -1,21 +1,20 @@
-image: Visual Studio 2017
-configuration: Debug
-#platform: Any CPU
-
 environment:
   DOTNET_CLI_TELEMETRY_OPTOUT: 1
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
   github_oauth_token:
-    secure: H1vW5fnfAOt5/c5f1qnaatUjFVAPc2oZnxDBFutJZL58LxAyJNRLtfIBrcHnSg8y
-  
+    secure: H1vW5fnfAOt5/c5f1qnaatUjFVAPc2oZnxDBFutJZL58LxAyJNRLtfIBrcHnSg8y  
+
+version: 1.0.{build}
+image: Visual Studio 2017
+configuration: Debug
+
 dotnet_csproj:
   patch: true
   file: '**\*.csproj'
+  # version: '%GitVersion_FullSemVer%'
   version: '%GitVersion_NuGetVersion%'
+  # package_version: '%GitVersion_LegacySemVerPadded%'
   package_version: '%GitVersion_NuGetVersion%'
-  #version: '{version}'
-  #package_version: '{version}'
-  # assembly_version: '{version}'
-  # file_version: '{version}'
   informational_version: '%GitVersion_InformationalVersion%'
 
 install:
@@ -24,7 +23,13 @@ install:
   #
   # install latest codecov (choco is behind of nuget)
 - nuget install Codecov -OutputDirectory C:\NuGetTools\
-- C:\ProgramData\chocolatey\lib/gitversion.portable/tools/gitversion.exe /l console /output buildserver /c %APPVEYOR_REPO_COMMIT%
+- echo APPVEYOR_REPO_BRANCH  %APPVEYOR_REPO_BRANCH%
+- echo APPVEYOR_PULL_REQUEST_HEAD_REPO_BRANCH %APPVEYOR_PULL_REQUEST_HEAD_REPO_BRANCH%
+- IF [%APPVEYOR_PULL_REQUEST_NUMBER%]==[] ( 
+       C:\ProgramData\chocolatey\lib\gitversion.portable\tools\gitversion.exe /l console /output buildserver /b %APPVEYOR_REPO_BRANCH% /c %APPVEYOR_REPO_COMMIT% 
+    ) ELSE (
+       C:\ProgramData\chocolatey\lib\gitversion.portable\tools\gitversion.exe /l console /output buildserver /c %APPVEYOR_REPO_COMMIT%
+    )
 - git submodule update --init --recursive
 
 before_build:
