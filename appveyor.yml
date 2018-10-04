@@ -1,11 +1,12 @@
 environment:
   DOTNET_CLI_TELEMETRY_OPTOUT: 1
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+  github_oauth_token:
+    secure: H1vW5fnfAOt5/c5f1qnaatUjFVAPc2oZnxDBFutJZL58LxAyJNRLtfIBrcHnSg8y  
 
 version: 1.0.{build}
 image: Visual Studio 2017
 configuration: Debug
-platform: Any CPU
 
 dotnet_csproj:
   patch: true
