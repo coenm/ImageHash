@@ -23,10 +23,10 @@ install:
   #
   # install latest codecov (choco is behind of nuget)
 - nuget install Codecov -OutputDirectory C:\NuGetTools\
-- C:\ProgramData\chocolatey\lib\gitversion.portable\tools\gitversion.exe /l console /output buildserver /b %APPVEYOR_REPO_BRANCH% /c %APPVEYOR_REPO_COMMIT%
-- git submodule update --init --recursive
 - echo APPVEYOR_REPO_BRANCH  %APPVEYOR_REPO_BRANCH%
 - echo APPVEYOR_PULL_REQUEST_HEAD_REPO_BRANCH %APPVEYOR_PULL_REQUEST_HEAD_REPO_BRANCH%
+- C:\ProgramData\chocolatey\lib\gitversion.portable\tools\gitversion.exe /l console /output buildserver /b %APPVEYOR_REPO_BRANCH% /c %APPVEYOR_REPO_COMMIT%
+- git submodule update --init --recursive
 
 before_build:
 - dotnet restore ImageHash.sln
