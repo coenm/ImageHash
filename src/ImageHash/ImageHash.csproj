@@ -3,7 +3,7 @@
   <PropertyGroup>
     <!-- do not manually update version, this will be done using appvayor -->
     <Version>1.1.1</Version>
-    <Description>Perceptual image hashing in netstandard using the ImageSharp library. Currently contains three algorithms (AverageHash, DifferenceHash, and PerceptualHash).</Description>
+    <Description>Perceptual image hashing in netstandard using the ImageSharp library. Includes three hashing algorithms (AverageHash, DifferenceHash, and PerceptualHash).</Description>
     <Authors>Coen van den Munckhof</Authors>
     <TargetFrameworks>netstandard1.1;netstandard1.3;netstandard2.0</TargetFrameworks>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -11,9 +11,9 @@
     <RootNamespace>CoenM.ImageHash</RootNamespace>
     <AssemblyName>CoenM.ImageSharp.ImageHash</AssemblyName>
     <PackageId>CoenM.ImageSharp.ImageHash</PackageId>
-    <PackageTags>ImageHash;DifferenceHash;AverageHash;Imaging;ImageSharp</PackageTags>
+    <PackageTags>ImageHash;DifferenceHash;AverageHash;PerceptualHash;Imaging;ImageSharp</PackageTags>
     <PackageProjectUrl>https://github.com/coenm/ImageHash/</PackageProjectUrl>
-	<PackageIconUrl>https://raw.githubusercontent.com/coenm/ImageHash/master/icon/ImageHash.128.png</PackageIconUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/coenm/ImageHash/master/icon/ImageHash.128.png</PackageIconUrl>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/coenm/ImageHash.git</RepositoryUrl>
   <!-- </PropertyGroup>
