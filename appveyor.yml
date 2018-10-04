@@ -26,10 +26,8 @@ install:
 - echo APPVEYOR_REPO_BRANCH  %APPVEYOR_REPO_BRANCH%
 - echo APPVEYOR_PULL_REQUEST_HEAD_REPO_BRANCH %APPVEYOR_PULL_REQUEST_HEAD_REPO_BRANCH%
 - IF "%APPVEYOR_PULL_REQUEST_NUMBER%"=="" ( 
-       echo No PullRequest!!
        C:\ProgramData\chocolatey\lib\gitversion.portable\tools\gitversion.exe /l console /output buildserver /b %APPVEYOR_REPO_BRANCH% /c %APPVEYOR_REPO_COMMIT% 
     ) ELSE (
-       echo It is a PullRequest!!
        C:\ProgramData\chocolatey\lib\gitversion.portable\tools\gitversion.exe /l console /output buildserver /c %APPVEYOR_REPO_COMMIT%
     )
 - git submodule update --init --recursive
