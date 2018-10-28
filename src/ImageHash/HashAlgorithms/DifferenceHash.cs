@@ -13,7 +13,7 @@
     /// </summary>
     /// <remarks>
     /// Algorithm specified by David Oftedal and slightly adjusted by Dr. Neal Krawetz.
-    /// See http://www.hackerfactor.com/blog/index.php?/archives/529-Kind-of-Like-That.html for more information.
+    /// See <see href="http://www.hackerfactor.com/blog/index.php?/archives/529-Kind-of-Like-That.html"/> for more information.
     /// </remarks>
     // ReSharper disable once StyleCop.SA1650
     public class DifferenceHash : IImageHash

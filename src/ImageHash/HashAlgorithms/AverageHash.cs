@@ -13,7 +13,7 @@
     /// </summary>
     /// <remarks>
     /// Implementation based on David Oftedal's implementation of Average Hash. Algorithm specified by Dr. Neal Krawetz.
-    /// See http://www.hackerfactor.com/blog/index.php?/archives/432-Looks-Like-It.html for more information.
+    /// See <see href="http://www.hackerfactor.com/blog/index.php?/archives/432-Looks-Like-It.html"/> for more information.
     /// </remarks>
     // ReSharper disable once StyleCop.SA1650
     public class AverageHash : IImageHash
