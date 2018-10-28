@@ -15,32 +15,32 @@
 
     using Xunit;
 
-    using Sut = ImageHashExtensions;
+    using Sut = CoenM.ImageHash.ImageHashExtensions;
 
     [SuppressMessage("ReSharper", "InvokeAsExtensionMethod", Justification = "Testing static extension method class")]
     public class ImageHashExtensionsTest
     {
-        private readonly IImageHash _hashAlgorithm;
+        private readonly IImageHash hashAlgorithm;
 
         public ImageHashExtensionsTest()
         {
-            _hashAlgorithm = A.Fake<IImageHash>();
+            hashAlgorithm = A.Fake<IImageHash>();
         }
 
         [Fact]
         public void HashStreamShouldReadStreamAsImageAndPassDataToHashAlgorithmTest()
         {
             // arrange
-            const string FILENAME = "Alyson_Hannigan_500x500_0.jpg";
-            A.CallTo(() => _hashAlgorithm.Hash(A<Image<Rgba32>>._)).Returns(0UL);
+            const string filename = "Alyson_Hannigan_500x500_0.jpg";
+            A.CallTo(() => hashAlgorithm.Hash(A<Image<Rgba32>>._)).Returns(0UL);
 
-            using (var stream = TestHelper.OpenStream(FILENAME))
+            using (var stream = TestHelper.OpenStream(filename))
             {
                 // act
-                var result = Sut.Hash(_hashAlgorithm, stream);
+                var result = Sut.Hash(hashAlgorithm, stream);
 
                 // assert
-                A.CallTo(() => _hashAlgorithm.Hash(A<Image<Rgba32>>._)).MustHaveHappenedOnceExactly();
+                A.CallTo(() => hashAlgorithm.Hash(A<Image<Rgba32>>._)).MustHaveHappenedOnceExactly();
                 result.Should().Be(0UL);
             }
         }
