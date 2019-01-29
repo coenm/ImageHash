@@ -5,7 +5,7 @@
     <Version>1.1.1</Version>
     <Description>Perceptual image hashing in netstandard using the ImageSharp library. Includes three hashing algorithms (AverageHash, DifferenceHash, and PerceptualHash).</Description>
     <Authors>Coen van den Munckhof</Authors>
-    <TargetFrameworks>netstandard1.1;netstandard1.3;netstandard2.0</TargetFrameworks>
+	<TargetFrameworks>netstandard1.3;netstandard2.0;netcoreapp2.1;net472</TargetFrameworks>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <RootNamespace>CoenM.ImageHash</RootNamespace>
@@ -25,11 +25,11 @@
 
   <PropertyGroup>
     <CodeAnalysisRuleSet>..\..\ImageHash.ruleset</CodeAnalysisRuleSet>
-    <LangVersion>7.2</LangVersion>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="SixLabors.ImageSharp" Version="1.0.0-beta0005" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="1.0.0-beta0006" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.0-beta009">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>

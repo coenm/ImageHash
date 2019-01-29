@@ -1,13 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFrameworks>net462;net472;netcoreapp2.0;netcoreapp2.1</TargetFrameworks>
     <RuntimeFrameworkVersion>2.0.5</RuntimeFrameworkVersion>
     <IsPackable>false</IsPackable>
     <AssemblyName>CoenM.ImageSharp.ImageHash.Test</AssemblyName>
     <RootNamespace>CoenM.ImageHash.Test</RootNamespace>
     <CodeAnalysisRuleSet>..\..\ImageHash.ruleset</CodeAnalysisRuleSet>
-    <LangVersion>7.2</LangVersion>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -37,7 +37,7 @@
     <PackageReference Include="FakeItEasy.Analyzer.CSharp" Version="4.8.1" />
     <PackageReference Include="FluentAssertions" Version="5.4.2" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.8.0" />
-    <PackageReference Include="SixLabors.ImageSharp" Version="1.0.0-beta0005" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="1.0.0-beta0006" />
     <PackageReference Include="xunit" Version="2.4.0" />
     <PackageReference Include="xunit.analyzers" Version="0.10.0" />
     <PackageReference Include="xunit.runner.console" Version="2.4.0">
