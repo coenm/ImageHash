@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net462;net472;netcoreapp2.0;netcoreapp2.1</TargetFrameworks>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
     <RuntimeFrameworkVersion>2.0.5</RuntimeFrameworkVersion>
     <IsPackable>false</IsPackable>
     <AssemblyName>CoenM.ImageSharp.ImageHash.Test</AssemblyName>
