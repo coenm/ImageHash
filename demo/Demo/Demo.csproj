@@ -105,7 +105,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Model\IImageHash.cs" />
+    <Compile Include="Model\IImageHashSimilarityCalculator.cs" />
+    <Compile Include="Model\ImageHashAdapter.cs" />
+    <Compile Include="Model\ImageHashSimilarityCalculator.cs" />
     <Compile Include="ViewModel\DemoViewModel.cs" />
+    <Compile Include="ViewModel\FileHashResultsViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\Behaviors\OpenFileDialogBehavior.cs" />
     <Compile Include="View\Behaviors\FolderDialogBehavior.cs" />
@@ -141,9 +146,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\..\src\ImageHash\ImageHash.csproj">
       <Project>{466faf4c-f68a-441a-aa13-4a2f061ad478}</Project>
