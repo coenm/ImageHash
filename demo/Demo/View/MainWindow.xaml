@@ -1,0 +1,41 @@
+﻿<Window x:Class="Demo.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Demo"
+        xmlns:viewModel="clr-namespace:Demo.ViewModel"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
+        xmlns:behaviors="clr-namespace:Demo.View.Behaviors"
+        mc:Ignorable="d"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        WindowStartupLocation="CenterOwner"
+        d:DataContext="{d:DesignInstance Type=viewModel:DemoViewModel}"
+        Title="MainWindow" Height="450" Width="800">
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height = "1*"/>
+      <RowDefinition Height = "Auto"/>
+    </Grid.RowDefinitions>
+
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*"></ColumnDefinition>
+      <ColumnDefinition Width="*"></ColumnDefinition>
+    </Grid.ColumnDefinitions>
+
+    <Image Grid.Row="0" Grid.Column="0" Width="200" Source="{Binding FileA}" VerticalAlignment="Top" Margin="30"/>
+    <Image Grid.Row="0" Grid.Column="1" Width="200" Source="{Binding FileB}" VerticalAlignment="Top" Margin="30" Opacity="0.5" />
+
+    <Button Grid.Row="1" Grid.Column="0" Margin="2" ToolTip="Browse">
+      <Button.Content>
+        <fa:ImageAwesome  MaxWidth="15" MaxHeight="15"
+                          Icon="EllipsisH"
+                          VerticalAlignment="Center" HorizontalAlignment="Center" />
+      </Button.Content>
+      <i:Interaction.Behaviors>
+        <behaviors:OpenFileDialogBehavior FileName="{Binding Path=FirstFilename, Mode=TwoWay}"/>
+      </i:Interaction.Behaviors>
+    </Button>
+
+  </Grid>
+</Window>
