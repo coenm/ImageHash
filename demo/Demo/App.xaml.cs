@@ -8,6 +8,7 @@ using System.Windows;
 
 namespace Demo
 {
+    using Model;
     using ViewModel;
     using MainWindow = View.MainWindow;
 
@@ -25,7 +26,8 @@ namespace Demo
         {
             try
             {
-                var vm = new DemoViewModel();
+                var vm = new DemoViewModel(
+                    new FileSystem());
                 var view = new MainWindow(vm);
                 view.Show();
             }

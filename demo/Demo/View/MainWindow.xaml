@@ -37,5 +37,12 @@
       </i:Interaction.Behaviors>
     </Button>
 
+    <Button Grid.Row="1" Grid.Column="1" Command="{Binding Calculate}" >
+    <Button.Content>
+            <Label Content="{Binding AverageHashFile1}"/>
+    </Button.Content>
+
+    </Button>
+
   </Grid>
 </Window>
