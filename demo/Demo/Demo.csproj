@@ -120,12 +120,12 @@
     <Compile Include="External\CapturingExceptionAsyncCommand.cs" />
     <Compile Include="Model\FileSystem.cs" />
     <Compile Include="Model\IFileSystem.cs" />
-    <Compile Include="Model\IImageHash.cs" />
+    <Compile Include="Model\IDemoImageHash.cs" />
     <Compile Include="Model\IImageHashSimilarityCalculator.cs" />
-    <Compile Include="Model\ImageHashAdapter.cs" />
+    <Compile Include="Model\ImageHashFacade.cs" />
     <Compile Include="Model\ImageHashSimilarityCalculator.cs" />
     <Compile Include="ViewModel\DemoViewModel.cs" />
-    <Compile Include="ViewModel\FileHashResultsViewModel.cs" />
+    <Compile Include="ViewModel\FileHashViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\Behaviors\OpenFileDialogBehavior.cs" />
     <Compile Include="View\Behaviors\FolderDialogBehavior.cs" />

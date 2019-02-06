@@ -17,16 +17,12 @@ namespace Demo
     /// </summary>
     public partial class App : Application
     {
-        public App()
-        {
-
-        }
-
         protected override void OnStartup(StartupEventArgs e)
         {
             try
             {
                 var vm = new DemoViewModel(
+                    new ImageHashFacade(),
                     new FileSystem());
                 var view = new MainWindow(vm);
                 view.Show();

@@ -23,8 +23,8 @@
       <ColumnDefinition Width="*"></ColumnDefinition>
     </Grid.ColumnDefinitions>
 
-    <Image Grid.Row="0" Grid.Column="0" Width="200" Source="{Binding FileA}" VerticalAlignment="Top" Margin="30"/>
-    <Image Grid.Row="0" Grid.Column="1" Width="200" Source="{Binding FileB}" VerticalAlignment="Top" Margin="30" Opacity="0.5" />
+    <Image Grid.Row="0" Grid.Column="0" Width="200" Source="{Binding FileA.Image}" VerticalAlignment="Top" Margin="30"/>
+    <Image Grid.Row="0" Grid.Column="1" Width="200" Source="{Binding FileB.Image}" VerticalAlignment="Top" Margin="30" Opacity="0.5" />
 
     <Button Grid.Row="1" Grid.Column="0" Margin="2" ToolTip="Browse">
       <Button.Content>
@@ -33,13 +33,13 @@
                           VerticalAlignment="Center" HorizontalAlignment="Center" />
       </Button.Content>
       <i:Interaction.Behaviors>
-        <behaviors:OpenFileDialogBehavior FileName="{Binding Path=FirstFilename, Mode=TwoWay}"/>
+        <behaviors:OpenFileDialogBehavior FileName="{Binding Path=FileA.FileName, Mode=TwoWay}"/>
       </i:Interaction.Behaviors>
     </Button>
 
-    <Button Grid.Row="1" Grid.Column="1" Command="{Binding Calculate}" >
+    <Button Grid.Row="1" Grid.Column="1" Command="{Binding FileA.LoadCommand}" >
     <Button.Content>
-            <Label Content="{Binding AverageHashFile1}"/>
+            <Label Content="{Binding FileA.DifferenceHash}"/>
     </Button.Content>
 
     </Button>

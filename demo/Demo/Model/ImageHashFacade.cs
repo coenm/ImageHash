@@ -5,18 +5,19 @@
     using CoenM.ImageHash.HashAlgorithms;
     using JetBrains.Annotations;
 
-    public class ImageHashAdapter : IImageHash
+    public class ImageHashFacade : IDemoImageHash
     {
         [NotNull] private readonly AverageHash averageHash;
         [NotNull] private readonly DifferenceHash differenceHash;
         [NotNull] private readonly PerceptualHash perceptualHash;
 
-        private ImageHashAdapter()
+        public ImageHashFacade()
         {
             averageHash = new AverageHash();
             differenceHash = new DifferenceHash();
             perceptualHash = new PerceptualHash();
         }
+
         public ulong CalculateAverageHash(string filename) => CoenM.ImageHash.ImageHashExtensions.Hash(averageHash, Open(filename));
 
         public ulong CalculateDifferenceHash(string filename) => CoenM.ImageHash.ImageHashExtensions.Hash(differenceHash, Open(filename));

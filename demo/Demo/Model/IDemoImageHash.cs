@@ -1,6 +1,6 @@
 ﻿namespace Demo.Model
 {
-    public interface IImageHash
+    public interface IDemoImageHash
     {
         ulong CalculateAverageHash(string filename);
 
