@@ -7,47 +7,47 @@
              xmlns:behaviors="clr-namespace:Demo.View.Behaviors"
              xmlns:viewModel="clr-namespace:Demo.ViewModel"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
+             xmlns:converters="clr-namespace:Demo.View.Converters"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800"
              d:DataContext="{d:DesignInstance Type=viewModel:FileHashViewModel}">
-    <Grid>
-           <Grid.RowDefinitions>
-             <RowDefinition Height="*"></RowDefinition>
-             <RowDefinition Height="50"></RowDefinition>
-             <RowDefinition Height="50"></RowDefinition>
-             <RowDefinition Height="50"></RowDefinition>
-             <RowDefinition Height="50"></RowDefinition>
-           </Grid.RowDefinitions>
+  <Grid>
+    <Grid.Resources>
+      <converters:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+    </Grid.Resources>
 
-      <Grid.ColumnDefinitions>
-        <ColumnDefinition></ColumnDefinition>
-        <ColumnDefinition></ColumnDefinition>
-      </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*"></RowDefinition>
+      <RowDefinition Height="auto"></RowDefinition>
+      <RowDefinition Height="auto"></RowDefinition>
+      <RowDefinition Height="auto"></RowDefinition>
+      <RowDefinition Height="auto"></RowDefinition>
+    </Grid.RowDefinitions>
 
-    <Image Grid.Row="0" Grid.ColumnSpan="2" Stretch="Uniform" Source="{Binding Path=Image}"  />
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition></ColumnDefinition>
+      <ColumnDefinition></ColumnDefinition>
+    </Grid.ColumnDefinitions>
 
-    <Label Grid.Row="1" Grid.Column="0">AverageHash</Label>
-      <Label Grid.Row="1" Grid.Column="1" Content="{Binding Path=AverageHash}"/>
+    <Image Margin="1" Grid.Row="0" Grid.ColumnSpan="2" Stretch="Uniform" Source="{Binding Path=Image}"  />
 
-    <Label Grid.Row="2" Grid.Column="0">DifferenceHash</Label>
-      <Label Grid.Row="2" Grid.Column="1" Content="{Binding Path=DifferenceHash}"/>
+    <Label Margin="0 1 0 1" Grid.Row="1" Grid.Column="0">AverageHash</Label>
+    <Label Margin="0 1 0 1" Grid.Row="1" Grid.Column="1" Content="{Binding Path=AverageHash}"/>
 
-    <Label Grid.Row="3" Grid.Column="0">PerceptualHash</Label>
-    <Label Grid.Row="3" Grid.Column="1" Content="{Binding Path=PerceptualHash}"/>
+    <Label Margin="0 1 0 1" Grid.Row="2" Grid.Column="0">DifferenceHash</Label>
+    <Label Margin="0 1 0 1" Grid.Row="2" Grid.Column="1" Content="{Binding Path=DifferenceHash}"/>
 
-    <StackPanel Grid.Row="4" Grid.ColumnSpan="2" Orientation="Horizontal">
-      <Button Margin="2" ToolTip="Browse">
-        <Button.Content>
-          <fa:ImageAwesome  MaxWidth="15" MaxHeight="15"
-                            Icon="EllipsisH"
-                            VerticalAlignment="Center" HorizontalAlignment="Center" />
-        </Button.Content>
+    <Label Margin="0 1 0 1" Grid.Row="3" Grid.Column="0">PerceptualHash</Label>
+    <Label Margin="0 1 0 1" Grid.Row="3" Grid.Column="1" Content="{Binding Path=PerceptualHash}"/>
+
+    <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
+      <Button  Margin="2" Padding="2" ToolTip="Browse" Content="Browse" IsEnabled="{Binding Path=Busy, Converter={StaticResource InverseBooleanConverter}}">
         <i:Interaction.Behaviors>
           <behaviors:OpenFileDialogBehavior FileName="{Binding Path=FileName, Mode=TwoWay}"/>
         </i:Interaction.Behaviors>
       </Button>
-      <Button Command="{Binding Path=LoadCommand}">Load</Button>
-      <Button Command="{Binding Path=ClearCommand}">Clear</Button>
+      <Button Margin="2" Padding="2" Command="{Binding Path=LoadCommand}">Load</Button>
+      <Button Margin="2" Padding="2" Command="{Binding Path=ClearCommand}">Clear</Button>
     </StackPanel>
   </Grid>
 </UserControl>

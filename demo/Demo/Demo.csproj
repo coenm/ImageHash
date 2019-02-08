@@ -110,6 +110,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ViewModel\CompareHashViewModel.cs" />
+    <Compile Include="View\Converters\InverseBooleanConverter.cs" />
     <Compile Include="View\UserControl\CompareHashValues.xaml.cs">
       <DependentUpon>CompareHashValues.xaml</DependentUpon>
     </Compile>

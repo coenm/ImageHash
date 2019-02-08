@@ -22,18 +22,35 @@
             LoadCommand = new CapturingExceptionAsyncCommand(
                 async () =>
                 {
+                    Busy = true;
                     var filename = FileName;
                     Image = await Task.Run(() => LoadImg(filename));
                     AverageHash = await Task.Run(() => imageHash.CalculateAverageHash(filename));
                     DifferenceHash = await Task.Run(() => imageHash.CalculateDifferenceHash(filename));
                     PerceptualHash = await Task.Run(() => imageHash.CalculatePerceptualHash(filename));
-                });
+                    Busy = false;
+                },
+                () => Busy == false && string.IsNullOrWhiteSpace(FileName) == false);
 
             ClearCommand = new CapturingExceptionAsyncCommand(() =>
+                {
+                    Initialize();
+                    return Task.CompletedTask;
+                },
+                () => Busy == false);
+
+
+            PropertyChanged += (sender, args) =>
             {
-                Initialize();
-                return Task.CompletedTask;
-            });
+                LoadCommand.OnCanExecuteChanged();
+                ClearCommand.OnCanExecuteChanged();
+            };
+        }
+
+        public bool Busy
+        {
+            get => Properties.Get(false);
+            set => Properties.Set(value);
         }
 
         public BitmapImage Image
@@ -66,9 +83,9 @@
             set => Properties.Set(value);
         }
 
-        public IAsyncCommand LoadCommand { get; }
+        public CapturingExceptionAsyncCommand LoadCommand { get; }
 
-        public IAsyncCommand ClearCommand { get; }
+        public CapturingExceptionAsyncCommand ClearCommand { get; }
 
         private BitmapImage LoadImg(string file)
         {

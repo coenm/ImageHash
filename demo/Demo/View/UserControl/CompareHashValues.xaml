@@ -12,11 +12,11 @@
              d:DataContext="{d:DesignInstance Type=viewModel:CompareHashViewModel}">
   <Grid>
     <Grid.RowDefinitions>
-      <RowDefinition Height="*"></RowDefinition>
-      <RowDefinition Height="50"></RowDefinition>
-      <RowDefinition Height="50"></RowDefinition>
-      <RowDefinition Height="50"></RowDefinition>
-      <RowDefinition Height="50"></RowDefinition>
+      <RowDefinition Height="*" />
+      <RowDefinition Height="auto" />
+      <RowDefinition Height="auto" />
+      <RowDefinition Height="auto" />
+      <RowDefinition Height="auto" />
     </Grid.RowDefinitions>
 
     <Grid.ColumnDefinitions>
@@ -24,23 +24,23 @@
 
     </Grid.ColumnDefinitions>
 
-    <Grid Grid.Row="1">
-      <ProgressBar Minimum="0" Maximum="100" Value="{Binding Path=AverageHash, Mode=OneWay}" Name="averageHashProgressBar" Width="{Binding ActualWidth, ElementName=parentElementName}"/>
-      <TextBlock Text="{Binding ElementName=averageHashProgressBar, Path=Value, StringFormat={}{0:0}%}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="{Binding ActualWidth, ElementName=parentElementName}"/>
+    <Grid Grid.Row="1" Margin="0 1 0 1">
+      <ProgressBar Minimum="0" Maximum="100" Value="{Binding Path=AverageHash, Mode=OneWay}" Name="AverageHashProgressBar" Width="{Binding ActualWidth, ElementName=parentElementName}"/>
+      <TextBlock Text="{Binding ElementName=AverageHashProgressBar, Path=Value, StringFormat={}{0:0}%}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="{Binding ActualWidth, ElementName=parentElementName}"/>
     </Grid>
 
-    <Grid Grid.Row="2">
-      <ProgressBar Minimum="0" Maximum="100" Value="{Binding Path=DifferenceHash, Mode=OneWay}" Name="differenceHashProgressBar" Width="{Binding ActualWidth, ElementName=parentElementName}"/>
-      <TextBlock Text="{Binding ElementName=differenceHashProgressBar, Path=Value, StringFormat={}{0:0}%}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="{Binding ActualWidth, ElementName=parentElementName}"/>
+    <Grid Grid.Row="2" Margin="0 1 0 1">
+      <ProgressBar Minimum="0" Maximum="100" Value="{Binding Path=DifferenceHash, Mode=OneWay}" Name="DifferenceHashProgressBar" Width="{Binding ActualWidth, ElementName=parentElementName}"/>
+      <TextBlock Text="{Binding ElementName=DifferenceHashProgressBar, Path=Value, StringFormat={}{0:0}%}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="{Binding ActualWidth, ElementName=parentElementName}"/>
     </Grid>
 
-    <Grid Grid.Row="3">
-      <ProgressBar Minimum="0" Maximum="100" Value="{Binding Path=PerceptualHash, Mode=OneWay}" Name="perceptualHashProgressBar" Width="{Binding ActualWidth, ElementName=parentElementName}"/>
-      <TextBlock Text="{Binding ElementName=perceptualHashProgressBar, Path=Value, StringFormat={}{0:0}%}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="{Binding ActualWidth, ElementName=parentElementName}"/>
+    <Grid Grid.Row="3" Margin="0 1 0 1">
+      <ProgressBar Minimum="0" Maximum="100" Value="{Binding Path=PerceptualHash, Mode=OneWay}" Name="PerceptualHashProgressBar" Width="{Binding ActualWidth, ElementName=parentElementName}"/>
+      <TextBlock Text="{Binding ElementName=PerceptualHashProgressBar, Path=Value, StringFormat={}{0:0}%}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="{Binding ActualWidth, ElementName=parentElementName}"/>
     </Grid>
 
-    <StackPanel Grid.Row="4" Grid.ColumnSpan="2" Orientation="Horizontal">
-      <Button Command="{Binding Path=CalculateCommand}">Calculate</Button>
+    <StackPanel Grid.Row="4"  Margin="0 1 0 1" Grid.ColumnSpan="2" Orientation="Horizontal">
+      <Button Padding="2" Command="{Binding Path=CalculateCommand}">Calculate</Button>
      </StackPanel>
   </Grid>
 </UserControl>
