@@ -1,0 +1,53 @@
+﻿<UserControl x:Class="Demo.View.UserControl.ImageHashValue"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:behaviors="clr-namespace:Demo.View.Behaviors"
+             xmlns:viewModel="clr-namespace:Demo.ViewModel"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800"
+             d:DataContext="{d:DesignInstance Type=viewModel:FileHashViewModel}">
+    <Grid>
+           <Grid.RowDefinitions>
+             <RowDefinition Height="*"></RowDefinition>
+             <RowDefinition Height="50"></RowDefinition>
+             <RowDefinition Height="50"></RowDefinition>
+             <RowDefinition Height="50"></RowDefinition>
+             <RowDefinition Height="50"></RowDefinition>
+           </Grid.RowDefinitions>
+
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition></ColumnDefinition>
+        <ColumnDefinition></ColumnDefinition>
+      </Grid.ColumnDefinitions>
+
+    <Image Grid.Row="0" Grid.ColumnSpan="2" Stretch="Uniform" Source="{Binding Path=Image}"  />
+
+    <Label Grid.Row="1" Grid.Column="0">AverageHash</Label>
+      <Label Grid.Row="1" Grid.Column="1" Content="{Binding Path=AverageHash}"/>
+
+    <Label Grid.Row="2" Grid.Column="0">DifferenceHash</Label>
+      <Label Grid.Row="2" Grid.Column="1" Content="{Binding Path=DifferenceHash}"/>
+
+    <Label Grid.Row="3" Grid.Column="0">PerceptualHash</Label>
+    <Label Grid.Row="3" Grid.Column="1" Content="{Binding Path=PerceptualHash}"/>
+
+    <StackPanel Grid.Row="4" Grid.ColumnSpan="2" Orientation="Horizontal">
+      <Button Margin="2" ToolTip="Browse">
+        <Button.Content>
+          <fa:ImageAwesome  MaxWidth="15" MaxHeight="15"
+                            Icon="EllipsisH"
+                            VerticalAlignment="Center" HorizontalAlignment="Center" />
+        </Button.Content>
+        <i:Interaction.Behaviors>
+          <behaviors:OpenFileDialogBehavior FileName="{Binding Path=FileName, Mode=TwoWay}"/>
+        </i:Interaction.Behaviors>
+      </Button>
+      <Button Command="{Binding Path=LoadCommand}">Load</Button>
+      <Button Command="{Binding Path=ClearCommand}">Clear</Button>
+    </StackPanel>
+  </Grid>
+</UserControl>

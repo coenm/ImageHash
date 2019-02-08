@@ -3,18 +3,20 @@
     using System;
     using System.Threading.Tasks;
     using System.Windows.Media.Imaging;
+
     using JetBrains.Annotations;
     using Model;
     using Nito.Mvvm;
 
     public class FileHashViewModel : ViewModelBase
     {
-        [NotNull] private readonly IDemoImageHash imageHash;
         [NotNull] private readonly IFileSystem fileSystem;
 
         public FileHashViewModel([NotNull] IDemoImageHash imageHash, [NotNull] IFileSystem fileSystem)
         {
-            this.imageHash = imageHash ?? throw new ArgumentNullException(nameof(imageHash));
+            if (imageHash == null)
+                throw new ArgumentNullException(nameof(imageHash));
+
             this.fileSystem = fileSystem ?? throw new ArgumentNullException(nameof(fileSystem));
 
             LoadCommand = new CapturingExceptionAsyncCommand(
@@ -22,15 +24,21 @@
                 {
                     var filename = FileName;
                     Image = await Task.Run(() => LoadImg(filename));
-                    AverageHash = await Task.Run(() => this.imageHash.CalculateAverageHash(filename));
-                    DifferenceHash = await Task.Run(() => this.imageHash.CalculateDifferenceHash(filename));
-                    PerceptualHash = await Task.Run(() => this.imageHash.CalculatePerceptualHash(filename));
+                    AverageHash = await Task.Run(() => imageHash.CalculateAverageHash(filename));
+                    DifferenceHash = await Task.Run(() => imageHash.CalculateDifferenceHash(filename));
+                    PerceptualHash = await Task.Run(() => imageHash.CalculatePerceptualHash(filename));
                 });
+
+            ClearCommand = new CapturingExceptionAsyncCommand(() =>
+            {
+                Initialize();
+                return Task.CompletedTask;
+            });
         }
 
         public BitmapImage Image
         {
-            get => Properties.Get<BitmapImage>(new BitmapImage());
+            get => Properties.Get(new BitmapImage());
             set => Properties.Set(value);
         }
 
@@ -54,23 +62,34 @@
 
         public string FileName
         {
-            get => Properties.Get<string>(string.Empty);
+            get => Properties.Get(string.Empty);
             set => Properties.Set(value);
         }
 
         public IAsyncCommand LoadCommand { get; }
 
+        public IAsyncCommand ClearCommand { get; }
+
         private BitmapImage LoadImg(string file)
         {
-            var img = new BitmapImage();
-            img.BeginInit();
-            img.StreamSource = fileSystem.OpenRead(file);
-            img.EndInit();
+            var bitmapImage = new BitmapImage();
+            bitmapImage.BeginInit();
+            bitmapImage.StreamSource = fileSystem.OpenRead(file);
+            bitmapImage.EndInit();
 
             // https://stackoverflow.com/questions/26361020/error-must-create-dependencysource-on-same-thread-as-the-dependencyobject-even
-            img.Freeze();
+            bitmapImage.Freeze();
 
-            return img;
+            return bitmapImage;
+        }
+
+        private void Initialize()
+        {
+            Image = new BitmapImage();
+            AverageHash = 0;
+            DifferenceHash = 0;
+            PerceptualHash = 0;
+            FileName = string.Empty;
         }
     }
 }

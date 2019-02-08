@@ -1,30 +1,29 @@
 ﻿namespace Demo.Model
 {
-    using System.IO;
-    using System.Runtime.CompilerServices;
+    using System;
+
     using CoenM.ImageHash.HashAlgorithms;
     using JetBrains.Annotations;
 
     public class ImageHashFacade : IDemoImageHash
     {
+        [NotNull] private readonly IFileSystem fileSystem;
         [NotNull] private readonly AverageHash averageHash;
         [NotNull] private readonly DifferenceHash differenceHash;
         [NotNull] private readonly PerceptualHash perceptualHash;
 
-        public ImageHashFacade()
+        public ImageHashFacade([NotNull] IFileSystem fileSystem)
         {
+            this.fileSystem = fileSystem ?? throw new ArgumentNullException(nameof(fileSystem));
             averageHash = new AverageHash();
             differenceHash = new DifferenceHash();
             perceptualHash = new PerceptualHash();
         }
 
-        public ulong CalculateAverageHash(string filename) => CoenM.ImageHash.ImageHashExtensions.Hash(averageHash, Open(filename));
+        public ulong CalculateAverageHash(string filename) => CoenM.ImageHash.ImageHashExtensions.Hash(averageHash, fileSystem.OpenRead(filename));
 
-        public ulong CalculateDifferenceHash(string filename) => CoenM.ImageHash.ImageHashExtensions.Hash(differenceHash, Open(filename));
+        public ulong CalculateDifferenceHash(string filename) => CoenM.ImageHash.ImageHashExtensions.Hash(differenceHash, fileSystem.OpenRead(filename));
 
-        public ulong CalculatePerceptualHash(string filename) => CoenM.ImageHash.ImageHashExtensions.Hash(perceptualHash, Open(filename));
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private Stream Open(string filename) => System.IO.File.OpenRead(filename);
+        public ulong CalculatePerceptualHash(string filename) => CoenM.ImageHash.ImageHashExtensions.Hash(perceptualHash, fileSystem.OpenRead(filename));
     }
 }

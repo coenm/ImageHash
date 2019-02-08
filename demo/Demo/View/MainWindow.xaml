@@ -5,44 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Demo"
         xmlns:viewModel="clr-namespace:Demo.ViewModel"
-        xmlns:fa="http://schemas.fontawesome.io/icons/"
-        xmlns:behaviors="clr-namespace:Demo.View.Behaviors"
         mc:Ignorable="d"
-        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:userControl="clr-namespace:Demo.View.UserControl"
         WindowStartupLocation="CenterOwner"
         d:DataContext="{d:DesignInstance Type=viewModel:DemoViewModel}"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        >
   <Grid>
     <Grid.RowDefinitions>
-      <RowDefinition Height = "1*"/>
-      <RowDefinition Height = "Auto"/>
+      <RowDefinition Height = "*"/>
     </Grid.RowDefinitions>
 
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="*"></ColumnDefinition>
+      <ColumnDefinition MaxWidth="100"></ColumnDefinition>
       <ColumnDefinition Width="*"></ColumnDefinition>
     </Grid.ColumnDefinitions>
 
-    <Image Grid.Row="0" Grid.Column="0" Width="200" Source="{Binding FileA.Image}" VerticalAlignment="Top" Margin="30"/>
-    <Image Grid.Row="0" Grid.Column="1" Width="200" Source="{Binding FileB.Image}" VerticalAlignment="Top" Margin="30" Opacity="0.5" />
-
-    <Button Grid.Row="1" Grid.Column="0" Margin="2" ToolTip="Browse">
-      <Button.Content>
-        <fa:ImageAwesome  MaxWidth="15" MaxHeight="15"
-                          Icon="EllipsisH"
-                          VerticalAlignment="Center" HorizontalAlignment="Center" />
-      </Button.Content>
-      <i:Interaction.Behaviors>
-        <behaviors:OpenFileDialogBehavior FileName="{Binding Path=FileA.FileName, Mode=TwoWay}"/>
-      </i:Interaction.Behaviors>
-    </Button>
-
-    <Button Grid.Row="1" Grid.Column="1" Command="{Binding FileA.LoadCommand}" >
-    <Button.Content>
-            <Label Content="{Binding FileA.DifferenceHash}"/>
-    </Button.Content>
-
-    </Button>
+    <userControl:ImageHashValue Grid.Column="0" DataContext="{Binding Path=FileA}" />
+    <userControl:CompareHashValues Grid.Column="1" DataContext="{Binding Path=Compare}" />
+    <userControl:ImageHashValue Grid.Column="2" DataContext="{Binding Path=FileB}" />
 
   </Grid>
 </Window>

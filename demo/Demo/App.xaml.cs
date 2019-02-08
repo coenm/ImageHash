@@ -21,9 +21,11 @@ namespace Demo
         {
             try
             {
-                var vm = new DemoViewModel(
-                    new ImageHashFacade(),
-                    new FileSystem());
+                var fileSystem = new FileSystem();
+
+                var vm = new DemoViewModel(fileSystem,
+                    new ImageHashFacade(fileSystem), new ImageHashSimilarityCalculator());
+
                 var view = new MainWindow(vm);
                 view.Show();
             }
