@@ -179,7 +179,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\..\src\ImageHash\ImageHash.csproj">
+    <ProjectReference Include="..\src\ImageHash\ImageHash.csproj">
       <Project>{466faf4c-f68a-441a-aa13-4a2f061ad478}</Project>
       <Name>ImageHash</Name>
     </ProjectReference>

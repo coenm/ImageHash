@@ -34,7 +34,7 @@ install:
 - git submodule update --init --recursive
 
 before_build:
-- nuget restore ImageHash.sln
+- dotnet sln ImageHash.sln remove demo/Demo.csproj
 - dotnet restore ImageHash.sln
 
 build_script:

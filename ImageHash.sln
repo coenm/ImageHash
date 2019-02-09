@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImageHash", "src\ImageHash\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImageHash.Test", "tests\ImageHash.Test\ImageHash.Test.csproj", "{BFF28DB8-5C1D-456F-8961-6B890E13397E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo", "demo\Demo\Demo.csproj", "{6051F2DC-913C-4E55-BC94-5AC6FFCC38B6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo", "demo\Demo.csproj", "{6051F2DC-913C-4E55-BC94-5AC6FFCC38B6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
