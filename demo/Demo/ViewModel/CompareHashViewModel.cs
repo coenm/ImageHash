@@ -1,13 +1,17 @@
 ﻿namespace Demo.ViewModel
 {
     using System;
+    using System.ComponentModel;
     using System.Threading.Tasks;
     using JetBrains.Annotations;
     using Model;
     using Nito.Mvvm;
 
-    public class CompareHashViewModel : ViewModelBase
+    public class CompareHashViewModel : ViewModelBase, IDisposable
     {
+        [NotNull] private readonly FileHashViewModel fileA;
+        [NotNull] private readonly FileHashViewModel fileB;
+
         public CompareHashViewModel(
             [NotNull] IImageHashSimilarityCalculator calculator,
             [NotNull] FileHashViewModel fileA,
@@ -16,29 +20,50 @@
             if (calculator == null)
                 throw new ArgumentNullException(nameof(calculator));
 
-            if (fileA == null)
-                throw new ArgumentNullException(nameof(fileA));
-
-            if (fileB == null)
-                throw new ArgumentNullException(nameof(fileB));
+            this.fileA = fileA ?? throw new ArgumentNullException(nameof(fileA));
+            this.fileB = fileB ?? throw new ArgumentNullException(nameof(fileB));
 
             CalculateCommand = new CapturingExceptionAsyncCommand(
                 async () =>
                 {
-                    var f1 = fileA.AverageHash;
-                    var f2 = fileB.AverageHash;
-                    AverageHash = await Task.Run(() => calculator.Calculate(f1, f2));
+                    Busy = true;
 
-                    f1 = fileA.DifferenceHash;
-                    f2 = fileB.DifferenceHash;
-                    DifferenceHash = await Task.Run(() => calculator.Calculate(f1, f2));
+                    try
+                    {
+                        var a1 = fileA.AverageHash;
+                        var a2 = fileB.AverageHash;
+                        AverageHash = await Task.Run(() => calculator.Calculate(a1, a2));
 
-                    f1 = fileA.PerceptualHash;
-                    f2 = fileB.PerceptualHash;
-                    PerceptualHash = await Task.Run(() => calculator.Calculate(f1, f2));
-                });
+                        var d1 = fileA.DifferenceHash;
+                        var d2 = fileB.DifferenceHash;
+                        DifferenceHash = await Task.Run(() => calculator.Calculate(d1, d2));
+
+                        var p1 = fileA.PerceptualHash;
+                        var p2 = fileB.PerceptualHash;
+                        PerceptualHash = await Task.Run(() => calculator.Calculate(p1, p2));
+                    }
+                    finally
+                    {
+                        Busy = false;
+                    }
+                },
+                () => fileA.Loaded && fileB.Loaded && !Busy);
+
+            PropertyChanged += OnPropertyChanged;
+            fileA.PropertyChanged += OnPropertyChanged;
+            fileB.PropertyChanged += OnPropertyChanged;
         }
 
+        private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            CalculateCommand.OnCanExecuteChanged();
+        }
+
+        public bool Busy
+        {
+            get => Properties.Get<bool>(false);
+            private set => Properties.Set(value);
+        }
 
         public double AverageHash
         {
@@ -58,6 +83,13 @@
             private set => Properties.Set(value);
         }
 
-        public IAsyncCommand CalculateCommand { get; }
+        public CapturingExceptionAsyncCommand CalculateCommand { get; }
+
+        public void Dispose()
+        {
+            PropertyChanged -= OnPropertyChanged;
+            fileA.PropertyChanged -= OnPropertyChanged;
+            fileB.PropertyChanged -= OnPropertyChanged;
+        }
     }
 }

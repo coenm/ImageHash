@@ -22,13 +22,20 @@
             LoadCommand = new CapturingExceptionAsyncCommand(
                 async () =>
                 {
-                    Busy = true;
-                    var filename = FileName;
-                    Image = await Task.Run(() => LoadImg(filename));
-                    AverageHash = await Task.Run(() => imageHash.CalculateAverageHash(filename));
-                    DifferenceHash = await Task.Run(() => imageHash.CalculateDifferenceHash(filename));
-                    PerceptualHash = await Task.Run(() => imageHash.CalculatePerceptualHash(filename));
-                    Busy = false;
+                    try
+                    {
+                        Busy = true;
+                        var filename = FileName;
+                        Image = await Task.Run(() => LoadImg(filename));
+                        AverageHash = await Task.Run(() => imageHash.CalculateAverageHash(filename));
+                        DifferenceHash = await Task.Run(() => imageHash.CalculateDifferenceHash(filename));
+                        PerceptualHash = await Task.Run(() => imageHash.CalculatePerceptualHash(filename));
+                        Loaded = true;
+                    }
+                    finally
+                    {
+                        Busy = false;
+                    }
                 },
                 () => Busy == false && string.IsNullOrWhiteSpace(FileName) == false);
 
@@ -45,6 +52,12 @@
                 LoadCommand.OnCanExecuteChanged();
                 ClearCommand.OnCanExecuteChanged();
             };
+        }
+
+        public bool Loaded
+        {
+            get => Properties.Get(false);
+            private set => Properties.Set(value);
         }
 
         public bool Busy
@@ -102,6 +115,7 @@
 
         private void Initialize()
         {
+            Loaded = false;
             Image = new BitmapImage();
             AverageHash = 0;
             DifferenceHash = 0;
