@@ -24,6 +24,7 @@ env:
   - DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1
 
 script:
+- dotnet sln ImageHash.sln remove demo/Demo.csproj
 - dotnet restore ImageHash.sln
 - dotnet msbuild /p:configuration=Release ImageHash.sln
 - dotnet test /p:configuration=Release tests/ImageHash.Test/ImageHash.Test.csproj

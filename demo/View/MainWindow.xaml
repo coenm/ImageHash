@@ -1,0 +1,29 @@
+﻿<Window x:Class="Demo.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModel="clr-namespace:Demo.ViewModel"
+        mc:Ignorable="d"
+        xmlns:userControl="clr-namespace:Demo.View.UserControl"
+        WindowStartupLocation="CenterOwner"
+        d:DataContext="{d:DesignInstance Type=viewModel:DemoViewModel}"
+        Title="MainWindow" Height="450" Width="800"
+        >
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height = "*"/>
+    </Grid.RowDefinitions>
+
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*"></ColumnDefinition>
+      <ColumnDefinition MaxWidth="100"></ColumnDefinition>
+      <ColumnDefinition Width="*"></ColumnDefinition>
+    </Grid.ColumnDefinitions>
+
+    <userControl:ImageHashValue Grid.Column="0" DataContext="{Binding Path=FileA}" />
+    <userControl:CompareHashValues Grid.Column="1" DataContext="{Binding Path=Compare}" />
+    <userControl:ImageHashValue Grid.Column="2" DataContext="{Binding Path=FileB}" />
+
+  </Grid>
+</Window>
