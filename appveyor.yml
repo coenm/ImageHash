@@ -48,8 +48,10 @@ after_test:
 - ps: .scripts\Codecov.ps1
 
 artifacts:
-  - path: '**\*.s?nupkg'
+  - path: '**\*.nupkg'
     name: NuGet Packages
+  - path: '**\*.snupkg'
+    name: NuGet Symbols Packages
 
 deploy:
   - provider: NuGet
