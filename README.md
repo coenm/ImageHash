@@ -57,3 +57,11 @@ double percentageImageSimilarity = CompareHash.Similarity(hash1, hash2);
 You can also take a look at [DotNet APIs](http://dotnetapis.com/pkg/CoenM.ImageSharp.ImageHash).
 
 
+## Some screenshots of the demo application
+
+![Screenshot 1](/doc/screenshot1.png)
+
+![Screenshot 2](/doc/screenshot2.png)
+
+![Screenshot 3](/doc/screenshot3.png)
+

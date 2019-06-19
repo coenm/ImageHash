@@ -48,7 +48,7 @@
                         hash |= mask;
 
                     leftPixel = rightPixel;
-                    mask = mask >> 1;
+                    mask >>= 1;
                 }
             }
 
