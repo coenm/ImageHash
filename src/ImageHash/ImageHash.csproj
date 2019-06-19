@@ -18,11 +18,9 @@
     <PackageIconUrl>https://raw.githubusercontent.com/coenm/ImageHash/master/icon/ImageHash.128.png</PackageIconUrl>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/coenm/ImageHash.git</RepositoryUrl>
-  <!-- </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'"> -->
-    <DebugType>full</DebugType>
-    <DebugSymbols>True</DebugSymbols>
+ 	<IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
   <PropertyGroup>
