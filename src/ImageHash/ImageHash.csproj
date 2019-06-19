@@ -5,8 +5,8 @@
     <Version>1.1.1</Version>
     <Description>Perceptual image hashing in netstandard using the ImageSharp library. Includes three hashing algorithms (AverageHash, DifferenceHash, and PerceptualHash).</Description>
     <Authors>Coen van den Munckhof</Authors>
-    <TargetFrameworks Condition="'$(OS)'!='Unix'">netstandard1.3;netstandard2.0;netcoreapp2.1;net472</TargetFrameworks>
-    <!-- TargetFrameworks for Travis: -->
+    <TargetFrameworks Condition="'$(OS)'!='Unix'">netstandard1.3;netstandard2.0;netcoreapp2.1;net461;net472</TargetFrameworks>
+    <!-- TargetFrameworks for Travis:-->
 	<TargetFrameworks Condition="'$(OS)'=='Unix'">netstandard1.3;netstandard2.0</TargetFrameworks>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -17,12 +17,15 @@
     <PackageProjectUrl>https://github.com/coenm/ImageHash/</PackageProjectUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/coenm/ImageHash/master/icon/ImageHash.128.png</PackageIconUrl>
     <RepositoryType>git</RepositoryType>
+	<PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/coenm/ImageHash.git</RepositoryUrl>
-  <!-- </PropertyGroup>
+ 	<IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'"> -->
-    <DebugType>full</DebugType>
-    <DebugSymbols>True</DebugSymbols>
+  <!-- Used by SourceLink -->
+  <PropertyGroup>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -32,8 +35,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta2-19270-01">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="SixLabors.ImageSharp" Version="1.0.0-beta0006" />
-    <PackageReference Include="StyleCop.Analyzers" Version="1.1.0-beta009">
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
