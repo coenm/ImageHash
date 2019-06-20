@@ -2,7 +2,9 @@ environment:
   DOTNET_CLI_TELEMETRY_OPTOUT: 1
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
   github_oauth_token:
-    secure: H1vW5fnfAOt5/c5f1qnaatUjFVAPc2oZnxDBFutJZL58LxAyJNRLtfIBrcHnSg8y  
+    secure: H1vW5fnfAOt5/c5f1qnaatUjFVAPc2oZnxDBFutJZL58LxAyJNRLtfIBrcHnSg8y
+  myget_token:
+    secure: t8JtzPkpHidqOii+bLuSiOKgqzsdoSCBI3Sc/Uy6D9jWfxNd7zUUhhTgGHj5rpV9
 
 version: 1.0.{build}
 image: Visual Studio 2017
@@ -59,8 +61,12 @@ deploy:
     server: https://www.myget.org/F/coenm/api/v2/package
     api_key:
         secure: t8JtzPkpHidqOii+bLuSiOKgqzsdoSCBI3Sc/Uy6D9jWfxNd7zUUhhTgGHj5rpV9
-    skip_symbols: false
-    symbol_server: https://www.myget.org/F/coenm/api/v2/package
+    skip_symbols: true
     artifact: /.*\.s?nupkg/
     on:
         branch: /(master|release.*|develop)/	
+
+after_deploy:
+  - ps : Get-ChildItem *.snupkg | % { dotnet nuget push $_.FullName -s https://www.myget.org/F/coenm/symbols/api/v2/package -k $env:myget_token }
+    branch: /(master|release.*|develop)/
+
