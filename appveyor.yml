@@ -67,7 +67,7 @@ deploy:
         branch: /(master|release.*|develop)/	
 
 after_deploy:
-  - ps : Get-ChildItem *.snupkg | % { dotnet nuget push $_.FullName -s https://www.myget.org/F/coenm/symbols/api/v2/package -k $env:myget_token }
+  - ps : Get-ChildItem src\ImageHash\bin\Release\*.snupkg | % { dotnet nuget push $_.FullName -s https://www.myget.org/F/coenm/symbols/api/v2/package -k $env:myget_token }
     on:
         branch: /(master|release.*|develop)/	
 
