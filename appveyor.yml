@@ -62,11 +62,12 @@ deploy:
     api_key:
         secure: t8JtzPkpHidqOii+bLuSiOKgqzsdoSCBI3Sc/Uy6D9jWfxNd7zUUhhTgGHj5rpV9
     skip_symbols: true
-    artifact: /.*\.s?nupkg/
+    artifact: /.*\.nupkg/
     on:
         branch: /(master|release.*|develop)/	
 
 after_deploy:
   - ps : Get-ChildItem *.snupkg | % { dotnet nuget push $_.FullName -s https://www.myget.org/F/coenm/symbols/api/v2/package -k $env:myget_token }
-    branch: /(master|release.*|develop)/
+    on:
+        branch: /(master|release.*|develop)/	
 
