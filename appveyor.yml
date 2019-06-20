@@ -55,19 +55,19 @@ artifacts:
   - path: '**\*.snupkg'
     name: NuGet Symbols Packages
 
+# deploy:
+#   - provider: NuGet
+#     name: pre-release
+#     server: https://www.myget.org/F/coenm/api/v2/package
+#     api_key:
+#         secure: t8JtzPkpHidqOii+bLuSiOKgqzsdoSCBI3Sc/Uy6D9jWfxNd7zUUhhTgGHj5rpV9
+#     skip_symbols: true #doesn't work
+#     artifact: /.*\.nupkg/
+#     on:
+#         branch: /(master|release.*|develop)/
+       
 deploy:
-  - provider: NuGet
-    name: pre-release
-    server: https://www.myget.org/F/coenm/api/v2/package
-    api_key:
-        secure: t8JtzPkpHidqOii+bLuSiOKgqzsdoSCBI3Sc/Uy6D9jWfxNd7zUUhhTgGHj5rpV9
-    skip_symbols: true
-    artifact: /.*\.nupkg/
-    on:
-        branch: /(master|release.*|develop)/	
-
-after_deploy:
-  - ps : Get-ChildItem src\ImageHash\bin\Release\*.snupkg | % { dotnet nuget push $_.FullName -s https://www.myget.org/F/coenm/symbols/api/v2/package -k $env:myget_token }
+  - cmd : appveyor PushArtifact src\ImageHash\bin\Release\*.*nupkg
     on:
         branch: /(master|release.*|develop)/	
 
