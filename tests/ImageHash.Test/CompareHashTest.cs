@@ -3,7 +3,6 @@
     using System;
 
     using FluentAssertions;
-
     using Xunit;
 
     using Sut = CoenM.ImageHash.CompareHash;

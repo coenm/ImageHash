@@ -63,7 +63,7 @@
                 Action act = () => sut.Hash(stream);
 
                 // assert
-                act.Should().Throw<NotSupportedException>();
+                act.Should().Throw<SixLabors.ImageSharp.UnknownImageFormatException>();
             }
         }
 
