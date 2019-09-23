@@ -6,9 +6,7 @@
 
     using CoenM.ImageHash.HashAlgorithms;
     using CoenM.ImageHash.Test.Internal;
-
     using FluentAssertions;
-
     using Xunit;
 
     public class DifferenceHashTest
@@ -63,7 +61,7 @@
                 Action act = () => sut.Hash(stream);
 
                 // assert
-                act.Should().ThrowSixLabors.ImageSharp.UnknownImageFormatException();
+                act.Should().Throw<SixLabors.ImageSharp.UnknownImageFormatException>();
             }
         }
 

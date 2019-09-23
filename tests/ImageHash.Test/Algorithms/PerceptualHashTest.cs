@@ -6,9 +6,7 @@
 
     using CoenM.ImageHash.HashAlgorithms;
     using CoenM.ImageHash.Test.Internal;
-
     using FluentAssertions;
-
     using Xunit;
 
     public class PerceptualHashTest
