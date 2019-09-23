@@ -5,14 +5,10 @@
     using System.IO;
 
     using CoenM.ImageHash.Test.Internal;
-
     using FakeItEasy;
-
     using FluentAssertions;
-
     using SixLabors.ImageSharp;
     using SixLabors.ImageSharp.PixelFormats;
-
     using Xunit;
 
     using Sut = CoenM.ImageHash.ImageHashExtensions;
