@@ -6,9 +6,7 @@
 
     using CoenM.ImageHash.HashAlgorithms;
     using CoenM.ImageHash.Test.Internal;
-
     using FluentAssertions;
-
     using Xunit;
 
     public class AverageHashTest
@@ -75,7 +73,7 @@
                 Action act = () => sut.Hash(stream);
 
                 // assert
-                act.Should().Throw<NotSupportedException>();
+                act.Should().Throw<SixLabors.ImageSharp.UnknownImageFormatException>();
             }
         }
 
