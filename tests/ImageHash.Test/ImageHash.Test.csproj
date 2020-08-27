@@ -7,8 +7,6 @@
     <AssemblyName>CoenM.ImageSharp.ImageHash.Test</AssemblyName>
     <RootNamespace>CoenM.ImageHash.Test</RootNamespace>
     <CodeAnalysisRuleSet>..\..\ImageHash.ruleset</CodeAnalysisRuleSet>
-	<!-- Travis does not support 7.3 -->
-    <LangVersion>7.2</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
