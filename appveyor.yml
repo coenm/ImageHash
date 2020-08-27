@@ -15,28 +15,27 @@ image:
 configuration: Debug
 
 dotnet_csproj:
-  patch: true
-  file: '**\*.csproj'
-  # version: '%GitVersion_FullSemVer%'
-  version: '%GitVersion_NuGetVersion%'
-  # package_version: '%GitVersion_LegacySemVerPadded%'
-  package_version: '%GitVersion_NuGetVersion%'
-  informational_version: '%GitVersion_InformationalVersion%'
+  patch: false
+  #file: '**\*.csproj'
+  ## version: '%GitVersion_FullSemVer%'
+  #version: '%GitVersion_NuGetVersion%'
+  ## package_version: '%GitVersion_LegacySemVerPadded%'
+  #package_version: '%GitVersion_NuGetVersion%'
+  #informational_version: '%GitVersion_InformationalVersion%'
 
 install:
- #- choco install gitversion.portable -pre -y
-- choco install gitversion.portable --version 4.0.1-beta1-29 --pre -y
+# - choco install gitversion.portable --version 4.0.1-beta1-29 --pre -y
 - choco install opencover.portable -y
   #
   # install latest codecov (choco is behind of nuget)
 - nuget install Codecov -OutputDirectory C:\NuGetTools\
-- echo APPVEYOR_REPO_BRANCH  %APPVEYOR_REPO_BRANCH%
-- echo APPVEYOR_PULL_REQUEST_HEAD_REPO_BRANCH %APPVEYOR_PULL_REQUEST_HEAD_REPO_BRANCH%
-- cmd: IF [%APPVEYOR_PULL_REQUEST_NUMBER%]==[] ( 
-       C:\ProgramData\chocolatey\lib\gitversion.portable\tools\gitversion.exe /output buildserver /b %APPVEYOR_REPO_BRANCH% /c %APPVEYOR_REPO_COMMIT% 
-    ) ELSE (
-       C:\ProgramData\chocolatey\lib\gitversion.portable\tools\gitversion.exe /output buildserver /c %APPVEYOR_REPO_COMMIT%
-    )
+# - echo APPVEYOR_REPO_BRANCH  %APPVEYOR_REPO_BRANCH%
+# - echo APPVEYOR_PULL_REQUEST_HEAD_REPO_BRANCH %APPVEYOR_PULL_REQUEST_HEAD_REPO_BRANCH%
+# - cmd: IF [%APPVEYOR_PULL_REQUEST_NUMBER%]==[] ( 
+#        C:\ProgramData\chocolatey\lib\gitversion.portable\tools\gitversion.exe /output buildserver /b %APPVEYOR_REPO_BRANCH% /c %APPVEYOR_REPO_COMMIT% 
+#     ) ELSE (
+#        C:\ProgramData\chocolatey\lib\gitversion.portable\tools\gitversion.exe /output buildserver /c %APPVEYOR_REPO_COMMIT%
+#     )
 - git submodule update --init --recursive
 
 before_build:
