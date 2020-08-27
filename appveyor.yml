@@ -29,11 +29,12 @@ install:
 - git submodule update --init --recursive
 
 before_build:
+- dotnet --info
 - dotnet sln ImageHash.sln remove demo/Demo.csproj
-- dotnet restore ImageHash.sln
+- dotnet restore
 
-build_script:
-- dotnet build ImageHash.sln
+build:
+  verbosity: minimal
 
 test_script:
 - cmd: powershell -f .scripts\TestCoverage.ps1
