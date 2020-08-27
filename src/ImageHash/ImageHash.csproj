@@ -1,13 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <!-- do not manually update version, this will be done using appvayor -->
-    <Version>1.1.1</Version>
     <Description>Perceptual image hashing in netstandard using the ImageSharp library. Includes three hashing algorithms (AverageHash, DifferenceHash, and PerceptualHash).</Description>
     <Authors>Coen van den Munckhof</Authors>
     <TargetFrameworks Condition="'$(OS)'!='Unix'">netstandard1.3;netstandard2.0;netcoreapp2.1;net461;net472</TargetFrameworks>
-    <!-- TargetFrameworks for Travis:-->
-	<TargetFrameworks Condition="'$(OS)'=='Unix'">netstandard1.3;netstandard2.0</TargetFrameworks>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <RootNamespace>CoenM.ImageHash</RootNamespace>
@@ -17,9 +13,9 @@
     <PackageProjectUrl>https://github.com/coenm/ImageHash/</PackageProjectUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/coenm/ImageHash/master/icon/ImageHash.128.png</PackageIconUrl>
     <RepositoryType>git</RepositoryType>
-	<PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/coenm/ImageHash.git</RepositoryUrl>
- 	<IncludeSymbols>true</IncludeSymbols>
+    <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
@@ -30,11 +26,14 @@
 
   <PropertyGroup>
     <CodeAnalysisRuleSet>..\..\ImageHash.ruleset</CodeAnalysisRuleSet>
-	<!-- Travis does not support 7.3 -->    
-    <LangVersion>7.2</LangVersion>
+	<LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="GitVersionTask" Version="5.3.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta2-19270-01">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
