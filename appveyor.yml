@@ -30,6 +30,7 @@ install:
 
 before_build:
 - dotnet --info
+- mv global.json.appveyor global.json
 - dotnet sln ImageHash.sln remove demo/Demo.csproj
 - dotnet restore
 
