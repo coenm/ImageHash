@@ -6,7 +6,7 @@ environment:
   myget_token:
     secure: t8JtzPkpHidqOii+bLuSiOKgqzsdoSCBI3Sc/Uy6D9jWfxNd7zUUhhTgGHj5rpV9
 
-version: 1.0.{build}
+# version: 1.0.{build}
 
 image:
 - Ubuntu
@@ -24,7 +24,6 @@ install:
 
 before_build:
 - dotnet --info
-#- mv global.json.appveyor global.json
 - dotnet sln ImageHash.sln remove demo/Demo.csproj
 - dotnet restore
 

@@ -27,6 +27,7 @@
 
   <PropertyGroup>
     <CodeAnalysisRuleSet>..\..\ImageHash.ruleset</CodeAnalysisRuleSet>
+    <UserSecretsId>9ed52deb-77a2-4eb4-93df-a56e4e88a25b</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
