@@ -9,8 +9,8 @@ environment:
 version: 1.0.{build}
 
 image:
-- Visual Studio 2019
 - Ubuntu
+- Visual Studio 2019
 
 configuration: Debug
 
@@ -32,8 +32,8 @@ before_build:
 - dotnet --info
 - mv global.json.appveyor global.json
 - dotnet sln ImageHash.sln remove demo/Demo.csproj
-- dotnet restore src/ImageHash/ImageHash.csproj
 - dotnet restore tests/ImageHash.Test/ImageHash.Test.csproj
+- dotnet restore src/ImageHash/ImageHash.csproj
 
 build:
   verbosity: minimal
