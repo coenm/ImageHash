@@ -5,9 +5,6 @@
     <Authors>Coen van den Munckhof</Authors>
     <TargetFrameworks>netstandard1.3;netstandard2.0;netcoreapp2.1</TargetFrameworks>
     <TargetFrameworks Condition="'$(OS)' != 'Unix'">$(TargetFrameworks);net461;net472</TargetFrameworks>
-    <!-- <TargetFrameworks>netstandard1.3;netstandard2.0;netcoreapp2.1;net461;net472</TargetFrameworks> -->
-    <!-- <TargetFrameworks>netstandard1.3;netstandard2.0;netcoreapp2.1</TargetFrameworks> -->
-    <!-- <TargetFrameworks Condition="'$(OS)' == 'Unix'">netstandard1.3;netstandard2.0;netcoreapp2.1</TargetFrameworks> -->
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <RootNamespace>CoenM.ImageHash</RootNamespace>
@@ -33,16 +30,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="GitVersionTask" Version="5.3.7">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
-    <PackageReference Include="SixLabors.ImageSharp" Version="1.0.1" />
-    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-    </PackageReference>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All" />
+    <PackageReference Include="SixLabors.ImageSharp" />
   </ItemGroup>
 
   <ItemGroup>
