@@ -16,12 +16,6 @@ configuration: Debug
 
 dotnet_csproj:
   patch: false
-  #file: '**\*.csproj'
-  ## version: '%GitVersion_FullSemVer%'
-  #version: '%GitVersion_NuGetVersion%'
-  ## package_version: '%GitVersion_LegacySemVerPadded%'
-  #package_version: '%GitVersion_NuGetVersion%'
-  #informational_version: '%GitVersion_InformationalVersion%'
 
 install:
 - cmd: choco install opencover.portable -y
