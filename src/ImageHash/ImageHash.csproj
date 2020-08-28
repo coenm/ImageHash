@@ -3,7 +3,11 @@
   <PropertyGroup>
     <Description>Perceptual image hashing in netstandard using the ImageSharp library. Includes three hashing algorithms (AverageHash, DifferenceHash, and PerceptualHash).</Description>
     <Authors>Coen van den Munckhof</Authors>
-    <TargetFrameworks>netstandard1.3;netstandard2.0;netcoreapp2.1;net461;net472</TargetFrameworks>
+    <TargetFrameworks>netstandard1.3;netstandard2.0;netcoreapp2.1</TargetFrameworks>
+    <TargetFrameworks Condition="'$(OS)' != 'Unix'">$(TargetFrameworks);net461;net472</TargetFrameworks>
+    <!-- <TargetFrameworks>netstandard1.3;netstandard2.0;netcoreapp2.1;net461;net472</TargetFrameworks> -->
+    <!-- <TargetFrameworks>netstandard1.3;netstandard2.0;netcoreapp2.1</TargetFrameworks> -->
+    <!-- <TargetFrameworks Condition="'$(OS)' == 'Unix'">netstandard1.3;netstandard2.0;netcoreapp2.1</TargetFrameworks> -->
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <RootNamespace>CoenM.ImageHash</RootNamespace>
