@@ -1,8 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
-    <!--<RuntimeFrameworkVersion>2.0.5</RuntimeFrameworkVersion>-->
+    <TargetFramework>netcoreapp2.1</TargetFramework>
     <IsPackable>false</IsPackable>
     <AssemblyName>CoenM.ImageSharp.ImageHash.Test</AssemblyName>
     <RootNamespace>CoenM.ImageHash.Test</RootNamespace>
@@ -28,6 +27,7 @@
     <PackageReference Include="SixLabors.ImageSharp" />
     <PackageReference Include="xunit" />
     <PackageReference Include="xunit.analyzers" />
+    <PackageReference Include="xunit.extensibility.core" />
     <PackageReference Include="xunit.runner.console">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
