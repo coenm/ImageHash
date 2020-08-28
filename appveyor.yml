@@ -6,48 +6,37 @@ environment:
   myget_token:
     secure: t8JtzPkpHidqOii+bLuSiOKgqzsdoSCBI3Sc/Uy6D9jWfxNd7zUUhhTgGHj5rpV9
 
-version: 1.0.{build}
-image: Visual Studio 2017
+# version: 1.0.{build}
+
+image:
+- Ubuntu
+- Visual Studio 2019
+
 configuration: Debug
 
 dotnet_csproj:
-  patch: true
-  file: '**\*.csproj'
-  # version: '%GitVersion_FullSemVer%'
-  version: '%GitVersion_NuGetVersion%'
-  # package_version: '%GitVersion_LegacySemVerPadded%'
-  package_version: '%GitVersion_NuGetVersion%'
-  informational_version: '%GitVersion_InformationalVersion%'
+  patch: false
 
 install:
- #- choco install gitversion.portable -pre -y
-- choco install gitversion.portable --version 4.0.1-beta1-29 --pre -y
-- choco install opencover.portable -y
-  #
-  # install latest codecov (choco is behind of nuget)
-- nuget install Codecov -OutputDirectory C:\NuGetTools\
-- echo APPVEYOR_REPO_BRANCH  %APPVEYOR_REPO_BRANCH%
-- echo APPVEYOR_PULL_REQUEST_HEAD_REPO_BRANCH %APPVEYOR_PULL_REQUEST_HEAD_REPO_BRANCH%
-- cmd: IF [%APPVEYOR_PULL_REQUEST_NUMBER%]==[] ( 
-       C:\ProgramData\chocolatey\lib\gitversion.portable\tools\gitversion.exe /output buildserver /b %APPVEYOR_REPO_BRANCH% /c %APPVEYOR_REPO_COMMIT% 
-    ) ELSE (
-       C:\ProgramData\chocolatey\lib\gitversion.portable\tools\gitversion.exe /output buildserver /c %APPVEYOR_REPO_COMMIT%
-    )
+- cmd: choco install opencover.portable -y
+- cmd: nuget install Codecov -OutputDirectory C:\NuGetTools\
 - git submodule update --init --recursive
 
 before_build:
+- dotnet --info
 - dotnet sln ImageHash.sln remove demo/Demo.csproj
-- dotnet restore ImageHash.sln
+- dotnet restore
 
-build_script:
-- dotnet build ImageHash.sln
+build:
+  verbosity: minimal
 
 test_script:
-- ps: .scripts\TestCoverage.ps1
+- cmd: powershell -f .scripts\TestCoverage.ps1
+- sh: dotnet test /p:configuration=Release tests/ImageHash.Test/ImageHash.Test.csproj
 
 after_test:
-- ps: .scripts\pack.ps1
-- ps: .scripts\Codecov.ps1
+- cmd: powershell -f .scripts\pack.ps1
+- cmd: powershell -f .scripts\Codecov.ps1
 
 artifacts:
   - path: '**\*.nupkg'
