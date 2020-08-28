@@ -32,8 +32,8 @@ before_build:
 - dotnet --info
 - mv global.json.appveyor global.json
 - dotnet sln ImageHash.sln remove demo/Demo.csproj
-- dotnet restore src\ImageHash\ImageHash.csproj
-- dotnet restore tests\ImageHash.Test\ImageHash.Test.csproj
+- dotnet restore src/ImageHash/ImageHash.csproj
+- dotnet restore tests/ImageHash.Test/ImageHash.Test.csproj
 
 build:
   verbosity: minimal
