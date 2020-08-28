@@ -20,7 +20,7 @@
     <!--Dependencies production code (and maybe also in test code)-->
     <PackageReference Update="SixLabors.ImageSharp" Version="1.0.1" />
 	
-    <!-- Packages and tools for releasing (versioning, sourcelink, jetbrains annotations)-->
+    <!-- Packages and tools for releasing (sourcelink)-->
     <PackageReference Update="Microsoft.SourceLink.GitHub" Version="1.0.0" />
     
     <!--Required in test project -->
@@ -38,12 +38,6 @@
     <!--Unittesting-->
     <PackageReference Update="FakeItEasy" Version="6.2.0" />
     <PackageReference Update="FakeItEasy.Analyzer.CSharp" Version="6.0.0" />
-		
-	<!--
-	<PackageReference Update="FakeItEasy" Version="5.2.0" />
-    <PackageReference Update="FakeItEasy.Analyzer.CSharp" Version="5.2.0" />
-	-->
-	
     <PackageReference Update="FluentAssertions" Version="5.10.3" />
     <PackageReference Update="FluentAssertions.Analyzers" Version="0.11.4" />
 
