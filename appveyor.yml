@@ -22,7 +22,7 @@ install:
 
 before_build:
 - dotnet --info
-- dotnet sln ImageHash.sln remove demo/Demo.csproj
+# - dotnet sln ImageHash.sln remove demo/Demo.csproj
 - dotnet restore
 
 build:
