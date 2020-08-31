@@ -59,7 +59,7 @@
             };
 
             bool? result = dialog.ShowDialog(null);
-            if (result.HasValue && result.Value)
+            if (result.Value)
                 SetValue(FileName, dialog.FileName);
         }
     }

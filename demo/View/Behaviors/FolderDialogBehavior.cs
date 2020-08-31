@@ -36,7 +36,7 @@
         {
             var dialog = new VistaFolderBrowserDialog
             {
-                Description = @"Please select a folder.",
+                Description = "Please select a folder.",
                 UseDescriptionForTitle = true,
                 ShowNewFolderButton = true,
             };
