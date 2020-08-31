@@ -1,13 +1,12 @@
 ﻿namespace Demo.ViewModel
 {
     using System.ComponentModel;
-    using CalculatedProperties;
-    using JetBrains.Annotations;
+
+    using Nito.Mvvm.CalculatedProperties;
 
     public abstract class ViewModelBase : INotifyPropertyChanged
     {
 #pragma warning disable SA1401 // Fields must be private
-        [NotNull]
         protected readonly PropertyHelper Properties;
 #pragma warning restore SA1401 // Fields must be private
 

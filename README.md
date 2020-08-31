@@ -5,7 +5,7 @@ ImageHash
 </h1>
 <div align="center">
 
-[![Build status](https://ci.appveyor.com/api/projects/status/891pi650ra2ori5t/branch/develop?svg=true)](https://ci.appveyor.com/project/coenm/imagehash/branch/develop) [![Build Status](https://travis-ci.org/coenm/ImageHash.svg?branch=develop)](https://travis-ci.org/coenm/ImageHash) [![Coverage](https://codecov.io/gh/coenm/imagehash/branch/develop/graph/badge.svg)](https://codecov.io/gh/coenm/imagehash) [![NuGet](https://img.shields.io/nuget/v/CoenM.ImageSharp.ImageHash.svg)](https://www.nuget.org/packages/CoenM.ImageSharp.ImageHash/) [![MyGet Pre Release](https://img.shields.io/myget/coenm/vpre/CoenM.ImageSharp.ImageHash.svg?label=myget)](https://www.myget.org/feed/Packages/coenm/)
+[![Build status](https://ci.appveyor.com/api/projects/status/891pi650ra2ori5t/branch/develop?svg=true)](https://ci.appveyor.com/project/coenm/imagehash/branch/develop) [![Coverage](https://codecov.io/gh/coenm/imagehash/branch/develop/graph/badge.svg)](https://codecov.io/gh/coenm/imagehash) [![NuGet](https://img.shields.io/nuget/v/CoenM.ImageSharp.ImageHash.svg)](https://www.nuget.org/packages/CoenM.ImageSharp.ImageHash/) [![MyGet Pre Release](https://img.shields.io/myget/coenm/vpre/CoenM.ImageSharp.ImageHash.svg?label=myget)](https://www.myget.org/feed/Packages/coenm/)
 
 </div>
 .NET Standard library containing multiple algorithms to calculate perceptual hashes of images and to calculate similarity using those hashes.

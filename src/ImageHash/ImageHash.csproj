@@ -1,13 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <!-- do not manually update version, this will be done using appvayor -->
-    <Version>1.1.1</Version>
     <Description>Perceptual image hashing in netstandard using the ImageSharp library. Includes three hashing algorithms (AverageHash, DifferenceHash, and PerceptualHash).</Description>
     <Authors>Coen van den Munckhof</Authors>
-    <TargetFrameworks Condition="'$(OS)'!='Unix'">netstandard1.3;netstandard2.0;netcoreapp2.1;net461;net472</TargetFrameworks>
-    <!-- TargetFrameworks for Travis:-->
-	<TargetFrameworks Condition="'$(OS)'=='Unix'">netstandard1.3;netstandard2.0</TargetFrameworks>
+    <Owners>$(Authors)</Owners>
+    <TargetFrameworks>netstandard1.3;netstandard2.0;netcoreapp2.1</TargetFrameworks>
+    <TargetFrameworks Condition="'$(OS)' != 'Unix'">$(TargetFrameworks);net461;net472</TargetFrameworks>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <RootNamespace>CoenM.ImageHash</RootNamespace>
@@ -15,12 +13,20 @@
     <PackageId>CoenM.ImageSharp.ImageHash</PackageId>
     <PackageTags>ImageHash;DifferenceHash;AverageHash;PerceptualHash;Imaging;ImageSharp</PackageTags>
     <PackageProjectUrl>https://github.com/coenm/ImageHash/</PackageProjectUrl>
+    <!-- deprecated, maintain backward compatibility, https://docs.microsoft.com/en-us/nuget/reference/msbuild-targets#packageiconurl  -->
     <PackageIconUrl>https://raw.githubusercontent.com/coenm/ImageHash/master/icon/ImageHash.128.png</PackageIconUrl>
+    <PackageIcon>icon.png</PackageIcon>
     <RepositoryType>git</RepositoryType>
-	<PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <RepositoryUrl>https://github.com/coenm/ImageHash.git</RepositoryUrl>
- 	<IncludeSymbols>true</IncludeSymbols>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>$(PackageProjectUrl)</RepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <NeutralLanguage>en</NeutralLanguage>
+    <PackageDescription>$(Description)</PackageDescription>
+    <PackageReleaseNotes>
+      1.0.0-beta0005
+      * Updated to ImageSharp 1.0.1
+    </PackageReleaseNotes>
   </PropertyGroup>
 
   <!-- Used by SourceLink -->
@@ -28,26 +34,13 @@
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
   </PropertyGroup>
 
-  <PropertyGroup>
-    <CodeAnalysisRuleSet>..\..\ImageHash.ruleset</CodeAnalysisRuleSet>
-	<!-- Travis does not support 7.3 -->    
-    <LangVersion>7.2</LangVersion>
-  </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta2-19270-01">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="SixLabors.ImageSharp" Version="1.0.0-beta0007" />
-    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-    </PackageReference>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All" />
+    <PackageReference Include="SixLabors.ImageSharp" />
   </ItemGroup>
 
   <ItemGroup>
-    <AdditionalFiles Include="..\..\stylecop.json" />
+  	<None Include="$(MSBuildThisFileDirectory)..\..\icon\ImageHash.128.png" Pack="true" PackagePath="$(PackageIcon)" Visible="false" />
   </ItemGroup>
 
 </Project>
