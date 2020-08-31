@@ -4,7 +4,7 @@
     using System.ComponentModel;
     using System.Threading.Tasks;
 
-    using Model;
+    using Demo.Model;
     using Nito.Mvvm;
 
     public class CompareHashViewModel : ViewModelBase, IDisposable
@@ -54,11 +54,6 @@
             fileB.PropertyChanged += OnPropertyChanged;
         }
 
-        private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            CalculateCommand.OnCanExecuteChanged();
-        }
-
         public bool Busy
         {
             get => Properties.Get<bool>(false);
@@ -90,6 +85,11 @@
             PropertyChanged -= OnPropertyChanged;
             fileA.PropertyChanged -= OnPropertyChanged;
             fileB.PropertyChanged -= OnPropertyChanged;
+        }
+
+        private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            CalculateCommand.OnCanExecuteChanged();
         }
     }
 }

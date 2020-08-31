@@ -3,8 +3,8 @@
     using System.Windows;
     using System.Windows.Controls;
 
-    using Ookii.Dialogs.Wpf;
     using Microsoft.Xaml.Behaviors;
+    using Ookii.Dialogs.Wpf;
 
     public class OpenFileDialogBehavior : Behavior<Button>
     {
@@ -25,7 +25,6 @@
         {
             return (string)obj.GetValue(Title);
         }
-
 
         public static void SetTitle(DependencyObject obj, string value)
         {

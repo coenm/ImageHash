@@ -4,7 +4,7 @@
     using System.Threading.Tasks;
     using System.Windows.Media.Imaging;
 
-    using Model;
+    using Demo.Model;
     using Nito.Mvvm;
 
     public class FileHashViewModel : ViewModelBase
@@ -36,15 +36,15 @@
                         Busy = false;
                     }
                 },
-                () => Busy == false && string.IsNullOrWhiteSpace(FileName) == false);
+                () => !Busy && !string.IsNullOrWhiteSpace(FileName));
 
-            ClearCommand = new CapturingExceptionAsyncCommand(() =>
+            ClearCommand = new CapturingExceptionAsyncCommand(
+                () =>
                 {
                     Initialize();
                     return Task.CompletedTask;
                 },
-                () => Busy == false);
-
+                () => !Busy);
 
             PropertyChanged += (sender, args) =>
             {
