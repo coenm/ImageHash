@@ -2,11 +2,12 @@
 {
     using System;
 
-    using Model;
+    using Demo.Model;
 
     public class DemoViewModel : ViewModelBase
     {
-        public DemoViewModel(IFileSystem fileSystem,
+        public DemoViewModel(
+            IFileSystem fileSystem,
             IDemoImageHash imageHash,
             IImageHashSimilarityCalculator calculator)
         {
