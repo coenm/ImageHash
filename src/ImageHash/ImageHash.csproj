@@ -12,7 +12,9 @@
     <PackageId>CoenM.ImageSharp.ImageHash</PackageId>
     <PackageTags>ImageHash;DifferenceHash;AverageHash;PerceptualHash;Imaging;ImageSharp</PackageTags>
     <PackageProjectUrl>https://github.com/coenm/ImageHash/</PackageProjectUrl>
-    <PackageIconUrl>https://raw.githubusercontent.com/coenm/ImageHash/master/icon/ImageHash.128.png</PackageIconUrl>
+	<!-- deprecated, maintain backward compatibility, https://docs.microsoft.com/en-us/nuget/reference/msbuild-targets#packageiconurl  -->
+	<PackageIconUrl>https://raw.githubusercontent.com/coenm/ImageHash/master/icon/ImageHash.128.png</PackageIconUrl>
+	<PackageIcon>icon.png</PackageIcon>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/coenm/ImageHash.git</RepositoryUrl>
@@ -29,5 +31,8 @@
     <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All" />
     <PackageReference Include="SixLabors.ImageSharp" />
   </ItemGroup>
-
+  
+  <ItemGroup>
+	<None Include="$(MSBuildThisFileDirectory)..\..\icon\ImageHash.128.png" Pack="true" PackagePath="$(PackageIcon)" Visible="false" />
+  </ItemGroup>
 </Project>
