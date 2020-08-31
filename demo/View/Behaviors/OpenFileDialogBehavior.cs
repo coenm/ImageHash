@@ -2,8 +2,9 @@
 {
     using System.Windows;
     using System.Windows.Controls;
-    using System.Windows.Interactivity;
+
     using Ookii.Dialogs.Wpf;
+    using Microsoft.Xaml.Behaviors;
 
     public class OpenFileDialogBehavior : Behavior<Button>
     {

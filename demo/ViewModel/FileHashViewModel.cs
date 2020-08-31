@@ -4,15 +4,14 @@
     using System.Threading.Tasks;
     using System.Windows.Media.Imaging;
 
-    using JetBrains.Annotations;
     using Model;
     using Nito.Mvvm;
 
     public class FileHashViewModel : ViewModelBase
     {
-        [NotNull] private readonly IFileSystem fileSystem;
+        private readonly IFileSystem fileSystem;
 
-        public FileHashViewModel([NotNull] IDemoImageHash imageHash, [NotNull] IFileSystem fileSystem)
+        public FileHashViewModel(IDemoImageHash imageHash, IFileSystem fileSystem)
         {
             if (imageHash == null)
                 throw new ArgumentNullException(nameof(imageHash));

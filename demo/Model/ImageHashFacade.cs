@@ -3,16 +3,15 @@
     using System;
 
     using CoenM.ImageHash.HashAlgorithms;
-    using JetBrains.Annotations;
 
     public class ImageHashFacade : IDemoImageHash
     {
-        [NotNull] private readonly IFileSystem fileSystem;
-        [NotNull] private readonly AverageHash averageHash;
-        [NotNull] private readonly DifferenceHash differenceHash;
-        [NotNull] private readonly PerceptualHash perceptualHash;
+        private readonly IFileSystem fileSystem;
+        private readonly AverageHash averageHash;
+        private readonly DifferenceHash differenceHash;
+        private readonly PerceptualHash perceptualHash;
 
-        public ImageHashFacade([NotNull] IFileSystem fileSystem)
+        public ImageHashFacade(IFileSystem fileSystem)
         {
             this.fileSystem = fileSystem ?? throw new ArgumentNullException(nameof(fileSystem));
             averageHash = new AverageHash();

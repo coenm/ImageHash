@@ -2,7 +2,6 @@
 {
     using System.Windows;
 
-    using JetBrains.Annotations;
     using ViewModel;
 
     /// <summary>
@@ -10,7 +9,7 @@
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow([NotNull] DemoViewModel demoViewModel)
+        public MainWindow(DemoViewModel demoViewModel)
         {
             InitializeComponent();
             DataContext = demoViewModel;

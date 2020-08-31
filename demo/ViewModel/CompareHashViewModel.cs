@@ -3,19 +3,19 @@
     using System;
     using System.ComponentModel;
     using System.Threading.Tasks;
-    using JetBrains.Annotations;
+
     using Model;
     using Nito.Mvvm;
 
     public class CompareHashViewModel : ViewModelBase, IDisposable
     {
-        [NotNull] private readonly FileHashViewModel fileA;
-        [NotNull] private readonly FileHashViewModel fileB;
+        private readonly FileHashViewModel fileA;
+        private readonly FileHashViewModel fileB;
 
         public CompareHashViewModel(
-            [NotNull] IImageHashSimilarityCalculator calculator,
-            [NotNull] FileHashViewModel fileA,
-            [NotNull] FileHashViewModel fileB)
+            IImageHashSimilarityCalculator calculator,
+            FileHashViewModel fileA,
+            FileHashViewModel fileB)
         {
             if (calculator == null)
                 throw new ArgumentNullException(nameof(calculator));
