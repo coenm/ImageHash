@@ -22,7 +22,8 @@ install:
 
 before_build:
 - dotnet --info
-# - dotnet sln ImageHash.sln remove demo/Demo.csproj
+# Remove Demo project in Ubuntu as Windows is required to build Windows desktop applications.
+- sh: dotnet sln ImageHash.sln remove demo/Demo.csproj
 - dotnet restore
 
 build:
