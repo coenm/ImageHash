@@ -1,20 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
-
-namespace Demo
+﻿namespace Demo
 {
-    using Model;
-    using ViewModel;
-    using MainWindow = View.MainWindow;
+    using System;
+    using System.Windows;
 
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
+    using Demo.Model;
+    using Demo.ViewModel;
+
+    using MainWindow = Demo.View.MainWindow;
+
     public partial class App : Application
     {
         protected override void OnStartup(StartupEventArgs e)
@@ -22,9 +15,9 @@ namespace Demo
             try
             {
                 var fileSystem = new FileSystem();
-
-                var vm = new DemoViewModel(fileSystem,
-                    new ImageHashFacade(fileSystem), new ImageHashSimilarityCalculator());
+                var imageHashFacade = new ImageHashFacade(fileSystem);
+                var imageHashSimilarityCalculator = new ImageHashSimilarityCalculator();
+                var vm = new DemoViewModel(fileSystem, imageHashFacade, imageHashSimilarityCalculator);
 
                 var view = new MainWindow(vm);
                 view.Show();

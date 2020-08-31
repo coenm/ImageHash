@@ -1,14 +1,15 @@
 ﻿namespace Demo.ViewModel
 {
     using System;
-    using JetBrains.Annotations;
-    using Model;
+
+    using Demo.Model;
 
     public class DemoViewModel : ViewModelBase
     {
-        public DemoViewModel([NotNull] IFileSystem fileSystem,
-            [NotNull] IDemoImageHash imageHash,
-            [NotNull] IImageHashSimilarityCalculator calculator)
+        public DemoViewModel(
+            IFileSystem fileSystem,
+            IDemoImageHash imageHash,
+            IImageHashSimilarityCalculator calculator)
         {
             if (fileSystem == null)
                 throw new ArgumentNullException(nameof(fileSystem));

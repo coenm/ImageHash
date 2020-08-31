@@ -5,7 +5,6 @@
     <IsPackable>false</IsPackable>
     <AssemblyName>CoenM.ImageSharp.ImageHash.Test</AssemblyName>
     <RootNamespace>CoenM.ImageHash.Test</RootNamespace>
-    <CodeAnalysisRuleSet>..\..\ImageHash.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <ItemGroup>
@@ -41,8 +40,4 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\ImageHash\ImageHash.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <AdditionalFiles Include="..\..\stylecop.json" />
-  </ItemGroup>
-
 </Project>

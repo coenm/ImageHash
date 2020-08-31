@@ -1,13 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27004.2010
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImageHash", "src\ImageHash\ImageHash.csproj", "{466FAF4C-F68A-441A-AA13-4A2F061AD478}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImageHash.Test", "tests\ImageHash.Test\ImageHash.Test.csproj", "{BFF28DB8-5C1D-456F-8961-6B890E13397E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo", "demo\Demo.csproj", "{6051F2DC-913C-4E55-BC94-5AC6FFCC38B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo", "demo\Demo.csproj", "{6051F2DC-913C-4E55-BC94-5AC6FFCC38B6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C1E0AEE9-CD6A-4CE1-BAEB-526EF9599B1A}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		Directory.Build.props = Directory.Build.props
+		Directory.Build.targets = Directory.Build.targets
+		GitVersion.yml = GitVersion.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

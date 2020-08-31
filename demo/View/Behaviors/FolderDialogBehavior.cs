@@ -2,8 +2,8 @@
 {
     using System.Windows;
     using System.Windows.Controls;
-    using System.Windows.Interactivity;
 
+    using Microsoft.Xaml.Behaviors;
     using Ookii.Dialogs.Wpf;
 
     public class FolderDialogBehavior : Behavior<Button>
@@ -36,7 +36,7 @@
         {
             var dialog = new VistaFolderBrowserDialog
             {
-                Description = @"Please select a folder.",
+                Description = "Please select a folder.",
                 UseDescriptionForTitle = true,
                 ShowNewFolderButton = true,
             };

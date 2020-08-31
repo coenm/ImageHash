@@ -6,8 +6,6 @@ environment:
   myget_token:
     secure: t8JtzPkpHidqOii+bLuSiOKgqzsdoSCBI3Sc/Uy6D9jWfxNd7zUUhhTgGHj5rpV9
 
-# version: 1.0.{build}
-
 image:
 - Ubuntu
 - Visual Studio 2019
@@ -24,7 +22,8 @@ install:
 
 before_build:
 - dotnet --info
-- dotnet sln ImageHash.sln remove demo/Demo.csproj
+# Remove Demo project in Ubuntu as Windows is required to build Windows desktop applications.
+- sh: dotnet sln ImageHash.sln remove demo/Demo.csproj
 - dotnet restore
 
 build:

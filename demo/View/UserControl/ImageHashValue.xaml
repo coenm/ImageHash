@@ -3,11 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:behaviors="clr-namespace:Demo.View.Behaviors"
              xmlns:viewModel="clr-namespace:Demo.ViewModel"
-             xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:converters="clr-namespace:Demo.View.Converters"
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800"
              d:DataContext="{d:DesignInstance Type=viewModel:FileHashViewModel}">
@@ -42,9 +41,9 @@
 
     <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
       <Button  Margin="2" Padding="2" ToolTip="Browse" Content="Browse" IsEnabled="{Binding Path=Busy, Converter={StaticResource InverseBooleanConverter}}">
-        <i:Interaction.Behaviors>
+        <b:Interaction.Behaviors>
           <behaviors:OpenFileDialogBehavior FileName="{Binding Path=FileName, Mode=TwoWay}"/>
-        </i:Interaction.Behaviors>
+        </b:Interaction.Behaviors>
       </Button>
       <Button Margin="2" Padding="2" Command="{Binding Path=LoadCommand}">Load</Button>
       <Button Margin="2" Padding="2" Command="{Binding Path=ClearCommand}">Clear</Button>
