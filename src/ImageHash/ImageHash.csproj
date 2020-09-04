@@ -22,11 +22,13 @@
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <NeutralLanguage>en</NeutralLanguage>
-    <PackageDescription>$(Description)</PackageDescription>
+    <PackageDescription>$(Description)</PackageDescription> 
+    <!--
     <PackageReleaseNotes>
       1.0.0-beta0005
       * Updated to ImageSharp 1.0.1
-    </PackageReleaseNotes>
+    </PackageReleaseNotes> 
+    -->
   </PropertyGroup>
 
   <!-- Used by SourceLink -->
