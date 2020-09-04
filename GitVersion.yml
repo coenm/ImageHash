@@ -1,0 +1,12 @@
+mode: ContinuousDelivery
+branches:
+  develop:
+    regex: develop
+    mode: ContinuousDeployment
+    tag: develop
+  feature:
+    regex: feature?[/-]
+    mode: ContinuousDeployment
+ignore:
+  sha: []
+merge-message-formats: {}

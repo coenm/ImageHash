@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <IsPackable>false</IsPackable>
+    <AssemblyName>CoenM.ImageSharp.ImageHash.Test</AssemblyName>
+    <RootNamespace>CoenM.ImageHash.Test</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Data\Alyson_Hannigan_200x200_0.jpg" />
+    <EmbeddedResource Include="Data\Alyson_Hannigan_4x4_0.jpg" />
+    <EmbeddedResource Include="Data\Alyson_Hannigan_500x500_0.jpg" />
+    <EmbeddedResource Include="Data\Alyson_Hannigan_500x500_1.jpg" />
+    <EmbeddedResource Include="Data\github_1.jpg" />
+    <EmbeddedResource Include="Data\github_1.png" />
+    <EmbeddedResource Include="Data\github_2.jpg" />
+    <EmbeddedResource Include="Data\Not_an_image.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="FakeItEasy"  />
+    <PackageReference Include="FakeItEasy.Analyzer.CSharp" />
+    <PackageReference Include="FluentAssertions" />
+    <PackageReference Include="SixLabors.ImageSharp" />
+    <PackageReference Include="xunit" />
+    <PackageReference Include="xunit.analyzers" />
+    <PackageReference Include="xunit.extensibility.core" />
+    <PackageReference Include="xunit.runner.console">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="xunit.runner.visualstudio">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="MarkdownSnippets.MsBuild">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\ImageHash\ImageHash.csproj" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="Demo.View.UserControl.ImageHashValue"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:behaviors="clr-namespace:Demo.View.Behaviors"
+             xmlns:viewModel="clr-namespace:Demo.ViewModel"
+             xmlns:converters="clr-namespace:Demo.View.Converters"
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800"
+             d:DataContext="{d:DesignInstance Type=viewModel:FileHashViewModel}">
+  <Grid>
+    <Grid.Resources>
+      <converters:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+    </Grid.Resources>
+
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*"></RowDefinition>
+      <RowDefinition Height="auto"></RowDefinition>
+      <RowDefinition Height="auto"></RowDefinition>
+      <RowDefinition Height="auto"></RowDefinition>
+      <RowDefinition Height="auto"></RowDefinition>
+    </Grid.RowDefinitions>
+
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition></ColumnDefinition>
+      <ColumnDefinition></ColumnDefinition>
+    </Grid.ColumnDefinitions>
+
+    <Image Margin="1" Grid.Row="0" Grid.ColumnSpan="2" Stretch="Uniform" Source="{Binding Path=Image}"  />
+
+    <Label Margin="0 1 0 1" Grid.Row="1" Grid.Column="0">AverageHash</Label>
+    <Label Margin="0 1 0 1" Grid.Row="1" Grid.Column="1" Content="{Binding Path=AverageHash}"/>
+
+    <Label Margin="0 1 0 1" Grid.Row="2" Grid.Column="0">DifferenceHash</Label>
+    <Label Margin="0 1 0 1" Grid.Row="2" Grid.Column="1" Content="{Binding Path=DifferenceHash}"/>
+
+    <Label Margin="0 1 0 1" Grid.Row="3" Grid.Column="0">PerceptualHash</Label>
+    <Label Margin="0 1 0 1" Grid.Row="3" Grid.Column="1" Content="{Binding Path=PerceptualHash}"/>
+
+    <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
+      <Button  Margin="2" Padding="2" ToolTip="Browse" Content="Browse" IsEnabled="{Binding Path=Busy, Converter={StaticResource InverseBooleanConverter}}">
+        <b:Interaction.Behaviors>
+          <behaviors:OpenFileDialogBehavior FileName="{Binding Path=FileName, Mode=TwoWay}"/>
+        </b:Interaction.Behaviors>
+      </Button>
+      <Button Margin="2" Padding="2" Command="{Binding Path=LoadCommand}">Load</Button>
+      <Button Margin="2" Padding="2" Command="{Binding Path=ClearCommand}">Clear</Button>
+    </StackPanel>
+  </Grid>
+</UserControl>
