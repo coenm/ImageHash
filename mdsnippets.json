@@ -4,4 +4,7 @@
   "Exclude": [ "_ReSharper.Caches", "packages", "build"],
   "MaxWidth": 120,
   "TreatMissingAsWarning": true,
+  "WriteHeader": false,
+  "ReadOnly": false,
+  "Convention": "InPlaceOverwrite",
 }
