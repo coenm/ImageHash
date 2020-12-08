@@ -13,7 +13,7 @@
     <PackageReference Include="Nito.Mvvm.Async" />
     <PackageReference Include="Nito.Mvvm.CalculatedProperties" />
     <PackageReference Include="Nito.Mvvm.Core" />
-    <PackageReference Include="Ookii.Dialogs.Wpf.NETCore" />
+    <PackageReference Include="Ookii.Dialogs.Wpf" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\src\ImageHash\ImageHash.csproj" />
