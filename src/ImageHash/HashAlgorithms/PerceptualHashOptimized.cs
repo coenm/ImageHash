@@ -45,12 +45,12 @@
             }
 
             // Calculate the DCT for each column.
-            for (var x = 0; x < Size; x++)
+            for (var x = 0; x < 8; x++)
             {
                 for (var y = 0; y < Size; y++)
                     sequence[y] = rows[y, x];
 
-                Dct1D(sequence, matrix, x);
+                Dct1D(sequence, matrix, x, limit: 8);
             }
 
             // Only use the top 8x8 values.
@@ -108,12 +108,13 @@
         /// <param name="values">Should be an array of doubles of length 64.</param>
         /// <param name="coefficients">Coefficients.</param>
         /// <param name="ci">Coefficients index.</param>
+        /// <param name="limit">Limit.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static void Dct1D(IReadOnlyList<double> values, double[,] coefficients, int ci)
+        private static void Dct1D(IReadOnlyList<double> values, double[,] coefficients, int ci, int limit = Size)
         {
             Debug.Assert(values.Count == 64, "This DCT method works with 64 doubles.");
 
-            for (var coef = 0; coef < Size; coef++)
+            for (var coef = 0; coef < limit; coef++)
             {
                 for (var i = 0; i < Size; i++)
                     coefficients[ci, coef] += values[i] * _dctCoeffs[i, coef];
