@@ -54,17 +54,15 @@
             }
 
             // Only use the top 8x8 values.
-            var top8X8 = new List<double>(Size);
+            var top8X8 = new double[Size];
             for (var y = 0; y < 8; y++)
             {
                 for (var x = 0; x < 8; x++)
-                    top8X8.Add(matrix[y, x]);
+                    top8X8[(y * 8) + x] = matrix[y, x];
             }
 
-            var topRight = top8X8.ToArray();
-
             // Get Median.
-            var median = CalculateMedian64Values(topRight);
+            var median = CalculateMedian64Values(top8X8);
 
             // Calculate hash.
             var mask = 1UL << (Size - 1);
@@ -72,7 +70,7 @@
 
             for (var i = 0; i < Size; i++)
             {
-                if (topRight[i] > median)
+                if (top8X8[i] > median)
                     hash |= mask;
 
                 mask = mask >> 1;
