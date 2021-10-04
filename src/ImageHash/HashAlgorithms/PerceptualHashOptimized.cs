@@ -5,7 +5,7 @@
     using System.Diagnostics;
     using System.Linq;
     using System.Runtime.CompilerServices;
-
+    using System.Threading.Tasks;
     using SixLabors.ImageSharp;
     using SixLabors.ImageSharp.PixelFormats;
     using SixLabors.ImageSharp.Processing;
@@ -18,6 +18,7 @@
         private const int Size = 64;
         private static readonly double Sqrt2DivSize = Math.Sqrt(2D / Size);
         private static readonly double Sqrt2 = 1 / Math.Sqrt(2);
+        private static readonly double[,] _dctCoeffs = GenerateDctCoeffs();
 
         /// <inheritdoc />
         public ulong Hash(Image<Rgba32> image)
@@ -25,9 +26,9 @@
             if (image == null)
                 throw new ArgumentNullException(nameof(image));
 
-            var rows = new double[Size][];
+            var rows = new double[Size, Size];
             var sequence = new double[Size];
-            var matrix = new double[Size][];
+            var matrix = new double[Size, Size];
 
             image.Mutate(ctx => ctx
                                 .Resize(Size, Size)
@@ -40,16 +41,16 @@
                 for (var x = 0; x < Size; x++)
                     sequence[x] = image[x, y].R;
 
-                rows[y] = Dct1D(sequence);
+                Dct1D(sequence, rows, y);
             }
 
             // Calculate the DCT for each column.
             for (var x = 0; x < Size; x++)
             {
                 for (var y = 0; y < Size; y++)
-                    sequence[y] = rows[y][x];
+                    sequence[y] = rows[y, x];
 
-                matrix[x] = Dct1D(sequence);
+                Dct1D(sequence, matrix, x);
             }
 
             // Only use the top 8x8 values.
@@ -57,7 +58,7 @@
             for (var y = 0; y < 8; y++)
             {
                 for (var x = 0; x < 8; x++)
-                    top8X8.Add(matrix[y][x]);
+                    top8X8.Add(matrix[y, x]);
             }
 
             var topRight = top8X8.ToArray();
@@ -87,28 +88,40 @@
             return values.OrderBy(value => value).Skip(31).Take(2).Average();
         }
 
+        private static double[,] GenerateDctCoeffs()
+        {
+            double[,] c = new double[Size, Size];
+            for (var coef = 0; coef < Size; coef++)
+            {
+                for (var i = 0; i < Size; i++)
+                {
+                    c[i, coef] = Math.Cos(((2.0 * i) + 1.0) * coef * Math.PI / (2.0 * Size));
+                }
+            }
+
+            return c;
+        }
+
         /// <summary>
         /// One dimensional Discrete Cosine Transformation.
         /// </summary>
         /// <param name="values">Should be an array of doubles of length 64.</param>
-        /// <returns>array of doubles of length 64.</returns>
+        /// <param name="coefficients">Coefficients.</param>
+        /// <param name="ci">Coefficients index.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static double[] Dct1D(IReadOnlyList<double> values)
+        private static void Dct1D(IReadOnlyList<double> values, double[,] coefficients, int ci)
         {
             Debug.Assert(values.Count == 64, "This DCT method works with 64 doubles.");
-            var coefficients = new double[Size];
 
             for (var coef = 0; coef < Size; coef++)
             {
                 for (var i = 0; i < Size; i++)
-                    coefficients[coef] += values[i] * Math.Cos(((2.0 * i) + 1.0) * coef * Math.PI / (2.0 * Size));
+                    coefficients[ci, coef] += values[i] * _dctCoeffs[i, coef];
 
-                coefficients[coef] *= Sqrt2DivSize;
+                coefficients[ci, coef] *= Sqrt2DivSize;
                 if (coef == 0)
-                    coefficients[coef] *= Sqrt2;
+                    coefficients[ci, coef] *= Sqrt2;
             }
-
-            return coefficients;
         }
     }
 }
