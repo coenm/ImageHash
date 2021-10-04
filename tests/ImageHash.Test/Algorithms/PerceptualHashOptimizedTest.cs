@@ -1,6 +1,8 @@
 ﻿namespace CoenM.ImageHash.Test.Algorithms
 {
     using System;
+    using System.IO;
+    using System.Linq;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
 
@@ -8,10 +10,15 @@
     using CoenM.ImageHash.Test.Internal;
     using FluentAssertions;
     using Xunit;
+    using SixLabors.ImageSharp;
+    using SixLabors.ImageSharp.PixelFormats;
+    using System.Diagnostics;
+    using Xunit.Abstractions;
 
     public class PerceptualHashOptimizedTest
     {
         private readonly PerceptualHashOptimized sut;
+        private readonly ITestOutputHelper _logger;
 
         private readonly Dictionary<string, ulong> expectedHashes = new Dictionary<string, ulong>
         {
@@ -23,8 +30,9 @@
             { "github_2.jpg", 13783795072850083657 },
         };
 
-        public PerceptualHashOptimizedTest()
+        public PerceptualHashOptimizedTest(ITestOutputHelper logger)
         {
+            _logger = logger;
             sut = new PerceptualHashOptimized();
         }
 
@@ -131,6 +139,66 @@
 
             // assert
             result.Should().Be(71.875);
+        }
+
+        private static Image<Rgba32>[] GetImageSuite()
+        {
+            // Yes, this is beefy but we want everything in RAM before we do stuff
+            return Directory.GetFiles(Path.Combine("Data", "image_suite"), "*.jpg")
+                        .Select(fp => Image.Load<Rgba32>(fp))
+                        .ToArray();
+        }
+
+        [Fact]
+        public void CompareAgainstUnoptimized()
+        {
+            // Do optimized first in case the second run gets a boost we bias towards the incumbent
+            GC.Collect();
+            var optimized = new PerceptualHashOptimized();
+            var optimizedImages = GetImageSuite();
+            var optimizedResults = new List<UInt64>();
+            var clock = Stopwatch.StartNew();
+            foreach (var i in optimizedImages)
+            {
+                var hash = optimized.Hash(i);
+                optimizedResults.Add(hash);
+            }
+            var optimizedTime = clock.ElapsedMilliseconds;
+
+            // To ensure we have similar RAM pressure
+            foreach(var i in optimizedImages)
+            {
+                i.Dispose();
+            }
+            optimizedImages = null;
+            GC.Collect();
+
+
+            var unoptimized = new PerceptualHash();
+            var unoptimizedResults = new List<UInt64>();
+            var unoptimizedImages = GetImageSuite();
+            clock.Restart();
+            foreach (var i in unoptimizedImages)
+            {
+                var hash = unoptimized.Hash(i);
+                unoptimizedResults.Add(hash);
+            }
+            var unoptimizedTime = clock.ElapsedMilliseconds;
+
+
+            foreach (var i in unoptimizedImages)
+            {
+                i.Dispose();
+            }
+            unoptimizedImages = null;
+
+            Assert.Equal(unoptimizedResults.Count, optimizedResults.Count);
+            for(int i=0; i<optimizedResults.Count; i++)
+            {
+                Assert.Equal(unoptimizedResults[i], optimizedResults[i]);
+            }
+
+            _logger.WriteLine($"Unoptimized: {unoptimizedTime}, Optimized: {optimizedTime}");
         }
     }
 }

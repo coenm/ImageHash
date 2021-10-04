@@ -8,6 +8,404 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Data\image_suite\ac-de-leon--uWiIajRN0s-unsplash.jpg" />
+    <None Remove="Data\image_suite\adi-goldstein-8YYBCFo-yro-unsplash.jpg" />
+    <None Remove="Data\image_suite\alex-iby-470eBDOc8bk-unsplash.jpg" />
+    <None Remove="Data\image_suite\alex-iby-XhMSz5I1kn8-unsplash.jpg" />
+    <None Remove="Data\image_suite\alex-wong-l5Tzv1alcps-unsplash.jpg" />
+    <None Remove="Data\image_suite\alexandr-podvalny-7kWD0Wnc59E-unsplash.jpg" />
+    <None Remove="Data\image_suite\alexi-romano-CCx6Fz_CmOI-unsplash.jpg" />
+    <None Remove="Data\image_suite\alora-griffiths-7-ruqVJbHAo-unsplash.jpg" />
+    <None Remove="Data\image_suite\angelo-pantazis-ZqH2xVrHc_8-unsplash.jpg" />
+    <None Remove="Data\image_suite\aranprime-KbytCpI1i5I-unsplash.jpg" />
+    <None Remove="Data\image_suite\arno-senoner-cXQ_FBeK04w-unsplash.jpg" />
+    <None Remove="Data\image_suite\arturo-castaneyra-o-dkYSvidB4-unsplash.jpg" />
+    <None Remove="Data\image_suite\ashley-byrd-2152I5g-KEE-unsplash.jpg" />
+    <None Remove="Data\image_suite\ashley-byrd-dBYFT-1nRvw-unsplash.jpg" />
+    <None Remove="Data\image_suite\birgith-roosipuu-NTM5kxJ5LNY-unsplash.jpg" />
+    <None Remove="Data\image_suite\brenda-lai-7YnghE7AD7o-unsplash.jpg" />
+    <None Remove="Data\image_suite\caique-silva-3ujVzg9i2EI-unsplash.jpg" />
+    <None Remove="Data\image_suite\chandler-cruttenden-7bsK3idU8Gc-unsplash.jpg" />
+    <None Remove="Data\image_suite\chris-robert-UlReUwCcD4E-unsplash.jpg" />
+    <None Remove="Data\image_suite\christopher-campbell-rDEOVtE7vOs-unsplash.jpg" />
+    <None Remove="Data\image_suite\conner-baker-wv4Pu-Jjdbw-unsplash.jpg" />
+    <None Remove="Data\image_suite\cortney-white-hPzw9NulcKI-unsplash.jpg" />
+    <None Remove="Data\image_suite\courtney-cook-u2JEtE-xGsw-unsplash.jpg" />
+    <None Remove="Data\image_suite\dami-adebayo-k6aQzmIbR1s-unsplash.jpg" />
+    <None Remove="Data\image_suite\dan-gold-4_jhDO54BYg-unsplash.jpg" />
+    <None Remove="Data\image_suite\dani-c-KXne_c3VQ5w-unsplash.jpg" />
+    <None Remove="Data\image_suite\danielle-cerullo-Oo-rHghLNhA-unsplash.jpg" />
+    <None Remove="Data\image_suite\derek-harris-FvNf9dxlwXs-unsplash.jpg" />
+    <None Remove="Data\image_suite\dollar-gill-IjZTASysLSc-unsplash.jpg" />
+    <None Remove="Data\image_suite\dragne-marius-ennARkXrF74-unsplash.jpg" />
+    <None Remove="Data\image_suite\drew-dau-ga4mjjxUqug-unsplash.jpg" />
+    <None Remove="Data\image_suite\emily-valletta-ahpmjHiCWJ8-unsplash.jpg" />
+    <None Remove="Data\image_suite\engin-akyurt-luvvjm8zHvk-unsplash.jpg" />
+    <None Remove="Data\image_suite\fengyou-wan-fp4mMK4yrYs-unsplash.jpg" />
+    <None Remove="Data\image_suite\filip-mroz-XCkRGOX2VgM-unsplash.jpg" />
+    <None Remove="Data\image_suite\gentrit-sylejmani-JjUyjE-oEbM-unsplash.jpg" />
+    <None Remove="Data\image_suite\gus-tu-njana-8JPrzRRY4m8-unsplash.jpg" />
+    <None Remove="Data\image_suite\haley-phelps-S-llxYh3GzI-unsplash.jpg" />
+    <None Remove="Data\image_suite\index.js" />
+    <None Remove="Data\image_suite\indian-yogi-yogi-madhav-38BhHX0MC6M-unsplash.jpg" />
+    <None Remove="Data\image_suite\isabella-and-louisa-fischer-M3bjyGLP81Y-unsplash.jpg" />
+    <None Remove="Data\image_suite\italic-hGOmM-JVs-c-unsplash.jpg" />
+    <None Remove="Data\image_suite\jakob-owens-FkklPz3WYqU-unsplash.jpg" />
+    <None Remove="Data\image_suite\jared-murray-RApQxN_Js5Y-unsplash.jpg" />
+    <None Remove="Data\image_suite\jeffrey-f-lin-b3yCCEZYjH4-unsplash.jpg" />
+    <None Remove="Data\image_suite\jeffrey-f-lin-cIh1PMifwgI-unsplash.jpg" />
+    <None Remove="Data\image_suite\jeffrey-f-lin-cZAUZK7thoo-unsplash.jpg" />
+    <None Remove="Data\image_suite\jeffrey-f-lin-eXGslE86A1g-unsplash.jpg" />
+    <None Remove="Data\image_suite\jeffrey-f-lin-iONbJBw39oc-unsplash.jpg" />
+    <None Remove="Data\image_suite\jeffrey-f-lin-Uhlg5RoAtoI-unsplash.jpg" />
+    <None Remove="Data\image_suite\joel-overbeck-4KuGRj1De1U-unsplash.jpg" />
+    <None Remove="Data\image_suite\jorge-salvador-keRzAr-Hdgc-unsplash.jpg" />
+    <None Remove="Data\image_suite\joseph-biscocho-tty5Gk8FO54-unsplash.jpg" />
+    <None Remove="Data\image_suite\kate-trysh-3cCe37VGDiQ-unsplash.jpg" />
+    <None Remove="Data\image_suite\katy-duclos-M5_gg2SdZfI-unsplash.jpg" />
+    <None Remove="Data\image_suite\keo-oran-oD4zvae0IDA-unsplash.jpg" />
+    <None Remove="Data\image_suite\kike-vega-F2qh3yjz6Jk-unsplash.jpg" />
+    <None Remove="Data\image_suite\kimson-doan-HD8KlyWRYYM-unsplash.jpg" />
+    <None Remove="Data\image_suite\kinshuk-bose-oXHCpSjWSqs-unsplash.jpg" />
+    <None Remove="Data\image_suite\lance-anderson-QdAAasrZhdk-unsplash.jpg" />
+    <None Remove="Data\image_suite\logan-weaver-LjI2ZwN72a0-unsplash.jpg" />
+    <None Remove="Data\image_suite\lucas-lenzi-A2F0pvy76Y4-unsplash.jpg" />
+    <None Remove="Data\image_suite\mael-balland-E-L0uJRuXac-unsplash.jpg" />
+    <None Remove="Data\image_suite\marc-olivier-jodoin--HIiNFXcbtQ-unsplash.jpg" />
+    <None Remove="Data\image_suite\michael-afonso-Z_bTArFy6ks-unsplash.jpg" />
+    <None Remove="Data\image_suite\michelle-moody-WkY8KhEFXak-unsplash.jpg" />
+    <None Remove="Data\image_suite\nicole-wolf-aJTSzd-8GGI-unsplash.jpg" />
+    <None Remove="Data\image_suite\one-zone-studio-tSbWKceMlpg-unsplash.jpg" />
+    <None Remove="Data\image_suite\patrick-schneider-yw1y-alKGrg-unsplash.jpg" />
+    <None Remove="Data\image_suite\peyman-farmani-AiBnoLlikV4-unsplash.jpg" />
+    <None Remove="Data\image_suite\philip-martin-5aGUyCW_PJw-unsplash.jpg" />
+    <None Remove="Data\image_suite\pooja-shah-OTWgcJFOl_M-unsplash.jpg" />
+    <None Remove="Data\image_suite\prince-akachi-J1OScm_uHUQ-unsplash.jpg" />
+    <None Remove="Data\image_suite\quino-al-wpALJO7ODhI-unsplash.jpg" />
+    <None Remove="Data\image_suite\raimond-klavins-HbN5sXoMtAA-unsplash.jpg" />
+    <None Remove="Data\image_suite\ricardo-gomez-angel-opFPVxMRpP8-unsplash.jpg" />
+    <None Remove="Data\image_suite\sachin-prabhashan-sBtqOe23bd0-unsplash.jpg" />
+    <None Remove="Data\image_suite\samuel-isaac-83AdeG3iPMk-unsplash.jpg" />
+    <None Remove="Data\image_suite\skyler-gerald-SfnBN_eiLTs-unsplash.jpg" />
+    <None Remove="Data\image_suite\steve-halama-aQIZq3x1QjI-unsplash.jpg" />
+    <None Remove="Data\image_suite\susan-flynn-wqaEwf35Bl8-unsplash.jpg" />
+    <None Remove="Data\image_suite\swapnil-dwivedi-N2IJ31xZ_ks-unsplash.jpg" />
+    <None Remove="Data\image_suite\tanjir-ahmed-chowdhury-TeQ_0HHjmVE-unsplash.jpg" />
+    <None Remove="Data\image_suite\taylor-simpson-RdAMOwWf-iU-unsplash.jpg" />
+    <None Remove="Data\image_suite\thomas-park-21hpHNuO5II-unsplash.jpg" />
+    <None Remove="Data\image_suite\tim-mossholder-tq8Cuap8_wY-unsplash.jpg" />
+    <None Remove="Data\image_suite\timothy-eberly-ZU4-1ob2-1s-unsplash.jpg" />
+    <None Remove="Data\image_suite\toa-heftiba-O3ymvT7Wf9U-unsplash.jpg" />
+    <None Remove="Data\image_suite\tony-mucci-Jrgxv1ISOZY-unsplash.jpg" />
+    <None Remove="Data\image_suite\tyler-nix-29DrUOrcq3c-unsplash.jpg" />
+    <None Remove="Data\image_suite\victoria-priessnitz-M98ruffad8o-unsplash.jpg" />
+    <None Remove="Data\image_suite\vino-li-1cSswGDkMQc-unsplash.jpg" />
+    <None Remove="Data\image_suite\wesley-tingey--nZynZmR3Ls-unsplash.jpg" />
+    <None Remove="Data\image_suite\willspirit-sbln-9MRRM_hV4qA-unsplash.jpg" />
+    <None Remove="Data\image_suite\yifei-chen-D3A50t283ck-unsplash.jpg" />
+    <None Remove="Data\image_suite\zac-ong-hPOFScEaZcA-unsplash.jpg" />
+    <None Remove="Data\image_suite\zoe-reeve-7WXY8jGBHFc-unsplash.jpg" />
+    <None Remove="Data\image_suite\zoe-reeve-ijRuGjKpBcg-unsplash.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Data\image_suite\ac-de-leon--uWiIajRN0s-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\adi-goldstein-8YYBCFo-yro-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\alex-iby-470eBDOc8bk-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\alex-iby-XhMSz5I1kn8-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\alex-wong-l5Tzv1alcps-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\alexandr-podvalny-7kWD0Wnc59E-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\alexi-romano-CCx6Fz_CmOI-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\alora-griffiths-7-ruqVJbHAo-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\angelo-pantazis-ZqH2xVrHc_8-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\aranprime-KbytCpI1i5I-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\arno-senoner-cXQ_FBeK04w-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\arturo-castaneyra-o-dkYSvidB4-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\ashley-byrd-2152I5g-KEE-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\ashley-byrd-dBYFT-1nRvw-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\birgith-roosipuu-NTM5kxJ5LNY-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\brenda-lai-7YnghE7AD7o-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\caique-silva-3ujVzg9i2EI-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\chandler-cruttenden-7bsK3idU8Gc-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\chris-robert-UlReUwCcD4E-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\christopher-campbell-rDEOVtE7vOs-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\conner-baker-wv4Pu-Jjdbw-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\cortney-white-hPzw9NulcKI-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\courtney-cook-u2JEtE-xGsw-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\dami-adebayo-k6aQzmIbR1s-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\dan-gold-4_jhDO54BYg-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\dani-c-KXne_c3VQ5w-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\danielle-cerullo-Oo-rHghLNhA-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\derek-harris-FvNf9dxlwXs-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\dollar-gill-IjZTASysLSc-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\dragne-marius-ennARkXrF74-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\drew-dau-ga4mjjxUqug-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\emily-valletta-ahpmjHiCWJ8-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\engin-akyurt-luvvjm8zHvk-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\fengyou-wan-fp4mMK4yrYs-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\filip-mroz-XCkRGOX2VgM-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\gentrit-sylejmani-JjUyjE-oEbM-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\gus-tu-njana-8JPrzRRY4m8-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\haley-phelps-S-llxYh3GzI-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\index.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\indian-yogi-yogi-madhav-38BhHX0MC6M-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\isabella-and-louisa-fischer-M3bjyGLP81Y-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\italic-hGOmM-JVs-c-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\jakob-owens-FkklPz3WYqU-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\jared-murray-RApQxN_Js5Y-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\jeffrey-f-lin-b3yCCEZYjH4-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\jeffrey-f-lin-cIh1PMifwgI-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\jeffrey-f-lin-cZAUZK7thoo-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\jeffrey-f-lin-eXGslE86A1g-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\jeffrey-f-lin-iONbJBw39oc-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\jeffrey-f-lin-Uhlg5RoAtoI-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\joel-overbeck-4KuGRj1De1U-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\jorge-salvador-keRzAr-Hdgc-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\joseph-biscocho-tty5Gk8FO54-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\kate-trysh-3cCe37VGDiQ-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\katy-duclos-M5_gg2SdZfI-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\keo-oran-oD4zvae0IDA-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\kike-vega-F2qh3yjz6Jk-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\kimson-doan-HD8KlyWRYYM-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\kinshuk-bose-oXHCpSjWSqs-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\lance-anderson-QdAAasrZhdk-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\logan-weaver-LjI2ZwN72a0-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\lucas-lenzi-A2F0pvy76Y4-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\mael-balland-E-L0uJRuXac-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\marc-olivier-jodoin--HIiNFXcbtQ-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\michael-afonso-Z_bTArFy6ks-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\michelle-moody-WkY8KhEFXak-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\nicole-wolf-aJTSzd-8GGI-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\one-zone-studio-tSbWKceMlpg-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\patrick-schneider-yw1y-alKGrg-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\peyman-farmani-AiBnoLlikV4-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\philip-martin-5aGUyCW_PJw-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\pooja-shah-OTWgcJFOl_M-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\prince-akachi-J1OScm_uHUQ-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\quino-al-wpALJO7ODhI-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\raimond-klavins-HbN5sXoMtAA-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\ricardo-gomez-angel-opFPVxMRpP8-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\sachin-prabhashan-sBtqOe23bd0-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\samuel-isaac-83AdeG3iPMk-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\skyler-gerald-SfnBN_eiLTs-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\steve-halama-aQIZq3x1QjI-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\susan-flynn-wqaEwf35Bl8-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\swapnil-dwivedi-N2IJ31xZ_ks-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\tanjir-ahmed-chowdhury-TeQ_0HHjmVE-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\taylor-simpson-RdAMOwWf-iU-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\thomas-park-21hpHNuO5II-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\tim-mossholder-tq8Cuap8_wY-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\timothy-eberly-ZU4-1ob2-1s-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\toa-heftiba-O3ymvT7Wf9U-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\tony-mucci-Jrgxv1ISOZY-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\tyler-nix-29DrUOrcq3c-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\victoria-priessnitz-M98ruffad8o-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\vino-li-1cSswGDkMQc-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\wesley-tingey--nZynZmR3Ls-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\willspirit-sbln-9MRRM_hV4qA-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\yifei-chen-D3A50t283ck-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\zac-ong-hPOFScEaZcA-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\zoe-reeve-7WXY8jGBHFc-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\image_suite\zoe-reeve-ijRuGjKpBcg-unsplash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Include="Data\Alyson_Hannigan_200x200_0.jpg" />
     <EmbeddedResource Include="Data\Alyson_Hannigan_4x4_0.jpg" />
     <EmbeddedResource Include="Data\Alyson_Hannigan_500x500_0.jpg" />
@@ -20,7 +418,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" />
-    <PackageReference Include="FakeItEasy"  />
+    <PackageReference Include="FakeItEasy" />
     <PackageReference Include="FakeItEasy.Analyzer.CSharp" />
     <PackageReference Include="FluentAssertions" />
     <PackageReference Include="SixLabors.ImageSharp" />
