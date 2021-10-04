@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Linq;
+    using System.Numerics;
     using System.Runtime.CompilerServices;
     using System.Threading.Tasks;
     using SixLabors.ImageSharp;
@@ -19,6 +20,7 @@
         private static readonly double Sqrt2DivSize = Math.Sqrt(2D / Size);
         private static readonly double Sqrt2 = 1 / Math.Sqrt(2);
         private static readonly double[,] _dctCoeffs = GenerateDctCoeffs();
+        private static readonly List<Vector<double>>[] _dctCoeffsSimd = GenerateDctCoeffsSimd();
 
         /// <inheritdoc />
         public ulong Hash(Image<Rgba32> image)
@@ -41,7 +43,7 @@
                 for (var x = 0; x < Size; x++)
                     sequence[x] = image[x, y].R;
 
-                Dct1D(sequence, rows, y);
+                Dct1D_SIMD(sequence, rows, y);
             }
 
             // Calculate the DCT for each column.
@@ -50,7 +52,7 @@
                 for (var y = 0; y < Size; y++)
                     sequence[y] = rows[y, x];
 
-                Dct1D(sequence, matrix, x, limit: 8);
+                Dct1D_SIMD(sequence, matrix, x, limit: 8);
             }
 
             // Only use the top 8x8 values.
@@ -100,22 +102,55 @@
             return c;
         }
 
+        private static List<Vector<double>>[] GenerateDctCoeffsSimd()
+        {
+            List<Vector<double>>[] results = new List<Vector<double>>[Size];
+            for (var coef = 0; coef < Size; coef++)
+            {
+                var singleResultRaw = new double[Size];
+                for (var i = 0; i < Size; i++)
+                {
+                    singleResultRaw[i] = Math.Cos(((2.0 * i) + 1.0) * coef * Math.PI / (2.0 * Size));
+                }
+
+                var singleResultList = new List<Vector<double>>();
+                var stride = Vector<double>.Count;
+                Debug.Assert(Size % stride == 0, "Size must be a multiple of SIMD stride");
+                for (int i = 0; i < Size; i += stride)
+                {
+                    var v = new Vector<double>(singleResultRaw, i);
+                    singleResultList.Add(v);
+                }
+
+                results[coef] = singleResultList;
+            }
+
+            return results;
+        }
+
         /// <summary>
         /// One dimensional Discrete Cosine Transformation.
         /// </summary>
-        /// <param name="values">Should be an array of doubles of length 64.</param>
+        /// <param name="valuesRaw">Should be an array of doubles of length 64.</param>
         /// <param name="coefficients">Coefficients.</param>
         /// <param name="ci">Coefficients index.</param>
         /// <param name="limit">Limit.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static void Dct1D(IReadOnlyList<double> values, double[,] coefficients, int ci, int limit = Size)
+        private static void Dct1D_SIMD(double[] valuesRaw, double[,] coefficients, int ci, int limit = Size)
         {
-            Debug.Assert(values.Count == 64, "This DCT method works with 64 doubles.");
+            Debug.Assert(valuesRaw.Length == 64, "This DCT method works with 64 doubles.");
+
+            var valuesList = new List<Vector<double>>();
+            var stride = Vector<double>.Count;
+            for (int i = 0; i < valuesRaw.Length; i += stride)
+            {
+                valuesList.Add(new Vector<double>(valuesRaw, i));
+            }
 
             for (var coef = 0; coef < limit; coef++)
             {
-                for (var i = 0; i < Size; i++)
-                    coefficients[ci, coef] += values[i] * _dctCoeffs[i, coef];
+                for (int i = 0; i < valuesList.Count; i++)
+                    coefficients[ci, coef] += Vector.Dot(valuesList[i], _dctCoeffsSimd[coef][i]);
 
                 coefficients[ci, coef] *= Sqrt2DivSize;
                 if (coef == 0)
