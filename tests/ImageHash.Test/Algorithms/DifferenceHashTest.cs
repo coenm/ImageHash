@@ -5,10 +5,12 @@
     using System.Diagnostics.CodeAnalysis;
 
     using CoenM.ImageHash.HashAlgorithms;
-    using CoenM.ImageHash.Test.Internal;
+    using CoenM.ImageHash.Test.Data;
+    using EasyTestFileXunit;
     using FluentAssertions;
     using Xunit;
 
+    [UsesEasyTestFile]
     public class DifferenceHashTest
     {
         private readonly DifferenceHash sut;
@@ -41,7 +43,7 @@
             ulong result;
 
             // act
-            using (var stream = TestHelper.OpenStream(filename))
+            using (var stream = TestData.GetByName(filename).AsStream())
                 result = sut.Hash(stream);
 
             // assert
@@ -53,10 +55,9 @@
         public void NotAnImageShouldThrowExceptionTest()
         {
             // arrange
-            const string filename = "Not_an_image.txt";
 
             // act
-            using (var stream = TestHelper.OpenStream(filename))
+            using (var stream = TestData.NotAnImage.AsStream())
             {
                 Action act = () => sut.Hash(stream);
 

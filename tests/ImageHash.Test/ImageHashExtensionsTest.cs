@@ -4,7 +4,8 @@
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
 
-    using CoenM.ImageHash.Test.Internal;
+    using CoenM.ImageHash.Test.Data;
+    using EasyTestFileXunit;
     using FakeItEasy;
     using FluentAssertions;
     using SixLabors.ImageSharp;
@@ -14,6 +15,7 @@
     using Sut = CoenM.ImageHash.ImageHashExtensions;
 
     [SuppressMessage("ReSharper", "InvokeAsExtensionMethod", Justification = "Testing static extension method class")]
+    [UsesEasyTestFile]
     public class ImageHashExtensionsTest
     {
         private readonly IImageHash hashAlgorithm;
@@ -27,10 +29,9 @@
         public void HashStreamShouldReadStreamAsImageAndPassDataToHashAlgorithmTest()
         {
             // arrange
-            const string filename = "Alyson_Hannigan_500x500_0.jpg";
             A.CallTo(() => hashAlgorithm.Hash(A<Image<Rgba32>>._)).Returns(0UL);
 
-            using (var stream = TestHelper.OpenStream(filename))
+            using (var stream = TestData.AlysonHannigan200x200_0.AsStream())
             {
                 // act
                 var result = Sut.Hash(hashAlgorithm, stream);
