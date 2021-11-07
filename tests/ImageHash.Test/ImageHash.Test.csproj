@@ -20,7 +20,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" />
-    <PackageReference Include="FakeItEasy"  />
+    <PackageReference Include="FakeItEasy" />
     <PackageReference Include="FakeItEasy.Analyzer.CSharp" />
     <PackageReference Include="FluentAssertions" />
     <PackageReference Include="SixLabors.ImageSharp" />
