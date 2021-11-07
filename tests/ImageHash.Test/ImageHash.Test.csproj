@@ -8,9 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EasyTestFile" Version="0.1.26-alpha" />
-    <PackageReference Include="EasyTestFile.XUnit" Version="0.1.26-alpha" />
-    <PackageReference Include="IndexRange" Version="1.0.0" />
+    <PackageReference Include="EasyTestFile" Version="0.1.27-alpha" />
+    <PackageReference Include="EasyTestFile.XUnit" Version="0.1.27-alpha" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" />
     <PackageReference Include="FakeItEasy" />
     <PackageReference Include="FakeItEasy.Analyzer.CSharp" />
