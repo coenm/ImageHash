@@ -6,7 +6,6 @@
     using System.Linq;
     using System.Numerics;
     using System.Runtime.CompilerServices;
-    using System.Threading.Tasks;
     using SixLabors.ImageSharp;
     using SixLabors.ImageSharp.PixelFormats;
     using SixLabors.ImageSharp.Processing;
