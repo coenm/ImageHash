@@ -8,17 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Data\Alyson_Hannigan_200x200_0.jpg" />
-    <EmbeddedResource Include="Data\Alyson_Hannigan_4x4_0.jpg" />
-    <EmbeddedResource Include="Data\Alyson_Hannigan_500x500_0.jpg" />
-    <EmbeddedResource Include="Data\Alyson_Hannigan_500x500_1.jpg" />
-    <EmbeddedResource Include="Data\github_1.jpg" />
-    <EmbeddedResource Include="Data\github_1.png" />
-    <EmbeddedResource Include="Data\github_2.jpg" />
-    <EmbeddedResource Include="Data\Not_an_image.txt" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <PackageReference Include="EasyTestFile" Version="0.1.27-alpha" />
+    <PackageReference Include="EasyTestFile.XUnit" Version="0.1.27-alpha" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" />
     <PackageReference Include="FakeItEasy" />
     <PackageReference Include="FakeItEasy.Analyzer.CSharp" />
