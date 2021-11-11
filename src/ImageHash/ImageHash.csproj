@@ -4,7 +4,7 @@
     <Description>Perceptual image hashing in netstandard using the ImageSharp library. Includes three hashing algorithms (AverageHash, DifferenceHash, and PerceptualHash).</Description>
     <Authors>Coen van den Munckhof</Authors>
     <Owners>$(Authors)</Owners>
-    <TargetFrameworks>netstandard1.3;netstandard2.0;netcoreapp2.1;netcoreapp3.1;net5;net6</TargetFrameworks>
+    <TargetFrameworks>netstandard1.3;netstandard2.0;netcoreapp2.1;netcoreapp3.1;net5</TargetFrameworks>
     <TargetFrameworks Condition="'$(OS)' != 'Unix'">$(TargetFrameworks);net461;net472</TargetFrameworks>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
