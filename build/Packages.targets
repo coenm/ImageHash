@@ -22,7 +22,6 @@
 	
     <!-- Packages and tools for releasing (sourcelink)-->
     <PackageReference Update="Microsoft.SourceLink.GitHub" Version="1.1.1" />
-	<PackageReference Update="MarkdownSnippets.MsBuild" Version="24.2.0" />  
     
     <!--Required in test project -->
     <PackageReference Update="Microsoft.NET.Test.Sdk" Version="17.0.0" />

@@ -5,6 +5,9 @@
     using CoenM.ImageHash.HashAlgorithms;
 
     // These examples are used to generate snippets for markdown documentation.
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1123:Do not place regions within elements", Justification = "Source is used for generating markdown docs.")]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.LayoutRules", "SA1515:Single-line comment should be preceded by blank line", Justification = "Source is used for generating markdown docs.")]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.LayoutRules", "SA1512:Single-line comments should not be followed by blank line", Justification = "Source is used for generating markdown docs.")]
     public class Examples
     {
         public void CalculateImageHashDemo()
