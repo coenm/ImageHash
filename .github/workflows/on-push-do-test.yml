@@ -1,0 +1,54 @@
+name: on-push-do-test
+
+on:
+  push:
+    branches:
+    - develop
+    - feature/*
+    - release/*
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}    
+
+    steps:
+ 
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0 # avoid shallow clone
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 2.1.x
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.x
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.0.x
+        include-prerelease: true
+
+    - name: Remove demo project from solution
+      run: dotnet sln ImageHash.sln remove demo/Demo.csproj
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build
+      run: dotnet build --no-restore
+
+    - name: Test
+      run: dotnet test --no-build --verbosity normal

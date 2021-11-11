@@ -4,7 +4,7 @@
     <Description>Perceptual image hashing in netstandard using the ImageSharp library. Includes three hashing algorithms (AverageHash, DifferenceHash, and PerceptualHash).</Description>
     <Authors>Coen van den Munckhof</Authors>
     <Owners>$(Authors)</Owners>
-    <TargetFrameworks>netstandard1.3;netstandard2.0;netcoreapp2.1</TargetFrameworks>
+    <TargetFrameworks>netstandard1.3;netstandard2.0;netcoreapp2.1;netcoreapp3.1;net5</TargetFrameworks>
     <TargetFrameworks Condition="'$(OS)' != 'Unix'">$(TargetFrameworks);net461;net472</TargetFrameworks>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -23,12 +23,8 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <NeutralLanguage>en</NeutralLanguage>
     <PackageDescription>$(Description)</PackageDescription> 
-    <!--
-    <PackageReleaseNotes>
-      1.0.0-beta0005
-      * Updated to ImageSharp 1.0.1
-    </PackageReleaseNotes> 
-    -->
+    <PackageReleaseNotes></PackageReleaseNotes>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
   </PropertyGroup>
 
   <!-- Used by SourceLink -->
@@ -37,9 +33,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All" Condition="$(Configuration) == 'Release'" />
     <PackageReference Include="SixLabors.ImageSharp" />
   </ItemGroup>
+
+  <PropertyGroup Condition="$(Configuration) == 'Release'">
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+  </PropertyGroup>
 
   <ItemGroup>
   	<None Include="$(MSBuildThisFileDirectory)..\..\icon\ImageHash.128.png" Pack="true" PackagePath="$(PackageIcon)" Visible="false" />

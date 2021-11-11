@@ -7,8 +7,8 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-	
-	<PackageReference Include="GitVersionTask" Version="5.3.7">
+
+    <PackageReference Include="GitVersion.MsBuild" Version="5.7.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -18,14 +18,13 @@
   <ItemGroup>
 
     <!--Dependencies production code (and maybe also in test code)-->
-    <PackageReference Update="SixLabors.ImageSharp" Version="1.0.1" />
+    <PackageReference Update="SixLabors.ImageSharp" Version="1.0.4" />
 	
     <!-- Packages and tools for releasing (sourcelink)-->
-    <PackageReference Update="Microsoft.SourceLink.GitHub" Version="1.0.0" />
-	<PackageReference Update="MarkdownSnippets.MsBuild" Version="21.0.1" />
+    <PackageReference Update="Microsoft.SourceLink.GitHub" Version="1.1.1" />
     
     <!--Required in test project -->
-    <PackageReference Update="Microsoft.NET.Test.Sdk" Version="16.1.1" />
+    <PackageReference Update="Microsoft.NET.Test.Sdk" Version="17.0.0" />
 
     <!-- xunit -->
     <PackageReference Update="xunit" Version="2.4.1" />
@@ -37,22 +36,24 @@
     <PackageReference Update="xunit.runner.visualstudio" Version="2.4.3" />
 
     <!-- Unittesting -->
-    <PackageReference Update="FakeItEasy" Version="6.2.0" />
-    <PackageReference Update="FakeItEasy.Analyzer.CSharp" Version="6.0.0" />
-    <PackageReference Update="FluentAssertions" Version="5.10.3" />
+    <PackageReference Update="FakeItEasy" Version="7.2.0" />
+    <PackageReference Update="FakeItEasy.Analyzer.CSharp" Version="6.1.0" />
+    <PackageReference Update="FluentAssertions" Version="6.2.0" />
     <PackageReference Update="FluentAssertions.Analyzers" Version="0.11.4" />
+    <PackageReference Update="EasyTestFile" Version="1.0.2" />
+    <PackageReference Update="EasyTestFile.XUnit" Version="1.0.2" />
 
     <!-- Test coverage -->
     <PackageReference Update="coverlet.msbuild" Version="2.8.1" />
     <PackageReference Update="coverlet.collector" Version="1.2.1" />
 
     <!-- Demo project -->
-    <PackageReference Update="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.19" />
-    <PackageReference Update="Nito.Disposables" Version="2.1.0" />
+    <PackageReference Update="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.37" />
+    <PackageReference Update="Nito.Disposables" Version="2.2.1" />
     <PackageReference Update="Nito.Mvvm.Async" Version="1.0.0-pre-03" />
-    <PackageReference Update="Nito.Mvvm.CalculatedProperties" Version="1.0.2" />
-    <PackageReference Update="Nito.Mvvm.Core" Version="1.2.2" />
-    <PackageReference Update="Ookii.Dialogs.Wpf" Version="3.1.0" />
+    <PackageReference Update="Nito.Mvvm.CalculatedProperties" Version="1.3.1" />
+    <PackageReference Update="Nito.Mvvm.Core" Version="1.3.1" />
+    <PackageReference Update="Ookii.Dialogs.Wpf" Version="4.0.0" />
 
   </ItemGroup>
 

@@ -8,7 +8,7 @@ environment:
 
 image:
 - Ubuntu
-- Visual Studio 2019
+- Visual Studio 2022
 
 configuration: Debug
 

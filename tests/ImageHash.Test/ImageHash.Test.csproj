@@ -1,15 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFrameworks>netcoreapp2.1;netcoreapp3.1;net5;</TargetFrameworks>
     <IsPackable>false</IsPackable>
     <AssemblyName>CoenM.ImageSharp.ImageHash.Test</AssemblyName>
     <RootNamespace>CoenM.ImageHash.Test</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EasyTestFile" Version="0.1.27-alpha" />
-    <PackageReference Include="EasyTestFile.XUnit" Version="0.1.27-alpha" />
+    <PackageReference Include="EasyTestFile" />
+    <PackageReference Include="EasyTestFile.XUnit" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" />
     <PackageReference Include="FakeItEasy" />
     <PackageReference Include="FakeItEasy.Analyzer.CSharp" />
@@ -23,10 +23,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
     <PackageReference Include="xunit.runner.visualstudio">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="MarkdownSnippets.MsBuild">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
