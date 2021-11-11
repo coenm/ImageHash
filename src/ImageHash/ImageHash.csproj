@@ -23,7 +23,8 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <NeutralLanguage>en</NeutralLanguage>
     <PackageDescription>$(Description)</PackageDescription> 
-    <PackageReleaseNotes></PackageReleaseNotes> 
+    <PackageReleaseNotes></PackageReleaseNotes>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
   </PropertyGroup>
 
   <!-- Used by SourceLink -->
@@ -32,9 +33,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All" Condition="$(Configuration) == 'Release'" />
     <PackageReference Include="SixLabors.ImageSharp" />
   </ItemGroup>
+
+  <PropertyGroup Condition="$(Configuration) == 'Release'">
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+  </PropertyGroup>
 
   <ItemGroup>
   	<None Include="$(MSBuildThisFileDirectory)..\..\icon\ImageHash.128.png" Pack="true" PackagePath="$(PackageIcon)" Visible="false" />
