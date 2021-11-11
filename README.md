@@ -54,7 +54,7 @@ using var stream = File.OpenRead(filename);
 
 ulong imageHash = hashAlgorithm.Hash(stream);
 ```
-<sup><a href='/tests/ImageHash.Test/Examples.cs#L12-L24' title='File snippet `calculateimagehash` was extracted from'>snippet source</a> | <a href='#snippet-calculateimagehash' title='Navigate to start of snippet `calculateimagehash`'>anchor</a></sup>
+<sup><a href='/tests/ImageHash.Test/Examples.cs#L12-L24' title='Snippet source file'>snippet source</a> | <a href='#snippet-calculateimagehash' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ### Calculate image similarity
@@ -69,7 +69,7 @@ ulong hash2 = hashAlgorithm.Hash(imageStream2);
 
 double percentageImageSimilarity = CompareHash.Similarity(hash1, hash2);
 ```
-<sup><a href='/tests/ImageHash.Test/Examples.cs#L33-L41' title='File snippet `calculatesimilarity` was extracted from'>snippet source</a> | <a href='#snippet-calculatesimilarity' title='Navigate to start of snippet `calculatesimilarity`'>anchor</a></sup>
+<sup><a href='/tests/ImageHash.Test/Examples.cs#L33-L41' title='Snippet source file'>snippet source</a> | <a href='#snippet-calculatesimilarity' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 You can also take a look at [DotNet APIs](http://dotnetapis.com/pkg/CoenM.ImageSharp.ImageHash).
