@@ -1,8 +1,7 @@
-﻿namespace Demo.View.Behaviors
+namespace Demo.View.Behaviors
 {
     using System.Windows;
     using System.Windows.Controls;
-
     using Microsoft.Xaml.Behaviors;
     using Ookii.Dialogs.Wpf;
 
@@ -49,7 +48,9 @@
             var title = (string)GetValue(Title);
 
             if (string.IsNullOrEmpty(title))
+            {
                 title = "Select file";
+            }
 
             var dialog = new VistaOpenFileDialog
             {
@@ -60,7 +61,9 @@
 
             bool? result = dialog.ShowDialog(null);
             if (result.Value)
+            {
                 SetValue(FileName, dialog.FileName);
+            }
         }
     }
 }

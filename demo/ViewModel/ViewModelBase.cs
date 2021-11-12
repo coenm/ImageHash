@@ -1,7 +1,6 @@
-﻿namespace Demo.ViewModel
+namespace Demo.ViewModel
 {
     using System.ComponentModel;
-
     using Nito.Mvvm.CalculatedProperties;
 
     public abstract class ViewModelBase : INotifyPropertyChanged

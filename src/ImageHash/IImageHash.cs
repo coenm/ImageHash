@@ -1,7 +1,6 @@
-﻿namespace CoenM.ImageHash
+namespace CoenM.ImageHash
 {
     using System;
-
     using SixLabors.ImageSharp;
     using SixLabors.ImageSharp.PixelFormats;
 

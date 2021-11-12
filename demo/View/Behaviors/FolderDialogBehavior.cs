@@ -1,8 +1,7 @@
-﻿namespace Demo.View.Behaviors
+namespace Demo.View.Behaviors
 {
     using System.Windows;
     using System.Windows.Controls;
-
     using Microsoft.Xaml.Behaviors;
     using Ookii.Dialogs.Wpf;
 
@@ -45,7 +44,9 @@
             dialog.SelectedPath = path;
 
             if ((bool)dialog.ShowDialog(null))
+            {
                 SetValue(FolderName, dialog.SelectedPath);
+            }
         }
     }
 }

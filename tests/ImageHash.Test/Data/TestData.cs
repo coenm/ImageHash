@@ -1,7 +1,6 @@
-﻿namespace CoenM.ImageHash.Test.Data
+namespace CoenM.ImageHash.Test.Data
 {
     using System;
-
     using EasyTestFile;
     using EasyTestFileXunit;
 

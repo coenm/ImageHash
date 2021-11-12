@@ -1,4 +1,4 @@
-﻿namespace CoenM.ImageHash
+namespace CoenM.ImageHash
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
@@ -19,7 +19,7 @@
         /// </summary>
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "Reviewed. Suppression is OK here.")]
         [SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1001:CommasMustBeSpacedCorrectly", Justification = "Reviewed. Suppression is OK here.")]
-        private static readonly byte[] BitCounts =
+        private static readonly byte[] _bitCounts =
             {
                 0,1,1,2,1,2,2,3, 1,2,2,3,2,3,3,4, 1,2,2,3,2,3,3,4, 2,3,3,4,3,4,4,5,
                 1,2,2,3,2,3,3,4, 2,3,3,4,3,4,4,5, 2,3,3,4,3,4,4,5, 3,4,4,5,4,5,5,6,
@@ -55,13 +55,24 @@
         public static double Similarity(byte[] hash1, byte[] hash2)
         {
             if (hash1 == null)
+            {
                 throw new ArgumentNullException(nameof(hash1));
+            }
+
             if (hash2 == null)
+            {
                 throw new ArgumentNullException(nameof(hash2));
+            }
+
             if (hash1.Length != 8)
+            {
                 throw new ArgumentOutOfRangeException(nameof(hash1));
+            }
+
             if (hash2.Length != 8)
+            {
                 throw new ArgumentOutOfRangeException(nameof(hash2));
+            }
 
             var h1 = BitConverter.ToUInt64(hash1, 0);
             var h2 = BitConverter.ToUInt64(hash2, 0);
@@ -75,7 +86,10 @@
         {
             uint count = 0;
             for (; num > 0; num >>= 8)
-                count += BitCounts[num & 0xff];
+            {
+                count += _bitCounts[num & 0xff];
+            }
+
             return count;
         }
     }

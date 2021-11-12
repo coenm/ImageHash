@@ -1,9 +1,9 @@
-﻿namespace CoenM.ImageHash.Test.Algorithms
+namespace CoenM.ImageHash.Test.Algorithms
 {
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-
+    using System.IO;
     using CoenM.ImageHash.HashAlgorithms;
     using CoenM.ImageHash.Test.Data;
     using EasyTestFile;
@@ -14,9 +14,9 @@
     [UsesEasyTestFile]
     public class AverageHashTest
     {
-        private readonly AverageHash sut;
+        private readonly AverageHash _sut;
 
-        private readonly Dictionary<string, ulong> expectedHashes = new Dictionary<string, ulong>
+        private readonly Dictionary<string, ulong> _expectedHashes = new Dictionary<string, ulong>
         {
             { "Alyson_Hannigan_500x500_0.jpg", 16701559372701825768 },
             { "Alyson_Hannigan_500x500_1.jpg", 16701559372735380200 },
@@ -28,7 +28,7 @@
 
         public AverageHashTest()
         {
-            sut = new AverageHash();
+            _sut = new AverageHash();
         }
 
         [Fact]
@@ -37,7 +37,7 @@
             // arrange
 
             // act
-            Action act = () => sut.Hash(null);
+            Action act = () => _sut.Hash(null);
 
             // assert
             act.Should().Throw<ArgumentNullException>();
@@ -56,8 +56,10 @@
             ulong result;
 
             // act
-            using (var stream = TestData.GetByName(filename).AsStream())
-                result = sut.Hash(stream);
+            using (Stream stream = TestData.GetByName(filename).AsStream())
+            {
+                result = _sut.Hash(stream);
+            }
 
             // assert
             result.Should().Be(expectedHash);
@@ -69,21 +71,19 @@
         {
             // arrange
             // act
-            using (var stream = TestData.NotAnImage.AsStream())
-            {
-                Action act = () => sut.Hash(stream);
+            using Stream stream = TestData.NotAnImage.AsStream();
+            Action act = () => _sut.Hash(stream);
 
-                // assert
-                act.Should().Throw<SixLabors.ImageSharp.UnknownImageFormatException>();
-            }
+            // assert
+            act.Should().Throw<SixLabors.ImageSharp.UnknownImageFormatException>();
         }
 
         [Fact]
         public void ImageWithFilterShouldHaveAlmostOrExactly100Similarity1Test()
         {
             // arrange
-            var hash1 = expectedHashes["Alyson_Hannigan_500x500_0.jpg"];
-            var hash2 = expectedHashes["Alyson_Hannigan_500x500_1.jpg"];
+            var hash1 = _expectedHashes["Alyson_Hannigan_500x500_0.jpg"];
+            var hash2 = _expectedHashes["Alyson_Hannigan_500x500_1.jpg"];
 
             // act
             var result = CompareHash.Similarity(hash1, hash2);
@@ -96,8 +96,8 @@
         public void ResizedImageShouldHaveAlmostOrExactly100Similarity2Test()
         {
             // arrange
-            var hash1 = expectedHashes["Alyson_Hannigan_500x500_0.jpg"];
-            var hash2 = expectedHashes["Alyson_Hannigan_200x200_0.jpg"];
+            var hash1 = _expectedHashes["Alyson_Hannigan_500x500_0.jpg"];
+            var hash2 = _expectedHashes["Alyson_Hannigan_200x200_0.jpg"];
 
             // act
             var result = CompareHash.Similarity(hash1, hash2);
@@ -110,8 +110,8 @@
         public void ComparingExtremelySmallImageShouldDecreaseSimilarityTest()
         {
             // arrange
-            var hash1 = expectedHashes["Alyson_Hannigan_4x4_0.jpg"];
-            var hash2 = expectedHashes["Alyson_Hannigan_500x500_0.jpg"];
+            var hash1 = _expectedHashes["Alyson_Hannigan_4x4_0.jpg"];
+            var hash2 = _expectedHashes["Alyson_Hannigan_500x500_0.jpg"];
 
             // act
             var result = CompareHash.Similarity(hash1, hash2);
@@ -124,8 +124,8 @@
         public void TwoDifferentImagesOfGithubArePrettySimilarTests()
         {
             // arrange
-            var hash1 = expectedHashes["github_1.jpg"];
-            var hash2 = expectedHashes["github_2.jpg"];
+            var hash1 = _expectedHashes["github_1.jpg"];
+            var hash2 = _expectedHashes["github_2.jpg"];
 
             // act
             var result = CompareHash.Similarity(hash1, hash2);

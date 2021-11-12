@@ -13,4 +13,18 @@
   <ItemGroup>
     <PackageReference Include="SixLabors.ImageSharp" />
   </ItemGroup>
+
+  <Target Name="PrepareDescription" BeforeTargets="GenerateNuspec" DependsOnTargets="GetBuildVersion">
+	  <ReadLinesFromFile File="PackageDescription.md">
+		  <Output TaskParameter="Lines" PropertyName="PackageDescriptionContent" />
+	  </ReadLinesFromFile>
+
+	  <PropertyGroup>
+		  <Description>$(Description)
+
+$(PackageDescriptionContent)
+		  </Description>
+      <PackageDescription>$(Description)</PackageDescription>
+	  </PropertyGroup>
+  </Target>
 </Project>

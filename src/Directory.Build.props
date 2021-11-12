@@ -42,5 +42,16 @@
     </PropertyGroup>
   </Target>
 
+  <!-- <Target Name="PrepareReleaseNotes2" BeforeTargets="GenerateNuspec" DependsOnTargets="GetBuildVersion">
+	  
+
+	  <PropertyGroup>
+		  <Description>$(Description)
+TEST
+		  </Description>
+      <PackageDescription>$(Description)</PackageDescription>
+	  </PropertyGroup>
+  </Target> -->
+
   <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
 </Project>

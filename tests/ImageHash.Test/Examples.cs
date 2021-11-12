@@ -1,7 +1,6 @@
-﻿namespace CoenM.ImageHash.Test
+namespace CoenM.ImageHash.Test
 {
     using System.IO;
-
     using CoenM.ImageHash.HashAlgorithms;
 
     // These examples are used to generate snippets for markdown documentation.
