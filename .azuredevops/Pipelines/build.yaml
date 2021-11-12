@@ -76,6 +76,9 @@ stages:
             versionSpec: '5.*'
             checkLatest: true
 
+        - script: dotnet sln ImageHash.sln remove demo/Demo.csproj
+          displayName: Remove demo project from solution
+
         - pwsh: |
             dotnet tool install --tool-path . nbgv
             ./nbgv cloud -a
