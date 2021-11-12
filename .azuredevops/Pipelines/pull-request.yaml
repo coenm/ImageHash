@@ -1,0 +1,130 @@
+# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+# https://docs.microsoft.com/en-us/azure/devops/pipelines/process/expressions?view=azure-devops#variables
+# https://docs.microsoft.com/en-us/azure/devops/pipelines/process/variables?view=azure-devops&tabs=yaml%2Cbatch#share-variables-across-pipelines
+# https://docs.microsoft.com/en-us/azure/devops/pipelines/build/variables?view=azure-devops&tabs=yaml
+
+trigger: none
+
+pr:
+  - main
+  - release/*
+  - feature/*
+
+pool:
+  vmImage: 'windows-latest'
+
+stages:
+  - stage: "Build"
+    displayName: "Artifact build"
+    jobs:
+      - job: "Build"
+        displayName: "Artifact build"
+        variables:
+          - name: DOTNET_CLI_TELEMETRY_OPTOUT
+            value: 1
+          - name: DOTNET_SKIP_FIRST_TIME_EXPERIENCE
+            value: 1
+          - name: BuildConfiguration
+            value: Release
+          - name: ci_feed
+            value: 39ce9363-a308-4580-8610-ee11f4953539/01001223-8651-4b73-a7ca-ba27c3e10a3c
+ 
+        steps:
+        - task: UseDotNet@2
+          displayName: "Use dotnet sdk 2.1.x"
+          inputs:
+            version: 2.1.x
+            includePreviewVersions: false
+
+        - task: UseDotNet@2
+          displayName: "Use dotnet sdk 3.1.x"
+          inputs:
+            version: "3.1.x"
+            includePreviewVersions: false    
+
+        - task: UseDotNet@2
+          displayName: "Use dotnet sdk 5.0.x"
+          inputs:
+            version: 5.0.x
+            includePreviewVersions: false
+
+        - task: UseDotNet@2
+          displayName: "Use dotnet sdk 6.0.x"
+          inputs:
+            version: 6.0.x
+            includePreviewVersions: true
+
+        - script: dotnet --info
+          displayName: Show dotnet SDK info
+      
+        - task: NuGetToolInstaller@1
+          displayName: Install Nuget 5x
+          inputs:
+            versionSpec: '5.*'
+            checkLatest: true
+
+        - pwsh: |
+            dotnet tool install --tool-path . nbgv
+            ./nbgv cloud -a
+          displayName: Set build number
+          name: Nbgv
+
+        - task: PowerShell@2
+          displayName: Publish Nerdbank variables
+          name: VariableExport
+          inputs:
+            targetType: 'inline'
+            script: |
+              $var = (gci env:NBGV*).GetEnumerator() | Sort-Object Name
+              $out = ""
+              Foreach ($v in $var) {$out = $out + "##vso[task.setvariable variable={0};isOutput=true]{1}`n" -f $v.Name, $v.Value}
+              write-output $out
+            errorActionPreference: 'silentlyContinue'
+            ignoreLASTEXITCODE: true
+
+        - task: DotNetCoreCLI@2
+          displayName: DotNet Restore
+          inputs:
+            command: 'restore'
+            projects: '**/*.csproj'
+
+        - task: DotNetCoreCLI@2
+          displayName: "DotNet Build"
+          inputs:
+            command: 'build'
+            projects: '**/*.sln'
+            configuration: $(BuildConfiguration) 
+
+        - task: DotNetCoreCLI@2
+          displayName: "DotNet Test"
+          inputs:
+            command: test
+            projects: '**/*[Tt]ests/*.csproj'
+            configuration: $(BuildConfiguration) 
+            nobuild: true
+
+        - task: DotNetCoreCLI@2
+          displayName: 'DotNet Pack'
+          inputs:
+            command: pack
+            configuration: $(BuildConfiguration) 
+            nobuild: false
+            includesymbols: true
+
+        - task: PublishBuildArtifacts@1
+          displayName: 'Publish Artifact'
+          inputs:
+            PathtoPublish: '$(build.artifactstagingdirectory)'
+            
+        - task: NuGetAuthenticate@0
+          displayName: Nuget authenticate
+
+        - task: DotNetCoreCLI@2
+          displayName: Push packages to CI feed
+          inputs:
+            command: push
+            packagesToPush: '$(Pipeline.Workspace)/**/*.nupkg;$(Pipeline.Workspace)/**/*.snupkg;!$(Pipeline.Workspace)/**/*.symbols.nupkg'
+            nuGetFeedType: internal
+            publishVstsFeed: $(ci_feed)
+            allowPackageConflicts: true
+            condition: and(succeeded(), ne(variables['ci_feed'], ''), ne(variables['Build.Reason'], 'PullRequest'))

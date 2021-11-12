@@ -1,48 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Description>Perceptual image hashing in netstandard using the ImageSharp library. Includes three hashing algorithms (AverageHash, DifferenceHash, and PerceptualHash).</Description>
-    <Authors>Coen van den Munckhof</Authors>
-    <Owners>$(Authors)</Owners>
     <TargetFrameworks>netstandard1.3;netstandard2.0;netcoreapp2.1;netcoreapp3.1;net5</TargetFrameworks>
     <TargetFrameworks Condition="'$(OS)' != 'Unix'">$(TargetFrameworks);net461;net472</TargetFrameworks>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <Description>Perceptual image hashing in netstandard using the ImageSharp library. Includes three hashing algorithms (AverageHash, DifferenceHash, and PerceptualHash).</Description>
     <RootNamespace>CoenM.ImageHash</RootNamespace>
     <AssemblyName>CoenM.ImageSharp.ImageHash</AssemblyName>
     <PackageId>CoenM.ImageSharp.ImageHash</PackageId>
     <PackageTags>ImageHash;DifferenceHash;AverageHash;PerceptualHash;Imaging;ImageSharp</PackageTags>
-    <PackageProjectUrl>https://github.com/coenm/ImageHash/</PackageProjectUrl>
-    <!-- deprecated, maintain backward compatibility, https://docs.microsoft.com/en-us/nuget/reference/msbuild-targets#packageiconurl  -->
-    <PackageIconUrl>https://raw.githubusercontent.com/coenm/ImageHash/master/icon/ImageHash.128.png</PackageIconUrl>
-    <PackageIcon>icon.png</PackageIcon>
-    <RepositoryType>git</RepositoryType>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <RepositoryUrl>$(PackageProjectUrl)</RepositoryUrl>
-    <IncludeSymbols>true</IncludeSymbols>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <NeutralLanguage>en</NeutralLanguage>
-    <PackageDescription>$(Description)</PackageDescription> 
-    <PackageReleaseNotes></PackageReleaseNotes>
-    <EmbedUntrackedSources>true</EmbedUntrackedSources>
-  </PropertyGroup>
-
-  <!-- Used by SourceLink -->
-  <PropertyGroup>
-    <PublishRepositoryUrl>true</PublishRepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All" Condition="$(Configuration) == 'Release'" />
     <PackageReference Include="SixLabors.ImageSharp" />
   </ItemGroup>
-
-  <PropertyGroup Condition="$(Configuration) == 'Release'">
-    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
-  </PropertyGroup>
-
-  <ItemGroup>
-  	<None Include="$(MSBuildThisFileDirectory)..\..\icon\ImageHash.128.png" Pack="true" PackagePath="$(PackageIcon)" Visible="false" />
-  </ItemGroup>
-
 </Project>
