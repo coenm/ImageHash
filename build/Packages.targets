@@ -45,7 +45,7 @@
 
     <!-- Test coverage -->
     <PackageReference Update="coverlet.msbuild" Version="3.1.0" />
-    <PackageReference Update="coverlet.collector" Version="1.2.1" />
+    <PackageReference Update="coverlet.collector" Version="3.1.0" />
 
     <!-- Demo project -->
     <PackageReference Update="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.37" />
