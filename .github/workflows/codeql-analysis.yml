@@ -59,9 +59,6 @@ jobs:
     - name: Remove demo project from solution
       run: dotnet sln ImageHash.sln remove demo/Demo.csproj
 
-    - uses: dotnet/nbgv@master
-      id: nbgv
-    
     - name: Restore dependencies
       run: dotnet restore
 
