@@ -38,10 +38,6 @@ stages:
             value: Release
           - name: ci_feed
             value: 39ce9363-a308-4580-8610-ee11f4953539/01001223-8651-4b73-a7ca-ba27c3e10a3c
-          - name: COVERLET_EXCLUDE_FILTER
-            value: '[Samples]*%2c[TestHelper]*%2c[*.Test]*%2c[xunit.*]*'
-          - name: COVERLET_INCLUDE_FILTER
-            value: '[*]AsyncExifTool.*%2c[AsyncExifTool*]*'
           - name: COVERLET_EXCLUDE_ATTRIBUTE
             value: 'DebuggerNonUserCodeAttribute%2cExcludeFromCodeCoverageAttribute%2cGeneratedCodeAttribute%2cCompilerGeneratedAttribute'
  
