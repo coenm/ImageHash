@@ -128,12 +128,18 @@ stages:
             arguments: '--collect:"XPlat Code Coverage" --logger trx /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:ExcludeByAttribute=$(COVERLET_EXCLUDE_ATTRIBUTE) /p:ExcludeByFile=*\*Designer.cs /p:CoverletOutput=../_CoverageResults/ /p:MergeWith="../_CoverageResults/coverage.json" /p:CoverletOutputFormat=cobertura%2cjson'
             publishTestResults: true
 
+        - pwsh: |
+            dotnet tool install --tool-path . dotnet-reportgenerator-globaltool
+            ./reportgenerator "-reports:**/coverag*.cobertura.xml" "-targetdir:$(Agent.TempDirectory)" "-reporttypes:Cobertura"
+          displayName: Merge coverage reports
+          name: MergeCoverageReports
+
         - task: PublishCodeCoverageResults@1
-          displayName: 'Publish code coverage report'
+          displayName: 'Publish code coverage to devops'
           inputs:
-            codeCoverageTool: 'Cobertura'
-            summaryFileLocation: '$(Agent.TempDirectory)/**/coverage.cobertura.xml'            
-         
+            codeCoverageTool: Cobertura
+            summaryFileLocation: '$(Agent.TempDirectory)/Cobertura.xml'
+       
             # https://docs.codecov.com/docs/codecov-uploader
         - task: PowerShell@2
           displayName: Export coverage to CodeCov
@@ -142,8 +148,8 @@ stages:
             targetType: 'inline'
             script: |
               Invoke-WebRequest -Uri https://uploader.codecov.io/latest/windows/codecov.exe -Outfile codecov.exe
-              .\codecov.exe -f "tests/_CoverageResults/coverage*.cobertura.xml"
-            errorActionPreference: 'silentlyContinue'
+              .\codecov.exe -f "$(Agent.TempDirectory)/Cobertura.xml"
+            # errorActionPreference: 'silentlyContinue'
             ignoreLASTEXITCODE: false
 
         - task: DotNetCoreCLI@2
