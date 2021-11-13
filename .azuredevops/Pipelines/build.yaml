@@ -144,8 +144,8 @@ stages:
         - pwsh: |
             Invoke-WebRequest -Uri https://uploader.codecov.io/latest/windows/codecov.exe -Outfile codecov.exe
             ./codecov.exe -f "$(Agent.TempDirectory)/Cobertura.xml"
-          displayName: CodeCov
-          name: Export coverage to CodeCov
+          displayName: Export coverage to CodeCov
+          name: CodeCov
 
         - task: DotNetCoreCLI@2
           displayName: 'DotNet Pack'
