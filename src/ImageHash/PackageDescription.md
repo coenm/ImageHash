@@ -1,11 +1,12 @@
-```cs
-var hashAlgorithm = new AverageHash();
-// or one of the other available algorithms:
-// var hashAlgorithm = new DifferenceHash();
-// var hashAlgorithm = new PerceptualHash();
+## API
 
-string filename = "your filename";
-using var stream = File.OpenRead(filename);
+### Calculate image hash
 
-ulong imageHash = hashAlgorithm.Hash(stream);
-```
+<!-- snippet: CalculateImageHash -->
+<!-- endSnippet -->
+
+### Calculate image similarity
+Note that to calculate the image similarity, both image hashes should have been calculated using the same hash algorihm.
+
+<!-- snippet: CalculateSimilarity -->
+<!-- endSnippet -->
