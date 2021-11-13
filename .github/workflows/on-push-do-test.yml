@@ -18,7 +18,7 @@ jobs:
  
     - uses: actions/checkout@v2
       with:
-        fetch-depth: 0 # avoid shallow clone
+        fetch-depth: 0 # avoid shallow clone so nbgv can do its work.
     
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
@@ -44,6 +44,9 @@ jobs:
     - name: Remove demo project from solution
       run: dotnet sln ImageHash.sln remove demo/Demo.csproj
 
+    - uses: dotnet/nbgv@master
+      id: nbgv
+    
     - name: Restore dependencies
       run: dotnet restore
 

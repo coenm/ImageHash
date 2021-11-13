@@ -1,4 +1,4 @@
-﻿namespace Demo.ViewModel
+namespace Demo.ViewModel
 {
     using System;
     using System.Threading.Tasks;
@@ -9,14 +9,16 @@
 
     public class FileHashViewModel : ViewModelBase
     {
-        private readonly IFileSystem fileSystem;
+        private readonly IFileSystem _fileSystem;
 
         public FileHashViewModel(IDemoImageHash imageHash, IFileSystem fileSystem)
         {
             if (imageHash == null)
+            {
                 throw new ArgumentNullException(nameof(imageHash));
+            }
 
-            this.fileSystem = fileSystem ?? throw new ArgumentNullException(nameof(fileSystem));
+            _fileSystem = fileSystem ?? throw new ArgumentNullException(nameof(fileSystem));
 
             LoadCommand = new CapturingExceptionAsyncCommand(
                 async () =>
@@ -103,7 +105,7 @@
         {
             var bitmapImage = new BitmapImage();
             bitmapImage.BeginInit();
-            bitmapImage.StreamSource = fileSystem.OpenRead(file);
+            bitmapImage.StreamSource = _fileSystem.OpenRead(file);
             bitmapImage.EndInit();
 
             // https://stackoverflow.com/questions/26361020/error-must-create-dependencysource-on-same-thread-as-the-dependencyobject-even

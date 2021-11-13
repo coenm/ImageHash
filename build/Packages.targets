@@ -7,11 +7,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-
-    <PackageReference Include="GitVersion.MsBuild" Version="5.7.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
+   
   </ItemGroup>
 
   <!--Need to be opted in -->
@@ -22,6 +18,9 @@
 	
     <!-- Packages and tools for releasing (sourcelink)-->
     <PackageReference Update="Microsoft.SourceLink.GitHub" Version="1.1.1" />
+
+    <!-- Versioning -->
+    <PackageReference Update="Nerdbank.GitVersioning" Version="3.4.240" />
     
     <!--Required in test project -->
     <PackageReference Update="Microsoft.NET.Test.Sdk" Version="17.0.0" />

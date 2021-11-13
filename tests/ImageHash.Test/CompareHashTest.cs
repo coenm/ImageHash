@@ -1,15 +1,13 @@
-﻿namespace CoenM.ImageHash.Test
+namespace CoenM.ImageHash.Test
 {
     using System;
-
     using FluentAssertions;
     using Xunit;
-
     using Sut = CoenM.ImageHash.CompareHash;
 
     public class CompareHashTest
     {
-        private const int ValidHashSize = 8;
+        private const int VALID_HASH_SIZE = 8;
 
         [Theory]
         [InlineData(true, false)]
@@ -18,8 +16,8 @@
         public void NullArgumentShouldThrowArgumentNullExceptionTest(bool hash1IsNull, bool hash2IsNull)
         {
             // arrange
-            var hash1 = hash1IsNull ? null : new byte[ValidHashSize];
-            var hash2 = hash2IsNull ? null : new byte[ValidHashSize];
+            var hash1 = hash1IsNull ? null : new byte[VALID_HASH_SIZE];
+            var hash2 = hash2IsNull ? null : new byte[VALID_HASH_SIZE];
 
             // act
             Action act = () => Sut.Similarity(hash1, hash2);
@@ -35,8 +33,8 @@
         [InlineData(9)]
         public void SimilarityThrowsExceptionOnWrongInputSizeArgument(int size)
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => Sut.Similarity(new byte[size], new byte[ValidHashSize]));
-            Assert.Throws<ArgumentOutOfRangeException>(() => Sut.Similarity(new byte[ValidHashSize], new byte[size]));
+            Assert.Throws<ArgumentOutOfRangeException>(() => Sut.Similarity(new byte[size], new byte[VALID_HASH_SIZE]));
+            Assert.Throws<ArgumentOutOfRangeException>(() => Sut.Similarity(new byte[VALID_HASH_SIZE], new byte[size]));
         }
 
         [Fact]

@@ -1,7 +1,6 @@
-﻿namespace CoenM.ImageHash.HashAlgorithms
+namespace CoenM.ImageHash.HashAlgorithms
 {
     using System;
-
     using SixLabors.ImageSharp;
     using SixLabors.ImageSharp.Advanced;
     using SixLabors.ImageSharp.PixelFormats;
@@ -18,34 +17,38 @@
     // ReSharper disable once StyleCop.SA1650
     public class DifferenceHash : IImageHash
     {
-        private const int Width = 9;
-        private const int Height = 8;
+        private const int WIDTH = 9;
+        private const int HEIGHT = 8;
 
         /// <inheritdoc />
         public ulong Hash(Image<Rgba32> image)
         {
             if (image == null)
+            {
                 throw new ArgumentNullException(nameof(image));
+            }
 
             // We first auto orient because with and height differ.
             image.Mutate(ctx => ctx
                                 .AutoOrient()
-                                .Resize(Width, Height)
+                                .Resize(WIDTH, HEIGHT)
                                 .Grayscale(GrayscaleMode.Bt601));
 
-            var mask = 1UL << ((Height * (Width - 1)) - 1);
+            var mask = 1UL << ((HEIGHT * (WIDTH - 1)) - 1);
             var hash = 0UL;
 
-            for (var y = 0; y < Height; y++)
+            for (var y = 0; y < HEIGHT; y++)
             {
-                var row = image.GetPixelRowSpan(y);
-                var leftPixel = row[0];
+                Span<Rgba32> row = image.GetPixelRowSpan(y);
+                Rgba32 leftPixel = row[0];
 
-                for (var x = 1; x < Width; x++)
+                for (var index = 1; index < WIDTH; index++)
                 {
-                    var rightPixel = row[x];
+                    Rgba32 rightPixel = row[index];
                     if (leftPixel.R < rightPixel.R)
+                    {
                         hash |= mask;
+                    }
 
                     leftPixel = rightPixel;
                     mask >>= 1;

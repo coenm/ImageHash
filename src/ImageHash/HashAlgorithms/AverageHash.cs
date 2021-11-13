@@ -1,7 +1,6 @@
-﻿namespace CoenM.ImageHash.HashAlgorithms
+namespace CoenM.ImageHash.HashAlgorithms
 {
     using System;
-
     using SixLabors.ImageSharp;
     using SixLabors.ImageSharp.Advanced;
     using SixLabors.ImageSharp.PixelFormats;
@@ -18,28 +17,30 @@
     // ReSharper disable once StyleCop.SA1650
     public class AverageHash : IImageHash
     {
-        private const int Width = 8;
-        private const int Height = 8;
-        private const int NrPixels = Width * Height;
-        private const ulong MostSignificantBitMask = 1UL << (NrPixels - 1);
+        private const int WIDTH = 8;
+        private const int HEIGHT = 8;
+        private const int NR_PIXELS = WIDTH * HEIGHT;
+        private const ulong MOST_SIGNIFICANT_BIT_MASK = 1UL << (NR_PIXELS - 1);
 
         /// <inheritdoc />
         public ulong Hash(Image<Rgba32> image)
         {
             if (image == null)
+            {
                 throw new ArgumentNullException(nameof(image));
+            }
 
             image.Mutate(ctx => ctx
-                                .Resize(Width, Height)
+                                .Resize(WIDTH, HEIGHT)
                                 .Grayscale(GrayscaleMode.Bt601)
                                 .AutoOrient());
 
             uint averageValue = 0;
 
-            for (var y = 0; y < Height; y++)
+            for (var y = 0; y < HEIGHT; y++)
             {
-                var row = image.GetPixelRowSpan(y);
-                for (var x = 0; x < Width; x++)
+                Span<Rgba32> row = image.GetPixelRowSpan(y);
+                for (var x = 0; x < WIDTH; x++)
                 {
                     // We know 4 bytes (RGBA) are used to describe one pixel
                     // Also, it is already grayscaled, so R=G=B. Therefore, we can take one of these
@@ -48,20 +49,22 @@
                 }
             }
 
-            averageValue /= NrPixels;
+            averageValue /= NR_PIXELS;
 
             // Compute the hash: each bit is a pixel
             // 1 = higher than average, 0 = lower than average
             var hash = 0UL;
-            var mask = MostSignificantBitMask;
+            var mask = MOST_SIGNIFICANT_BIT_MASK;
 
-            for (var y = 0; y < Height; y++)
+            for (var y = 0; y < HEIGHT; y++)
             {
-                var row = image.GetPixelRowSpan(y);
-                for (var x = 0; x < Width; x++)
+                Span<Rgba32> row = image.GetPixelRowSpan(y);
+                for (var x = 0; x < WIDTH; x++)
                 {
                     if (row[x].R >= averageValue)
+                    {
                         hash |= mask;
+                    }
 
                     mask >>= 1;
                 }

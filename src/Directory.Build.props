@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <PropertyGroup>
+    <Nullable>enable</Nullable>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+
+    <Authors>Coen van den Munckhof</Authors>
+    <Owners>$(Authors)</Owners>
+    <Company>$(Authors)</Company>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <PackageProjectUrl>https://github.com/coenm/ImageHash/</PackageProjectUrl>
+    <!-- deprecated, maintain backward compatibility, https://docs.microsoft.com/en-us/nuget/reference/msbuild-targets#packageiconurl  -->
+    <PackageIconUrl>https://raw.githubusercontent.com/coenm/ImageHash/master/icon/ImageHash.128.png</PackageIconUrl>
+    <PackageIcon>icon.png</PackageIcon>
+    <RepositoryType>git</RepositoryType>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>$(PackageProjectUrl)</RepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <NeutralLanguage>en</NeutralLanguage>
+    <PackageDescription>$(Description)</PackageDescription>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="all" Condition="$(Configuration) == 'Release'" />
+    <PackageReference Include="Nerdbank.GitVersioning" Version="3.4.240" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)..\icon\ImageHash.128.png" Pack="true" PackagePath="$(PackageIcon)" Visible="false" />
+  </ItemGroup>
+
+  <PropertyGroup Condition="'$(TF_BUILD)' == 'true' AND $(Configuration) == 'Release'">
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+
+  <Target Name="PrepareReleaseNotes" BeforeTargets="GenerateNuspec" DependsOnTargets="GetBuildVersion">
+    <PropertyGroup>
+      <PackageReleaseNotes>$(PackageProjectUrl)releases/tag/v$(Version)</PackageReleaseNotes>
+    </PropertyGroup>
+  </Target>
+
+  <!-- <Target Name="PrepareReleaseNotes2" BeforeTargets="GenerateNuspec" DependsOnTargets="GetBuildVersion">
+	  
+
+	  <PropertyGroup>
+		  <Description>$(Description)
+TEST
+		  </Description>
+      <PackageDescription>$(Description)</PackageDescription>
+	  </PropertyGroup>
+  </Target> -->
+
+  <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
+</Project>

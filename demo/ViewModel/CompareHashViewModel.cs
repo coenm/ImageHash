@@ -1,16 +1,15 @@
-﻿namespace Demo.ViewModel
+namespace Demo.ViewModel
 {
     using System;
     using System.ComponentModel;
     using System.Threading.Tasks;
-
     using Demo.Model;
     using Nito.Mvvm;
 
     public class CompareHashViewModel : ViewModelBase, IDisposable
     {
-        private readonly FileHashViewModel fileA;
-        private readonly FileHashViewModel fileB;
+        private readonly FileHashViewModel _fileA;
+        private readonly FileHashViewModel _fileB;
 
         public CompareHashViewModel(
             IImageHashSimilarityCalculator calculator,
@@ -18,10 +17,12 @@
             FileHashViewModel fileB)
         {
             if (calculator == null)
+            {
                 throw new ArgumentNullException(nameof(calculator));
+            }
 
-            this.fileA = fileA ?? throw new ArgumentNullException(nameof(fileA));
-            this.fileB = fileB ?? throw new ArgumentNullException(nameof(fileB));
+            _fileA = fileA ?? throw new ArgumentNullException(nameof(fileA));
+            _fileB = fileB ?? throw new ArgumentNullException(nameof(fileB));
 
             CalculateCommand = new CapturingExceptionAsyncCommand(
                 async () =>
@@ -50,8 +51,8 @@
                 () => fileA.Loaded && fileB.Loaded && !Busy);
 
             PropertyChanged += OnPropertyChanged;
-            fileA.PropertyChanged += OnPropertyChanged;
-            fileB.PropertyChanged += OnPropertyChanged;
+            _fileA.PropertyChanged += OnPropertyChanged;
+            _fileB.PropertyChanged += OnPropertyChanged;
         }
 
         public bool Busy
@@ -83,8 +84,8 @@
         public void Dispose()
         {
             PropertyChanged -= OnPropertyChanged;
-            fileA.PropertyChanged -= OnPropertyChanged;
-            fileB.PropertyChanged -= OnPropertyChanged;
+            _fileA.PropertyChanged -= OnPropertyChanged;
+            _fileB.PropertyChanged -= OnPropertyChanged;
         }
 
         private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
