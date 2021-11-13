@@ -38,6 +38,12 @@ stages:
             value: Release
           - name: ci_feed
             value: 39ce9363-a308-4580-8610-ee11f4953539/01001223-8651-4b73-a7ca-ba27c3e10a3c
+          - name: COVERLET_EXCLUDE_FILTER
+            value: '[Samples]*%2c[TestHelper]*%2c[*.Test]*%2c[xunit.*]*'
+          - name: COVERLET_INCLUDE_FILTER
+            value: '[*]AsyncExifTool.*%2c[AsyncExifTool*]*'
+          - name: COVERLET_EXCLUDE_ATTRIBUTE
+            value: 'DebuggerNonUserCodeAttribute%2cExcludeFromCodeCoverageAttribute%2cGeneratedCodeAttribute%2cCompilerGeneratedAttribute'
  
         steps:
         - script: git submodule update --init --recursive
@@ -119,9 +125,16 @@ stages:
             projects: '**/*[Tt]est/*.csproj'
             configuration: $(BuildConfiguration) 
             nobuild: true
-            arguments: '--collect "Code coverage"'
+            arguments: '--collect:"XPlat Code Coverage" --logger trx /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:ExcludeByAttribute=$(COVERLET_EXCLUDE_ATTRIBUTE) /p:ExcludeByFile=*\*Designer.cs /p:CoverletOutput=../_CoverageResults/ /p:MergeWith="../_CoverageResults/coverage.json" /p:CoverletOutputFormat=cobertura%2cjson'
+            publishTestResults: true
 
-         # https://docs.codecov.com/docs/codecov-uploader
+        - task: PublishCodeCoverageResults@1
+          displayName: 'Publish code coverage report'
+          inputs:
+            codeCoverageTool: 'Cobertura'
+            summaryFileLocation: '$(Agent.TempDirectory)/**/coverage.cobertura.xml'            
+         
+            # https://docs.codecov.com/docs/codecov-uploader
         - task: PowerShell@2
           displayName: Export coverage to CodeCov
           name: CodeCov
