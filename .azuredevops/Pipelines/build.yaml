@@ -38,6 +38,8 @@ stages:
             value: Release
           - name: ci_feed
             value: 39ce9363-a308-4580-8610-ee11f4953539/01001223-8651-4b73-a7ca-ba27c3e10a3c
+          - name: COVERLET_EXCLUDE_ATTRIBUTE
+            value: 'DebuggerNonUserCodeAttribute%2cExcludeFromCodeCoverageAttribute%2cGeneratedCodeAttribute%2cCompilerGeneratedAttribute'
  
         steps:
         - script: git submodule update --init --recursive
@@ -111,6 +113,7 @@ stages:
             projects: '**/*.sln'
             configuration: $(BuildConfiguration) 
 
+         # https://docs.microsoft.com/en-us/azure/devops/pipelines/ecosystems/dotnet-core?view=azure-devops&tabs=dotnetfive
         - task: DotNetCoreCLI@2
           displayName: "DotNet Test"
           inputs:
@@ -118,7 +121,28 @@ stages:
             projects: '**/*[Tt]est/*.csproj'
             configuration: $(BuildConfiguration) 
             nobuild: true
+            arguments: '--collect:"XPlat Code Coverage" --logger trx /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:ExcludeByAttribute=$(COVERLET_EXCLUDE_ATTRIBUTE) /p:ExcludeByFile=*\*Designer.cs /p:CoverletOutput=../_CoverageResults/ /p:MergeWith="../_CoverageResults/coverage.json" /p:CoverletOutputFormat=cobertura%2cjson'
+            publishTestResults: true
+     
+        # https://docs.codecov.com/docs/codecov-uploader
+        - pwsh: |
+            Invoke-WebRequest -Uri https://uploader.codecov.io/latest/windows/codecov.exe -Outfile codecov.exe
+            ./codecov.exe -f "**/coverag*.cobertura.xml"
+          displayName: Export coverage to CodeCov
+          name: CodeCov
+     
+        - pwsh: |
+            dotnet tool install --tool-path . dotnet-reportgenerator-globaltool
+            ./reportgenerator "-reports:**/coverag*.cobertura.xml" "-targetdir:$(Agent.TempDirectory)" "-reporttypes:Cobertura"
+          displayName: Merge coverage reports
+          name: MergeCoverageReports
 
+        - task: PublishCodeCoverageResults@1
+          displayName: 'Publish code coverage to devops'
+          inputs:
+            codeCoverageTool: Cobertura
+            summaryFileLocation: '$(Agent.TempDirectory)/Cobertura.xml'
+       
         - task: DotNetCoreCLI@2
           displayName: 'DotNet Pack'
           inputs:
@@ -152,5 +176,5 @@ stages:
             packagesToPush: '$(Pipeline.Workspace)/**/*.nupkg;$(Pipeline.Workspace)/**/*.snupkg;!$(Pipeline.Workspace)/**/*.symbols.nupkg'
             nuGetFeedType: internal
             publishVstsFeed: $(ci_feed)
-            allowPackageConflicts: true
+            allowPackageConflicts: false
             condition: and(succeeded(), ne(variables['ci_feed'], ''), ne(variables['Build.Reason'], 'PullRequest'))
