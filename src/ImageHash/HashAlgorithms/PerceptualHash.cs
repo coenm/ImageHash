@@ -96,20 +96,6 @@ namespace CoenM.ImageHash.HashAlgorithms
             return values.OrderBy(value => value).Skip(31).Take(2).Average();
         }
 
-        private static double[,] GenerateDctCoeffs()
-        {
-            double[,] c = new double[SIZE, SIZE];
-            for (var coef = 0; coef < SIZE; coef++)
-            {
-                for (var i = 0; i < SIZE; i++)
-                {
-                    c[i, coef] = Math.Cos(((2.0 * i) + 1.0) * coef * Math.PI / (2.0 * SIZE));
-                }
-            }
-
-            return c;
-        }
-
         private static List<Vector<double>>[] GenerateDctCoeffsSimd()
         {
             List<Vector<double>>[] results = new List<Vector<double>>[SIZE];
