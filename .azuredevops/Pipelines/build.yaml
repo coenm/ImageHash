@@ -141,16 +141,11 @@ stages:
             summaryFileLocation: '$(Agent.TempDirectory)/Cobertura.xml'
        
             # https://docs.codecov.com/docs/codecov-uploader
-        - task: PowerShell@2
-          displayName: Export coverage to CodeCov
-          name: CodeCov
-          inputs:
-            targetType: 'inline'
-            script: |
-              Invoke-WebRequest -Uri https://uploader.codecov.io/latest/windows/codecov.exe -Outfile codecov.exe
-              .\codecov.exe -f "$(Agent.TempDirectory)/Cobertura.xml"
-            # errorActionPreference: 'silentlyContinue'
-            ignoreLASTEXITCODE: false
+        - pwsh: |
+            Invoke-WebRequest -Uri https://uploader.codecov.io/latest/windows/codecov.exe -Outfile codecov.exe
+            ./codecov.exe -f "$(Agent.TempDirectory)/Cobertura.xml"
+          displayName: CodeCov
+          name: Export coverage to CodeCov
 
         - task: DotNetCoreCLI@2
           displayName: 'DotNet Pack'
