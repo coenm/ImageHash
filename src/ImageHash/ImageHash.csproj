@@ -8,23 +8,14 @@
     <AssemblyName>CoenM.ImageSharp.ImageHash</AssemblyName>
     <PackageId>CoenM.ImageSharp.ImageHash</PackageId>
     <PackageTags>ImageHash;DifferenceHash;AverageHash;PerceptualHash;Imaging;ImageSharp</PackageTags>
+	<PackageReadmeFile>PackageDescription.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="SixLabors.ImageSharp" />
   </ItemGroup>
 
-  <Target Name="PrepareDescription" BeforeTargets="GenerateNuspec" DependsOnTargets="GetBuildVersion">
-	  <ReadLinesFromFile File="PackageDescription.md">
-		  <Output TaskParameter="Lines" PropertyName="PackageDescriptionContent" />
-	  </ReadLinesFromFile>
-
-	  <PropertyGroup>
-		  <Description>$(Description)
-
-$(PackageDescriptionContent)
-		  </Description>
-      <PackageDescription>$(Description)</PackageDescription>
-	  </PropertyGroup>
-  </Target>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)\PackageDescription.md" Pack="true" PackagePath="$(PackageReadmeFile)" Visible="false" />
+  </ItemGroup>
 </Project>
