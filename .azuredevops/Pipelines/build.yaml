@@ -115,7 +115,7 @@ stages:
           displayName: "DotNet Test"
           inputs:
             command: test
-            projects: '**/*[Tt]ests/*.csproj'
+            projects: '**/*[Tt]ests?/*.csproj'
             configuration: $(BuildConfiguration) 
             nobuild: true
 
