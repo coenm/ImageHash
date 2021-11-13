@@ -1,6 +1,8 @@
-## API
+# ImageHash
 
-### Calculate image hash
+Perceptual image hashing in netstandard using the ImageSharp library. Includes three hashing algorithms (AverageHash, DifferenceHash, and PerceptualHash).
+
+## Calculate image hash
 
 ```cs
 var hashAlgorithm = new AverageHash();
@@ -14,7 +16,7 @@ using var stream = File.OpenRead(filename);
 ulong imageHash = hashAlgorithm.Hash(stream);
 ```
 
-### Calculate image similarity
+## Calculate image similarity
 Note that to calculate the image similarity, both image hashes should have been calculated using the same hash algorihm.
 
 ```cs
