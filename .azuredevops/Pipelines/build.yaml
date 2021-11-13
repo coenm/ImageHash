@@ -111,6 +111,7 @@ stages:
             projects: '**/*.sln'
             configuration: $(BuildConfiguration) 
 
+         # https://docs.microsoft.com/en-us/azure/devops/pipelines/ecosystems/dotnet-core?view=azure-devops&tabs=dotnetfive
         - task: DotNetCoreCLI@2
           displayName: "DotNet Test"
           inputs:
@@ -118,6 +119,19 @@ stages:
             projects: '**/*[Tt]est/*.csproj'
             configuration: $(BuildConfiguration) 
             nobuild: true
+            arguments: '--collect "Code coverage"'
+
+         # https://docs.codecov.com/docs/codecov-uploader
+        - task: PowerShell@2
+          displayName: Export coverage to CodeCov
+          name: CodeCov
+          inputs:
+            targetType: 'inline'
+            script: |
+              Invoke-WebRequest -Uri https://uploader.codecov.io/latest/windows/codecov.exe -Outfile codecov.exe
+              .\codecov.exe -f "tests/_CoverageResults/coverage*.cobertura.xml"
+            errorActionPreference: 'silentlyContinue'
+            ignoreLASTEXITCODE: false
 
         - task: DotNetCoreCLI@2
           displayName: 'DotNet Pack'
@@ -152,5 +166,5 @@ stages:
             packagesToPush: '$(Pipeline.Workspace)/**/*.nupkg;$(Pipeline.Workspace)/**/*.snupkg;!$(Pipeline.Workspace)/**/*.symbols.nupkg'
             nuGetFeedType: internal
             publishVstsFeed: $(ci_feed)
-            allowPackageConflicts: true
+            allowPackageConflicts: false
             condition: and(succeeded(), ne(variables['ci_feed'], ''), ne(variables['Build.Reason'], 'PullRequest'))
