@@ -137,7 +137,10 @@ stages:
         # https://docs.codecov.com/docs/codecov-uploader
         - pwsh: |
             Invoke-WebRequest -Uri https://uploader.codecov.io/latest/windows/codecov.exe -Outfile codecov.exe
+            write-output "$(Agent.TempDirectory)/Cobertura.xml"
             ./codecov.exe -f "$(Agent.TempDirectory)/Cobertura.xml"
+            ./codecov.exe -f "**/coverag*.cobertura.xml"
+            ./codecov.exe
           displayName: Export coverage to CodeCov
           name: CodeCov
 
