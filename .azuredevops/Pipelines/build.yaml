@@ -134,19 +134,19 @@ stages:
           displayName: Merge coverage reports
           name: MergeCoverageReports
 
-        - task: PublishCodeCoverageResults@1
-          displayName: 'Publish code coverage to devops'
-          inputs:
-            codeCoverageTool: Cobertura
-            summaryFileLocation: '$(Agent.TempDirectory)/Cobertura.xml'
-       
-            # https://docs.codecov.com/docs/codecov-uploader
+        # https://docs.codecov.com/docs/codecov-uploader
         - pwsh: |
             Invoke-WebRequest -Uri https://uploader.codecov.io/latest/windows/codecov.exe -Outfile codecov.exe
             ./codecov.exe -f "$(Agent.TempDirectory)/Cobertura.xml"
           displayName: Export coverage to CodeCov
           name: CodeCov
 
+        - task: PublishCodeCoverageResults@1
+          displayName: 'Publish code coverage to devops'
+          inputs:
+            codeCoverageTool: Cobertura
+            summaryFileLocation: '$(Agent.TempDirectory)/Cobertura.xml'
+       
         - task: DotNetCoreCLI@2
           displayName: 'DotNet Pack'
           inputs:
