@@ -100,6 +100,13 @@ stages:
             errorActionPreference: 'silentlyContinue'
             ignoreLASTEXITCODE: true
 
+        # regenerate markdowns without links (in order to generate markdown to be included in nuget package)
+        - pwsh: |
+            dotnet tool install --tool-path . MarkdownSnippets.Tool
+            ./mdsnippets --omit-snippet-links true
+          displayName: Re-generate markdown without links
+          name: mdsnippets
+
         - task: DotNetCoreCLI@2
           displayName: DotNet Restore
           inputs:
