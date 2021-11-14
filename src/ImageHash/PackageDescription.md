@@ -1,7 +1,7 @@
 # ImageHash
 
 Perceptual image hashing using the ImageSharp library. Includes three hashing algorithms (AverageHash, DifferenceHash, and PerceptualHash).
-See [github](https://www.github.com/coenmm/ImageHash/) for more information.
+See [github](https://www.github.com/coenm/ImageHash/) for more information.
 
 ## Calculate image hash
 
