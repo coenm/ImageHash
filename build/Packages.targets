@@ -39,7 +39,7 @@
     <PackageReference Update="FakeItEasy.Analyzer.CSharp" Version="6.1.0" />
     <PackageReference Update="FluentAssertions" Version="6.2.0" />
     <PackageReference Update="FluentAssertions.Analyzers" Version="0.13.0" />
-    <PackageReference Update="EasyTestFile" Version="1.0.3" />
+    <PackageReference Update="EasyTestFile" Version="1.0.4" />
     <PackageReference Update="EasyTestFile.XUnit" Version="1.0.3" />
 
     <!-- Test coverage -->
