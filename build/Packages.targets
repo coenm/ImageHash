@@ -52,7 +52,7 @@
     <PackageReference Update="Nito.Mvvm.Async" Version="1.0.0-pre-04" />
     <PackageReference Update="Nito.Mvvm.CalculatedProperties" Version="1.3.1" />
     <PackageReference Update="Nito.Mvvm.Core" Version="1.3.1" />
-    <PackageReference Update="Ookii.Dialogs.Wpf" Version="5.0.0" />
+    <PackageReference Update="Ookii.Dialogs.Wpf" Version="5.0.1" />
 
   </ItemGroup>
 
