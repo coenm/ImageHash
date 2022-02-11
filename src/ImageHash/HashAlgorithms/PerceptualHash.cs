@@ -98,7 +98,7 @@ namespace CoenM.ImageHash.HashAlgorithms
 
         private static List<Vector<double>>[] GenerateDctCoeffsSimd()
         {
-            List<Vector<double>>[] results = new List<Vector<double>>[SIZE];
+            var results = new List<Vector<double>>[SIZE];
             for (var coef = 0; coef < SIZE; coef++)
             {
                 var singleResultRaw = new double[SIZE];
@@ -110,7 +110,7 @@ namespace CoenM.ImageHash.HashAlgorithms
                 var singleResultList = new List<Vector<double>>();
                 var stride = Vector<double>.Count;
                 Debug.Assert(SIZE % stride == 0, "Size must be a multiple of SIMD stride");
-                for (int i = 0; i < SIZE; i += stride)
+                for (var i = 0; i < SIZE; i += stride)
                 {
                     var v = new Vector<double>(singleResultRaw, i);
                     singleResultList.Add(v);
@@ -136,14 +136,14 @@ namespace CoenM.ImageHash.HashAlgorithms
 
             var valuesList = new List<Vector<double>>();
             var stride = Vector<double>.Count;
-            for (int i = 0; i < valuesRaw.Length; i += stride)
+            for (var i = 0; i < valuesRaw.Length; i += stride)
             {
                 valuesList.Add(new Vector<double>(valuesRaw, i));
             }
 
             for (var coef = 0; coef < limit; coef++)
             {
-                for (int i = 0; i < valuesList.Count; i++)
+                for (var i = 0; i < valuesList.Count; i++)
                 {
                     coefficients[ci, coef] += Vector.Dot(valuesList[i], _dctCoeffsSimd[coef][i]);
                 }

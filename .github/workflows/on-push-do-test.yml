@@ -23,11 +23,6 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 2.1.x
-
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v1
-      with:
         dotnet-version: 3.1.x
 
     - name: Setup .NET
@@ -39,7 +34,7 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 6.0.x
-        include-prerelease: true
+        include-prerelease: false
 
     - name: Remove demo project from solution
       run: dotnet sln ImageHash.sln remove demo/Demo.csproj
