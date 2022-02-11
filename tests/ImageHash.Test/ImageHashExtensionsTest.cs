@@ -3,6 +3,7 @@ namespace CoenM.ImageHash.Test
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
+    using System.Threading.Tasks;
     using CoenM.ImageHash.Test.Data;
     using EasyTestFileXunit;
     using FakeItEasy;
@@ -24,11 +25,11 @@ namespace CoenM.ImageHash.Test
         }
 
         [Fact]
-        public void HashStreamShouldReadStreamAsImageAndPassDataToHashAlgorithmTest()
+        public async Task HashStreamShouldReadStreamAsImageAndPassDataToHashAlgorithmTest()
         {
             // arrange
             A.CallTo(() => _hashAlgorithm.Hash(A<Image<Rgba32>>._)).Returns(0UL);
-            using Stream stream = TestData.AlysonHannigan200x200_0.AsStream();
+            using Stream stream = await TestData.AlysonHannigan200x200_0.AsStream();
 
             // act
             var result = Sut.Hash(_hashAlgorithm, stream);
@@ -49,7 +50,7 @@ namespace CoenM.ImageHash.Test
             Stream stream = streamIsNull ? null : new MemoryStream();
 
             // act
-            Action act = () => Sut.Hash(imageHashImplementation, stream);
+            Action act = () => Sut.Hash(imageHashImplementation!, stream!);
 
             // assert
             act.Should().Throw<ArgumentNullException>();

@@ -4,6 +4,7 @@ namespace CoenM.ImageHash.Test.Algorithms
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
+    using System.Threading.Tasks;
     using CoenM.ImageHash.HashAlgorithms;
     using CoenM.ImageHash.Test.Data;
     using EasyTestFileXunit;
@@ -37,13 +38,13 @@ namespace CoenM.ImageHash.Test.Algorithms
         [InlineData("Alyson_Hannigan_4x4_0.jpg", 17409736169531453642)]
         [InlineData("github_1.jpg", 13719320793338945348)]
         [InlineData("github_2.jpg", 13783795072850083657)]
-        public void HashImagesTest(string filename, ulong expectedHash)
+        public async Task HashImagesTest(string filename, ulong expectedHash)
         {
             // arrange
             ulong result;
 
             // act
-            using (Stream stream = TestData.GetByName(filename).AsStream())
+            using (Stream stream = await TestData.GetByName(filename).AsStream())
             {
                 result = _sut.Hash(stream);
             }
@@ -54,12 +55,12 @@ namespace CoenM.ImageHash.Test.Algorithms
 
         [Fact]
         [SuppressMessage("ReSharper", "AccessToDisposedClosure", Justification = "Manually reviewed")]
-        public void NotAnImageShouldThrowExceptionTest()
+        public async Task NotAnImageShouldThrowExceptionTest()
         {
             // arrange
 
             // act
-            using Stream stream = TestData.NotAnImage.AsStream();
+            using Stream stream = await TestData.NotAnImage.AsStream();
             Action act = () => _sut.Hash(stream);
 
             // assert
