@@ -5,6 +5,6 @@
 
     <!-- Set the CheckEolTargetFramework property to false. This will remove the following warning:
 		The target framework 'netcoreapp2.1' is out of support and will not receive security updates in the future. -->
-    <CheckEolTargetFramework>false</CheckEolTargetFramework>
+    <!-- <CheckEolTargetFramework>false</CheckEolTargetFramework> -->
   </PropertyGroup>
 </Project>
