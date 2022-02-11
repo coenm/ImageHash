@@ -9,7 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EasyTestFile" />
     <PackageReference Include="EasyTestFile.XUnit" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" />
     <PackageReference Include="FakeItEasy" />
