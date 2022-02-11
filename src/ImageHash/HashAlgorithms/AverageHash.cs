@@ -35,40 +35,43 @@ namespace CoenM.ImageHash.HashAlgorithms
                                 .Grayscale(GrayscaleMode.Bt601)
                                 .AutoOrient());
 
-            uint averageValue = 0;
-
-            for (var y = 0; y < HEIGHT; y++)
-            {
-                Span<Rgba32> row = image.GetPixelRowSpan(y);
-                for (var x = 0; x < WIDTH; x++)
-                {
-                    // We know 4 bytes (RGBA) are used to describe one pixel
-                    // Also, it is already grayscaled, so R=G=B. Therefore, we can take one of these
-                    // values for average calculation. We take the R (the first of each 4 bytes).
-                    averageValue += row[x].R;
-                }
-            }
-
-            averageValue /= NR_PIXELS;
-
-            // Compute the hash: each bit is a pixel
-            // 1 = higher than average, 0 = lower than average
             var hash = 0UL;
-            var mask = MOST_SIGNIFICANT_BIT_MASK;
 
-            for (var y = 0; y < HEIGHT; y++)
-            {
-                Span<Rgba32> row = image.GetPixelRowSpan(y);
-                for (var x = 0; x < WIDTH; x++)
+            image.ProcessPixelRows((imageAccessor) =>
                 {
-                    if (row[x].R >= averageValue)
+                    uint averageValue = 0;
+                    for (var y = 0; y < HEIGHT; y++)
                     {
-                        hash |= mask;
+                        Span<Rgba32> row = imageAccessor.GetRowSpan(y);
+                        for (var x = 0; x < WIDTH; x++)
+                        {
+                            // We know 4 bytes (RGBA) are used to describe one pixel
+                            // Also, it is already grayscaled, so R=G=B. Therefore, we can take one of these
+                            // values for average calculation. We take the R (the first of each 4 bytes).
+                            averageValue += row[x].R;
+                        }
                     }
 
-                    mask >>= 1;
-                }
-            }
+                    averageValue /= NR_PIXELS;
+
+                    // Compute the hash: each bit is a pixel
+                    // 1 = higher than average, 0 = lower than average
+                    var mask = MOST_SIGNIFICANT_BIT_MASK;
+
+                    for (var y = 0; y < HEIGHT; y++)
+                    {
+                        Span<Rgba32> row = imageAccessor.GetRowSpan(y);
+                        for (var x = 0; x < WIDTH; x++)
+                        {
+                            if (row[x].R >= averageValue)
+                            {
+                                hash |= mask;
+                            }
+
+                            mask >>= 1;
+                        }
+                    }
+                });
 
             return hash;
         }

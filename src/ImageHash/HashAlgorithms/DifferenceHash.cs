@@ -34,26 +34,30 @@ namespace CoenM.ImageHash.HashAlgorithms
                                 .Resize(WIDTH, HEIGHT)
                                 .Grayscale(GrayscaleMode.Bt601));
 
-            var mask = 1UL << ((HEIGHT * (WIDTH - 1)) - 1);
             var hash = 0UL;
 
-            for (var y = 0; y < HEIGHT; y++)
-            {
-                Span<Rgba32> row = image.GetPixelRowSpan(y);
-                Rgba32 leftPixel = row[0];
-
-                for (var index = 1; index < WIDTH; index++)
+            image.ProcessPixelRows((imageAccessor) =>
                 {
-                    Rgba32 rightPixel = row[index];
-                    if (leftPixel.R < rightPixel.R)
-                    {
-                        hash |= mask;
-                    }
+                    var mask = 1UL << ((HEIGHT * (WIDTH - 1)) - 1);
 
-                    leftPixel = rightPixel;
-                    mask >>= 1;
-                }
-            }
+                    for (var y = 0; y < HEIGHT; y++)
+                    {
+                        Span<Rgba32> row = imageAccessor.GetRowSpan(y);
+                        Rgba32 leftPixel = row[0];
+
+                        for (var index = 1; index < WIDTH; index++)
+                        {
+                            Rgba32 rightPixel = row[index];
+                            if (leftPixel.R < rightPixel.R)
+                            {
+                                hash |= mask;
+                            }
+
+                            leftPixel = rightPixel;
+                            mask >>= 1;
+                        }
+                    }
+                });
 
             return hash;
         }
