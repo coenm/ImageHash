@@ -37,7 +37,7 @@
     <!-- Unittesting -->
     <PackageReference Update="FakeItEasy" Version="7.3.0" />
     <PackageReference Update="FakeItEasy.Analyzer.CSharp" Version="6.1.0" />
-    <PackageReference Update="FluentAssertions" Version="6.5.0" />
+    <PackageReference Update="FluentAssertions" Version="6.6.0" />
     <PackageReference Update="FluentAssertions.Analyzers" Version="0.15.0" />
     <PackageReference Update="EasyTestFile.XUnit" Version="2.0.2" />
 
