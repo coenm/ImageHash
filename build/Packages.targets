@@ -20,7 +20,7 @@
     <PackageReference Update="Microsoft.SourceLink.GitHub" Version="1.1.1" />
 
     <!-- Versioning -->
-    <PackageReference Update="Nerdbank.GitVersioning" Version="3.4.255" />
+    <PackageReference Update="Nerdbank.GitVersioning" Version="3.5.103" />
     
     <!--Required in test project -->
     <PackageReference Update="Microsoft.NET.Test.Sdk" Version="17.0.0" />
