@@ -23,7 +23,7 @@
     <PackageReference Update="Nerdbank.GitVersioning" Version="3.4.255" />
     
     <!--Required in test project -->
-    <PackageReference Update="Microsoft.NET.Test.Sdk" Version="17.0.0" />
+    <PackageReference Update="Microsoft.NET.Test.Sdk" Version="17.2.0" />
 
     <!-- xunit -->
     <PackageReference Update="xunit" Version="2.4.1" />
