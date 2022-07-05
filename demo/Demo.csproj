@@ -1,12 +1,13 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net6-windows</TargetFramework>
     <UseWPF>true</UseWPF>
     <AssemblyName>Demo</AssemblyName>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" />
     <PackageReference Include="Nito.Disposables" />
@@ -15,6 +16,7 @@
     <PackageReference Include="Nito.Mvvm.Core" />
     <PackageReference Include="Ookii.Dialogs.Wpf" />
   </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\src\ImageHash\ImageHash.csproj" />
   </ItemGroup>

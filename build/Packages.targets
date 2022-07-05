@@ -14,16 +14,16 @@
   <ItemGroup>
 
     <!--Dependencies production code (and maybe also in test code)-->
-    <PackageReference Update="SixLabors.ImageSharp" Version="2.1.2" />
+    <PackageReference Update="SixLabors.ImageSharp" Version="2.1.3" />
 
     <!-- Packages and tools for releasing (sourcelink)-->
     <PackageReference Update="Microsoft.SourceLink.GitHub" Version="1.1.1" />
 
     <!-- Versioning -->
-    <PackageReference Update="Nerdbank.GitVersioning" Version="3.4.255" />
+    <PackageReference Update="Nerdbank.GitVersioning" Version="3.5.107" />
     
     <!--Required in test project -->
-    <PackageReference Update="Microsoft.NET.Test.Sdk" Version="17.0.0" />
+    <PackageReference Update="Microsoft.NET.Test.Sdk" Version="17.2.0" />
 
     <!-- xunit -->
     <PackageReference Update="xunit" Version="2.4.1" />
@@ -32,14 +32,14 @@
     <PackageReference Update="xunit.extensibility.core" Version="2.4.1" />
     <PackageReference Update="xunit.runner.console" Version="2.4.1" />
     <PackageReference Update="xunit.runner.reporters" Version="2.4.1" />
-    <PackageReference Update="xunit.runner.visualstudio" Version="2.4.3" />
+    <PackageReference Update="xunit.runner.visualstudio" Version="2.4.5" />
 
     <!-- Unittesting -->
-    <PackageReference Update="FakeItEasy" Version="7.3.0" />
+    <PackageReference Update="FakeItEasy" Version="7.3.1" />
     <PackageReference Update="FakeItEasy.Analyzer.CSharp" Version="6.1.0" />
-    <PackageReference Update="FluentAssertions" Version="6.5.0" />
+    <PackageReference Update="FluentAssertions" Version="6.7.0" />
     <PackageReference Update="FluentAssertions.Analyzers" Version="0.15.0" />
-    <PackageReference Update="EasyTestFile.XUnit" Version="2.0.2" />
+    <PackageReference Update="EasyTestFile.XUnit" Version="2.0.3" />
 
     <!-- Test coverage -->
     <PackageReference Update="coverlet.msbuild" Version="3.1.2" />
@@ -52,7 +52,6 @@
     <PackageReference Update="Nito.Mvvm.CalculatedProperties" Version="1.3.1" />
     <PackageReference Update="Nito.Mvvm.Core" Version="1.3.1" />
     <PackageReference Update="Ookii.Dialogs.Wpf" Version="5.0.1" />
-
   </ItemGroup>
 
 </Project>
