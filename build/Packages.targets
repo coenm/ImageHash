@@ -14,7 +14,7 @@
   <ItemGroup>
 
     <!--Dependencies production code (and maybe also in test code)-->
-    <PackageReference Update="SixLabors.ImageSharp" Version="2.1.3" />
+    <PackageReference Update="SixLabors.ImageSharp" Version="2.1.9" />
 
     <!-- Packages and tools for releasing (sourcelink)-->
     <PackageReference Update="Microsoft.SourceLink.GitHub" Version="1.1.1" />
